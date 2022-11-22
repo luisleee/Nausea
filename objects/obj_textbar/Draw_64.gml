@@ -22,6 +22,17 @@ var eye_spr = spr_eyes_zzm;
 var uiscale = dis_w/400;
 
 ///draw basic elements
+//draw grids
+/*
+draw_set_color(grid_col);
+for(var i = 0; i <= dis_w; i += bdr_w/2){
+	draw_line(i,0,i,dis_h);
+}
+for(var i = 0; i <= dis_h; i += bdr_w/2){
+	draw_line(0,i,dis_w,i);
+}*/
+
+
 //draw frames and inners
 draw_set_alpha(1);
 draw_set_color(frm_col);
@@ -43,23 +54,10 @@ draw_rectangle(bdr_w,
 	dis_h - bdr_w,0);
 draw_set_color(inner_col);
 draw_rectangle(bdr_w + bdr_w/2,
-	dis_h - frm_h + bdr_w + bdr_w/2,
-	bdr_w + por_w - bdr_w/2,
-	dis_h - frm_h + bdr_w + bdr_w/2 + eye_h,0);
-draw_rectangle(bdr_w + bdr_w/2,
 	dis_h - bdr_w -bdr_w/2 - name_h,
 	bdr_w + por_w - bdr_w/2,
 	dis_h - bdr_w -bdr_w/2,0);
 	
-//draw grids
-draw_set_color(grid_col);
-for(var i = 0; i <= dis_w; i += bdr_w/2){
-	draw_line(i,0,i,dis_h);
-}
-for(var i = 0; i <= dis_h; i += bdr_w/2){
-	draw_line(0,i,dis_w,i);
-}
-
 //draw eyes
 draw_sprite_ext(eye_spr,0,bdr_w + bdr_w/2,
 	dis_h - frm_h + bdr_w + bdr_w/2,
@@ -76,14 +74,19 @@ draw_text_transformed(bdr_w + bdr_w/2,
 	person_name,name_xscale,name_yscale,0);
 
 //draw lines
-//>>>>>NOTE:: HERE REMAINS A BUG UNSOLVED.<<<<<<
 draw_set_alpha(1);
 draw_set_color(c_black);
 draw_set_font(fnt_test);
-var text_h = string_height("错") * text_scale;
+
+var text_h = string_width("啊") * text_scale;
+//var correct_h = 7/32 *256;
 var text_sep = ((frm_h - bdr_w * 2) - text_h * 3)/4;
+
+
+
 draw_text_ext_transformed(bdr_w * 2 + por_w + bdr_w,
 	dis_h - frm_h + bdr_w + text_sep,
-	string(text_sep) + "梦中没有错与对　梦中有安也有危\n梦的时代我在胡说　梦醒时刻才会解脱\n我不知道　我不能去说",text_sep,
+	"梦中没有错与对　梦中有安也有危\n梦的时代我在胡说　梦醒时刻才会解脱\n我不知道　我不能去说",text_sep,
 	dis_w - por_w - 5 * bdr_w,
 	text_scale,text_scale,0);
+	
