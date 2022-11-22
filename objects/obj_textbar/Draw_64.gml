@@ -82,11 +82,12 @@ var text_h = string_width("啊") * text_scale;
 //var correct_h = 7/32 *256;
 var text_sep = ((frm_h - bdr_w * 2) - text_h * 3)/4;
 
-
+var text_display = string_copy(dialogue[dia_index],1,char_count);
 
 draw_text_ext_transformed(bdr_w * 2 + por_w + bdr_w,
 	dis_h - frm_h + bdr_w + text_sep,
-	"梦中没有错与对　梦中有安也有危\n梦的时代我在胡说　梦醒时刻才会解脱\n我不知道　我不能去说",text_sep,
+	string_wrap(text_display,
+	dis_w - por_w - 5 * bdr_w,text_scale),text_sep,
 	dis_w - por_w - 5 * bdr_w,
 	text_scale,text_scale,0);
 	
