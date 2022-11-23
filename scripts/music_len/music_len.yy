@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "show_text",
+  "name": "music_len",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {

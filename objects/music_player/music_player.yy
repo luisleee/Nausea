@@ -1,7 +1,7 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_music_player",
+  "name": "music_player",
   "spriteId": null,
   "solid": false,
   "visible": true,

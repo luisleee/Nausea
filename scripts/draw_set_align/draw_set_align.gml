@@ -1,9 +1,10 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function draw_set_align(str){
+function draw_set_align(str) {
+	if (string_length(str) < 2) {
+		return;	
+	}
 	
-	var letter1 = string_char_at(str,1);
-	var letter2 = string_char_at(str,2);
+	var letter1 = string_char_at(str, 1);
+	var letter2 = string_char_at(str, 2);
 	
 	var val = fa_top;
 	var hal = fa_left;
