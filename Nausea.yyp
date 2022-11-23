@@ -11,6 +11,7 @@
     {"id":{"name":"spr_bedroom_mess","path":"sprites/spr_bedroom_mess/spr_bedroom_mess.yy",},"order":2,},
     {"id":{"name":"string_wrap","path":"scripts/string_wrap/string_wrap.yy",},"order":1,},
     {"id":{"name":"music_controller","path":"objects/music_controller/music_controller.yy",},"order":3,},
+    {"id":{"name":"get_halt_time","path":"scripts/get_halt_time/get_halt_time.yy",},"order":6,},
     {"id":{"name":"text_controller","path":"objects/text_controller/text_controller.yy",},"order":2,},
     {"id":{"name":"image_controller","path":"objects/image_controller/image_controller.yy",},"order":5,},
     {"id":{"name":"option","path":"objects/option/option.yy",},"order":6,},

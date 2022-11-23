@@ -1,4 +1,4 @@
-char_spd = 0.5;
+char_spd = 0.35;
 char_count = 1;
 current_text = "";
 
