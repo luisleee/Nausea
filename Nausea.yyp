@@ -6,6 +6,7 @@
     {"id":{"name":"is_punctuation","path":"scripts/is_punctuation/is_punctuation.yy",},"order":3,},
     {"id":{"name":"snd_ost_day_intro","path":"sounds/snd_ost_day_intro/snd_ost_day_intro.yy",},"order":1,},
     {"id":{"name":"fnt_test","path":"fonts/fnt_test/fnt_test.yy",},"order":0,},
+    {"id":{"name":"show_text","path":"scripts/show_text/show_text.yy",},"order":4,},
     {"id":{"name":"snd_ost_day_main","path":"sounds/snd_ost_day_main/snd_ost_day_main.yy",},"order":2,},
     {"id":{"name":"string_wrap","path":"scripts/string_wrap/string_wrap.yy",},"order":1,},
     {"id":{"name":"obj_textbar","path":"objects/obj_textbar/obj_textbar.yy",},"order":0,},

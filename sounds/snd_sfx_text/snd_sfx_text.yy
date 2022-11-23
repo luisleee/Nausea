@@ -15,7 +15,7 @@
   "bitRate": 128,
   "volume": 1.0,
   "preload": false,
-  "duration": 1.850952,
+  "duration": 0.115011,
   "parent": {
     "name": "Sounds",
     "path": "folders/Sounds.yy",
