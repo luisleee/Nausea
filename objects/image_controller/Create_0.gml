@@ -4,23 +4,28 @@ enum movePattern {
 	horizontal,
 }
 
-function Image (_spr, _posx, _posy, _scalex, _scaley, _alpha) constructor {
+function Pattern (_move_pattern, _args) constructor {
+	move_pattern = _move_pattern;
+	args = _args;
+}
+
+function Image (_spr, _posx, _posy, _scalex, _scaley, _alpha, _pattern) constructor {
 	spr = _spr;
 	pos_x = _posx;
 	pos_y = _posy;
 	scale_x = _scalex;
 	scale_y = _scaley;
 	alpha = _alpha;
+	pattern = _pattern;
 }
 
-
-//var music = ;
+var no_movement = new Pattern(movePattern.none, {});
 
 image_sources = [
-	new Image(spr_bedroom_f_computer, 0, 0, 4, 4, 1,),
-	new Image(spr_bedroom_mess, 0, 0, 8, 8, 1,),
-	new Image(spr_sunrise, 0, -200, 4, 4, 1,),
-	];
+	new Image(spr_bedroom_f_computer, 0, 0, 4, 4, 1, no_movement),
+	new Image(spr_bedroom_mess, 0, 0, 8, 8, 1, no_movement),
+	new Image(spr_sunrise, 0, 0, 4, 4, 1, no_movement),
+];
 	
 function get_image(_spr) {
 	var len = array_length(image_sources);
@@ -31,15 +36,6 @@ function get_image(_spr) {
 	}
 	return pointer_null;
 }
-
-/*
-function set_background_image(spr) {
-	var sprites = get_image(spr);
-	if (sprites == pointer_null) {
-		return;
-	}
-	image_painter.set_images(sprites);
-}*/
 
 function add_image(spr){
 	var dep = 0;

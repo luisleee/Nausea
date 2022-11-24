@@ -29,6 +29,6 @@ function set_background_music(name) {
 	music_player.set_music(music);
 }
 
-alarm[0] = 1;
+//alarm[0] = 1;
 
 //set_background_music("day");
