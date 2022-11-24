@@ -1,3 +1,9 @@
+enum movePattern {
+	none,
+	vertical,
+	horizontal,
+}
+
 function Image (_spr, _posx, _posy, _scalex, _scaley, _alpha) constructor {
 	spr = _spr;
 	pos_x = _posx;
@@ -11,8 +17,9 @@ function Image (_spr, _posx, _posy, _scalex, _scaley, _alpha) constructor {
 //var music = ;
 
 image_sources = [
-	new Image(spr_bedroom_f_computer, 0, 0, 4, 4, 1),
-	new Image(spr_bedroom_mess, 0, 0, 8, 8, 1),
+	new Image(spr_bedroom_f_computer, 0, 0, 4, 4, 1,),
+	new Image(spr_bedroom_mess, 0, 0, 8, 8, 1,),
+	new Image(spr_sunrise, 0, -200, 4, 4, 1,),
 	];
 	
 function get_image(_spr) {
@@ -55,5 +62,5 @@ function remove_image(spr){
 	}
 }
 
-add_image([spr_bedroom_f_computer,spr_bedroom_mess]);
-remove_image([spr_bedroom_mess]);
+add_image([spr_sunrise]);
+//remove_image([spr_bedroom_mess]);
