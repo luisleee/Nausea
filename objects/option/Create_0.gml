@@ -1,4 +1,4 @@
-options = ["你是中国人吗？", "你爱中国吗？", "你愿意中国好吗？"];
+options = [];
 selected = 0;
 function next() {
 	selected = (selected + 1) % array_length(options);
@@ -9,8 +9,8 @@ function previous() {
 	selected = (selected - 1 + len) % len;
 }
 
-function toggle() {
-	visible = !visible;	
+function set_options(_options) {
+	options = _options;
 }
 
 function hide() {
@@ -20,3 +20,5 @@ function hide() {
 function show() {
 	visible = true;
 }
+
+hide();

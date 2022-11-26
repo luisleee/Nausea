@@ -17,7 +17,6 @@ var name_h = 0.06 * display_w;
 var frame_color = make_color_rgb(44,44,44);
 var inner_color = make_color_rgb(188,188,188);
 var person_color = make_color_rgb(25,128,158);
-var person_name = "古神牟嘉齐";
 var eye_spr = spr_eyes_zzm;
 var uiscale = 0.0025 * display_w;
 

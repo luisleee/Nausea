@@ -1,6 +1,7 @@
 char_spd = 0.45;
 char_count = 1;
 current_text = "";
+person_name = "古神牟嘉齐";
 
 function is_fully_displayed() {
 	return char_count >= string_length(current_text);
