@@ -1,10 +1,10 @@
 options = [];
 selected = 0;
-function next() {
+function select_next() {
 	selected = (selected + 1) % array_length(options);
 }
 
-function previous() {
+function select_previous() {
 	var len = array_length(options);
 	selected = (selected - 1 + len) % len;
 }

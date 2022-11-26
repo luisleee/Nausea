@@ -38,10 +38,14 @@ function next() {
 function display_current() {
 	var current_item = chain[current_index];
 	if (current_item.type == itemType.dialog) {
-		textbar.set_text(current_item.content);
+		textbar.set_text(current_item.line);
+		textbar.set_name(get_person_name(current_item.speaker));
+		textbar.set_portrait(get_person_portrait(current_item.speaker, current_item.emotion));
 	}
 	if (current_item.type == itemType.option) {
 		textbar.set_text(current_item.question);
+		textbar.set_name("");
+		textbar.set_portrait(spr_option_black);
 		option.set_options(current_item.options);
 		option.show();
 	}

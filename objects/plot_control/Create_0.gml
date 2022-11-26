@@ -13,15 +13,18 @@ enum itemType {
 var chain1_content = [{
 	type: itemType.dialog,
 	speaker: "Me",
-	content: "人活着哪有不疯的？硬撑罢了！人活着哪有不疯的？硬撑罢了！人活着哪有不疯的？硬撑罢了！"
+	line: "人活着哪有不疯的？硬撑罢了！人活着哪有不疯的？硬撑罢了！人活着哪有不疯的？硬撑罢了！",
+	emotion: 0
 },{
 	type: itemType.dialog,
 	speaker: "Me",
-	content: "妈的，忍不了，一拳把地球打爆！"
+	line: "妈的，忍不了，一拳把地球打爆！",
+	emotion: 1
 },{
 	type: itemType.dialog,
 	speaker: "Me",
-	content:"彻底疯狂！彻底疯狂！彻底疯狂！彻底疯狂！彻底疯狂！"
+	line:"彻底疯狂！彻底疯狂！彻底疯狂！彻底疯狂！彻底疯狂！",
+	emotion: 2
 },{
 	type: itemType.option,
 	question: "彻底疯狂?",
@@ -32,19 +35,22 @@ var chain1_content = [{
 var br1_content = [{
 	type: itemType.dialog,
 	speaker: "Me",
-	content: "对对对"
+	line: "对对对",
+	emotion: 1
 }];
 
 var br2_content = [{
 	type: itemType.dialog,
 	speaker: "Me",
-	content: "算了"
+	line: "算了",
+	emotion: 0
 }];
 
 var chain_next_content = [{
 	type: itemType.dialog,
 	speaker: "Me",
-	content: "杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！"
+	line: "杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！",
+	emotion: 2
 }]
 
 plots = [{

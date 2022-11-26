@@ -40,7 +40,7 @@ if (array_length(options) != 1) {
 		);
 		draw_set_color(c_black);
 		if (i == selected) {
-			draw_set_color(c_aqua);
+			draw_set_color(c_white);
 		}
 		draw_text_transformed(
 			display_w / 2,
@@ -68,7 +68,7 @@ if (array_length(options) != 1) {
 		baseline + char_h + border_w * 2,
 		0
 	);
-	draw_set_color(c_aqua);
+	draw_set_color(c_white);
 	
 	draw_text_transformed(
 		display_w / 2,
