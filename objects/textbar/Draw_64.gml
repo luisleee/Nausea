@@ -76,11 +76,16 @@ draw_sprite_ext(
 //fit in the name and draw the name
 draw_set_alpha(1);
 draw_set_color(c_black);
-var name_xscale = (portrait_w - border_w) / string_width(person_name);
 var name_yscale = name_h / string_height(person_name);
+var name_xscale = name_yscale;
+if((portrait_w - border_w) / string_width(person_name) < name_yscale){
+	name_xscale = (portrait_w - border_w) / string_width(person_name);
+}
+
+draw_set_align("mc");
 draw_text_transformed(
-	border_w + border_w / 2,
-	display_h - border_w - border_w / 2 - name_h,
+	border_w + portrait_w / 2,
+	display_h - border_w - border_w / 2 - name_h/2,
 	person_name,
 	name_xscale,
 	name_yscale,
@@ -88,9 +93,7 @@ draw_text_transformed(
 );
 
 //draw lines
-draw_set_alpha(1);
-draw_set_color(c_black);
-draw_set_font(fnt_test);
+draw_init(fnt_test, c_black, "tl", 1);
 
 var text_h = string_width("啊") * text_scale;
 var text_sep = ((frame_h - border_w * 2) - text_h * 3)/4;
