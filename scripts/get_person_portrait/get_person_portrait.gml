@@ -10,6 +10,11 @@ function get_person_portrait(person, emotion){
 				spr_eyes_zzm_crazy,
 			];
 			break;
+		case "Zww":
+			var sprs = [
+				spr_eyes_zp_noraml,
+			];
+			break;
 	}
 	display_spr = sprs[emotion];
 	return display_spr;

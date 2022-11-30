@@ -40,6 +40,7 @@ image_sources = [
 	new Image(spr_bedroom_f_computer, 0, 0, 4, 4, 1, no_movement),
 	new Image(spr_bedroom_mess, 0, 0, 8, 8, 1, no_movement),
 	new Image(spr_sunrise, 0, 0, 4, 4, 1, v1),
+	new Image(spr_person_zp, 0, -200, 8, 8, 1, no_movement),
 ];
 
-imgs = [image_sources[2]];
+imgs = [image_sources[2], image_sources[3]];

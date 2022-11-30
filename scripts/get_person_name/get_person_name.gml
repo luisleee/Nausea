@@ -6,6 +6,9 @@ function get_person_name(person){
 		case "Me":
 			display_name = "我";
 			break;
+		case "Zww":
+			display_name = "周文王";
+			break;
 
 	}
 	return display_name;

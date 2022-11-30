@@ -12,6 +12,33 @@ enum itemType {
 
 var chain1_content = [{
 	type: itemType.dialog,
+	speaker: "Zww",
+	line: "昊晨小生，今儿又迟到了？",
+	emotion: 0
+},{
+	type: itemType.dialog,
+	speaker: "Me",
+	line: "也就一分钟吧。",
+	emotion: 0
+},{
+	type: itemType.dialog,
+	speaker: "Zww",
+	line: "一分钟？你知道一分钟内这世界上可以发生多少变化吗？",
+	emotion: 0
+},{
+	type: itemType.dialog,
+	speaker: "Me",
+	line: "我不知道。也许足够你从佛教徒转变成基督教徒了。",
+	emotion: 0
+},{
+	type: itemType.dialog,
+	speaker: "Zww",
+	line:"谬矣！最近我在研究《易经》呢。来，我给你起一卦！",
+	emotion: 0
+}];
+
+var chain2_content = [{
+	type: itemType.dialog,
 	speaker: "Me",
 	line: "人活着哪有不疯的？硬撑罢了！人活着哪有不疯的？硬撑罢了！人活着哪有不疯的？硬撑罢了！",
 	emotion: 0
@@ -57,6 +84,11 @@ plots = [{
 	name: "chain1",
 	type: plotType.chain,
 	content: chain1_content,
+	next: "chain2"
+},{
+	name: "chain2",
+	type: plotType.chain,
+	content: chain2_content,
 	next: "branching"
 }, {
 	name: "branching",
@@ -70,17 +102,17 @@ plots = [{
 	name: "br1",
 	type: plotType.chain,
 	content: br1_content,
-	next: "chain2"
+	next: "chain3"
 }, {
 	name: "br2",
 	type: plotType.chain,
 	content: br2_content,
-	next: "chain2"
+	next: "chain3"
 }, {
-	name: "chain2",
+	name: "chain3",
 	type:plotType.chain,
 	content: chain_next_content,
-	next: "chain2"
+	next: "chain3"
 }];
 
 current_position = plots[0];
