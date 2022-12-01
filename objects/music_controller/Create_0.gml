@@ -18,14 +18,12 @@ function get_music(name) {
 			return music_pieces[i];
 		}
 	}
-	return pointer_null;
+	return undefined;
 }
 
 function set_background_music(name) {
 	var music = get_music(name);
-	if (music == pointer_null) {
-		return;
-	}
+	assert("music is not undefined", !is_undefined(music))
 	music_player.set_music(music);
 }
 

@@ -2,7 +2,7 @@ char_spd = 0.45;
 char_count = 1;
 current_text = "";
 person_name = "我";
-person_portrait = noone;
+person_portrait = undefined;
 
 function is_fully_displayed() {
 	return char_count >= string_length(current_text);

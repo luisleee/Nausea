@@ -1,21 +1,22 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function get_person_portrait(person, emotion){
-	var display_spr = noone;
-	switch person {
-		case "Me":
-			var sprs = [
-				spr_eyes_zzm,
-				spr_eyes_zzm_angry,
-				spr_eyes_zzm_crazy,
-			];
-			break;
-		case "Zww":
-			var sprs = [
-				spr_eyes_zp_noraml,
-			];
-			break;
+	var spr_map = ds_map_create();
+	spr_map[? "Me"] = [
+		spr_eyes_zzm,
+		spr_eyes_zzm_angry,
+		spr_eyes_zzm_crazy,
+	];
+	spr_map[? "Zww"] = [
+		spr_eyes_zp_normal,
+	];
+	
+	var sprs = ds_map_find_value(spr_map, person);
+	
+	var portrait = undefined;
+	if (is_array(sprs)) {
+		portrait = sprs[emotion];	
 	}
-	display_spr = sprs[emotion];
-	return display_spr;
+	
+	ds_map_destroy(spr_map);
+	
+	return portrait;
 }

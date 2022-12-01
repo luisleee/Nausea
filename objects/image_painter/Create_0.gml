@@ -1,7 +1,7 @@
-enum movePattern {
-	none,
-	vertical,
-	horizontal,
+enum MOVE_PATTERN {
+	NONE,
+	VERTICAL,
+	HORIZONTAL,
 }
 
 function Pattern (_type, _args) constructor {
@@ -19,7 +19,7 @@ function Image (_spr, _posx, _posy, _scalex, _scaley, _alpha, _pattern) construc
 	pattern = _pattern;
 	static perform_movement = function() {
 		var args = pattern.args;
-		if (pattern.type == movePattern.vertical) {
+		if (pattern.type == MOVE_PATTERN.VERTICAL) {
 			if (args.spd >= 0 and pos_y <= args.stop_y) {
 				pos_y += args.spd;
 			}
@@ -30,8 +30,8 @@ function Image (_spr, _posx, _posy, _scalex, _scaley, _alpha, _pattern) construc
 	}
 }
 
-var no_movement = new Pattern(movePattern.none, {});
-var v1 = new Pattern(movePattern.vertical, {
+var no_movement = new Pattern(MOVE_PATTERN.NONE, {});
+var v1 = new Pattern(MOVE_PATTERN.VERTICAL, {
 	spd : -2,
 	stop_y : -sprite_get_height(spr_sunrise),
 });

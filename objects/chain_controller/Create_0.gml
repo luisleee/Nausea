@@ -1,13 +1,3 @@
-/*current_index = 0;
-dialog = [
-	"人活着哪有不疯的？硬撑罢了！人活着哪有不疯的？硬撑罢了！人活着哪有不疯的？硬撑罢了！妈的，忍不了，一拳把地球打爆！",
-	"妈的，忍不了，一拳把地球打爆！妈的，忍不了，拳把地球打爆！",
-	"好可怕杀杀杀杀杀杀上勾拳！下勾拳！左勾拳！右勾拳！扫堂腿！回旋踢！这是蜘蛛吃耳屎，这是龙卷风摧毁停车场！",
-	"这是羚羊蹬，这是山羊跳！乌鸦坐飞机！老鼠走迷宫！大象踢腿！愤怒的章鱼！巨斧砍大树！彻底疯狂！彻底疯狂！",
-	"彻底疯狂！彻底疯狂！彻底疯狂！彻底疯狂！彻底疯狂！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！",
-	"。。。。。。吼吼吼吼吼吼吼吼吼吼吼吼吼吼吼",
-];*/
-
 chain = [];
 current_index = 0;
 
@@ -27,8 +17,8 @@ function next() {
 		return;
 	}
 	var current_item = chain[current_index];
-	if (current_item.type == itemType.option) {
-		option.hide();
+	if (current_item.type == ITEM_TYPE.OPTION) {
+		options_painter.select();
 	}
 	
 	current_index++;
@@ -37,16 +27,17 @@ function next() {
 
 function display_current() {
 	var current_item = chain[current_index];
-	if (current_item.type == itemType.dialog) {
+	if (current_item.type == ITEM_TYPE.DIALOG) {
 		textbar.set_text(current_item.line);
 		textbar.set_name(get_person_name(current_item.speaker));
 		textbar.set_portrait(get_person_portrait(current_item.speaker, current_item.emotion));
 	}
-	if (current_item.type == itemType.option) {
+	if (current_item.type == ITEM_TYPE.OPTION) {
 		textbar.set_text(current_item.question);
 		textbar.set_name("");
 		textbar.set_portrait(spr_option_black);
-		option.set_options(current_item.options);
-		option.show();
+		options_painter.set_options(current_item.options);
+		options_painter.set_name(current_item.name);
+		options_painter.show();
 	}
 }

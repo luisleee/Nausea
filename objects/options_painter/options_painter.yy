@@ -1,7 +1,7 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "option",
+  "name": "options_painter",
   "spriteId": null,
   "solid": false,
   "visible": true,

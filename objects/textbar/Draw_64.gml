@@ -58,7 +58,8 @@ draw_rectangle(
 	display_h - border_w - border_w / 2,
 	0
 );
-	
+
+assert("person_portrait is not undefined", !is_undefined(person_portrait));
 //draw eyes
 draw_sprite_ext(
 	person_portrait,

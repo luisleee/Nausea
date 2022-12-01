@@ -19,65 +19,39 @@ for (var i = 0; i < array_length(options); i++) {
 }
 
 var baseline = (unframe_h - options_area_h) / 2;
-if (array_length(options) != 1) {
-	for (var i = 0; i < array_length(options); i++) {
-		var offset = i / (array_length(options) - 1) * options_area_h;
-		draw_set_color(frame_color);
-		draw_rectangle(
-			display_w / 2 - option_w / 2 - border_w * 3,
-			baseline + offset - char_h - border_w * 3,
-			display_w / 2 + option_w / 2 + border_w * 3,
-			baseline + offset + char_h + border_w * 3,
-			0
-		);
-		draw_set_color(inner_color);
-		draw_rectangle(
-			display_w / 2 - option_w / 2 - border_w * 2,
-			baseline + offset - char_h - border_w * 2,
-			display_w / 2 + option_w / 2 + border_w * 2,
-			baseline + offset + char_h + border_w * 2,
-			0
-		);
-		draw_set_color(c_black);
-		if (i == selected) {
-			draw_set_color(c_white);
-		}
-		draw_text_transformed(
-			display_w / 2,
-			baseline + offset,
-			options[i],
-			text_scale,
-			text_scale,
-			0
-		);
+
+for (var i = 0; i < array_length(options); i++) {
+	var offset = 0;
+	if (array_length(options) != 1) {
+		offset = i / (array_length(options) - 1) * options_area_h;
 	}
-} else {
+		
 	draw_set_color(frame_color);
 	draw_rectangle(
 		display_w / 2 - option_w / 2 - border_w * 3,
-		baseline - char_h - border_w * 3,
+		baseline + offset - char_h - border_w * 3,
 		display_w / 2 + option_w / 2 + border_w * 3,
-		baseline + char_h + border_w * 3,
+		baseline + offset + char_h + border_w * 3,
 		0
 	);
 	draw_set_color(inner_color);
 	draw_rectangle(
 		display_w / 2 - option_w / 2 - border_w * 2,
-		baseline - char_h - border_w * 2,
+		baseline + offset - char_h - border_w * 2,
 		display_w / 2 + option_w / 2 + border_w * 2,
-		baseline + char_h + border_w * 2,
+		baseline + offset + char_h + border_w * 2,
 		0
 	);
-	draw_set_color(c_white);
-	
+	draw_set_color(c_black);
+	if (i == selected) {
+		draw_set_color(c_white);
+	}
 	draw_text_transformed(
 		display_w / 2,
-		baseline,
-		options[0],
+		baseline + offset,
+		options[i],
 		text_scale,
 		text_scale,
 		0
 	);
 }
-
-
