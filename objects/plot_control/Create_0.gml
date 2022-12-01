@@ -10,7 +10,73 @@ enum ITEM_TYPE {
 	OPTION,
 };
 
+
 var chain1_content = [{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Brain",
+	line: "（鞋带最好……呀，鞋带不就是用来开掉的嘛）",
+	emotion: 0
+},{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Brain",
+	line: "（事物就是为了它的毁灭才生成的啊，熵增才是一切的命运）",
+	emotion: 0
+},{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Brain",
+	line: "（话说熵是……）",
+	emotion: 0
+},{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Brain",
+	line: "（记得克劳修斯好像）",
+	emotion: 0
+},{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Brain",
+	line: "（啊Q/T对）",
+	emotion: 0
+},{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Brain",
+	line: "（不太直观）",
+	emotion: 0
+},{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Brain",
+	line: "（玻尔兹曼，更好是Boltzmann对对对对S=klnΩ）",
+	emotion: 0
+},{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Brain",
+	line: "（k就是Boltzmann常数嗯嗯Ω是可能的状态数）",
+	emotion: 0
+},{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Brain",
+	line: "（如果一堆围棋子一半是白的一半是黑的，和全是）",
+	emotion: 0
+},{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Brain",
+	line: "（黑的或白的，比起来哪个更，混乱？）",
+	emotion: 0
+},{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Brain",
+	line: "（应该一半一半的更，算起来：Sigma Pi ln Pi咦负数）",
+	emotion: 0
+},{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Brain",
+	line: "（那所有的所有都要变成铁了？稳定的元素，我明白）",
+	emotion: 0
+},{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Brain",
+	line: "（我说出宇宙的根本）",
+	emotion: 0
+},{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Zww",
 	line: "昊晨小生，今儿又迟到了？",
@@ -95,7 +161,7 @@ plots = [{
 	name: "branching",
 	type: PLOT_TYPE.BRANCHING,
 	next: ["br1", "br2"],
-	pending: function() {
+	judge: function() {
 		return data_recorder.get_selection("opt1");	
 	}
 }, {
@@ -135,7 +201,7 @@ function next() {
 	options_painter.select();
 	var next_plot = get_plot(current_position.next);
 	if (next_plot.type == PLOT_TYPE.BRANCHING) {
-		next_plot = get_plot(next_plot.next[next_plot.pending()]);
+		next_plot = get_plot(next_plot.next[next_plot.judge()]);
 	}
 	
 	assert("next_plot is not undefined", !is_undefined(next_plot));

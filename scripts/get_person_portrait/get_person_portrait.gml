@@ -8,6 +8,9 @@ function get_person_portrait(person, emotion){
 	spr_map[? "Zww"] = [
 		spr_eyes_zp_normal,
 	];
+	spr_map[? "Brain"] = [
+		spr_portrait_CTbrain,
+	];
 	
 	var sprs = ds_map_find_value(spr_map, person);
 	

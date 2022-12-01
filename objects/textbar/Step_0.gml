@@ -10,3 +10,7 @@ if (char_count < string_length(current_text)) {
 		}
 	}
 }
+
+subimg += 0.1;
+debugger.show_var_value("char_count", char_count);
+debugger.show_var_value("string_length(current_text)", string_length(current_text));

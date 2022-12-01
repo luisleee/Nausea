@@ -24,3 +24,5 @@ function set_name(_name) {
 function set_portrait(_portrait) {
 	person_portrait = _portrait;
 }
+
+subimg = 0;

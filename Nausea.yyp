@@ -21,6 +21,7 @@
     {"id":{"name":"chain_controller","path":"objects/chain_controller/chain_controller.yy",},"order":2,},
     {"id":{"name":"image_painter","path":"objects/image_painter/image_painter.yy",},"order":5,},
     {"id":{"name":"options_painter","path":"objects/options_painter/options_painter.yy",},"order":6,},
+    {"id":{"name":"spr_portrait_CTbrain","path":"sprites/spr_portrait_CTbrain/spr_portrait_CTbrain.yy",},"order":9,},
     {"id":{"name":"data_recorder","path":"objects/data_recorder/data_recorder.yy",},"order":8,},
     {"id":{"name":"assert","path":"scripts/assert/assert.yy",},"order":12,},
     {"id":{"name":"draw_init","path":"scripts/draw_init/draw_init.yy",},"order":9,},
@@ -39,6 +40,8 @@
     {"id":{"name":"room_main","path":"rooms/room_main/room_main.yy",},"order":0,},
   ],
   "Options": [
+    {"name":"Linux","path":"options/linux/options_linux.yy",},
+    {"name":"macOS","path":"options/mac/options_mac.yy",},
     {"name":"Main","path":"options/main/options_main.yy",},
     {"name":"Windows","path":"options/windows/options_windows.yy",},
     {"name":"operagx","path":"options/operagx/options_operagx.yy",},
@@ -54,7 +57,7 @@
   ],
   "Folders": [
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Animation Curves","folderPath":"folders/Animation Curves.yy","order":11,},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Extensions","folderPath":"folders/Extensions.yy","order":12,},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Extensions","folderPath":"folders/Fonts/Extensions.yy","order":1,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Fonts","folderPath":"folders/Fonts.yy","order":6,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Notes","folderPath":"folders/Notes.yy","order":13,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Objects","folderPath":"folders/Objects.yy","order":8,},

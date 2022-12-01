@@ -63,11 +63,11 @@ assert("person_portrait is not undefined", !is_undefined(person_portrait));
 //draw eyes
 draw_sprite_ext(
 	person_portrait,
-	0,
+	subimg,
 	border_w + border_w / 2,
 	display_h - frame_h + border_w + border_w / 2,
-	uiscale,
-	uiscale,
+	uiscale * (52 / sprite_get_width(person_portrait)),
+	uiscale * (28 / sprite_get_height(person_portrait)),
 	0,
 	c_white,
 	1
