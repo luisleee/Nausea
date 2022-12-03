@@ -97,6 +97,7 @@ draw_text_transformed(
 draw_init(fnt_test, c_black, "tl", 1);
 
 var text_h = string_width("啊") * text_scale;
+var text_w = string_width("啊") * text_scale;
 var text_sep = ((frame_h - border_w * 2) - text_h * 3)/4;
 
 var text_display = string_copy(current_text, 1, char_count);
@@ -106,6 +107,7 @@ var wrapped_text = string_wrap(
 	text_scale
 )
 
+/*
 draw_text_ext_transformed(
 	border_w * 2 + portrait_w + border_w,
 	display_h - frame_h + border_w + text_sep,
@@ -116,4 +118,25 @@ draw_text_ext_transformed(
 	text_scale,
 	0
 );
-	
+*/
+
+var wrap_count = 0;
+var cur_line_width = 0;
+for(var i = 1; i <= string_length(wrapped_text); i ++){
+	var cur_char = string_char_at(wrapped_text, i);
+	if(cur_char == "\n"){
+		wrap_count ++;
+		cur_line_width = 0;
+	}
+	else {
+		draw_text_transformed(
+			border_w * 2 + portrait_w + border_w + cur_line_width,
+			display_h - frame_h + border_w + text_sep + (text_sep + text_h)* wrap_count,
+			cur_char,
+			text_scale,
+			text_scale,
+			0
+		)
+		cur_line_width += string_width(cur_char) * text_scale;
+	}
+}
