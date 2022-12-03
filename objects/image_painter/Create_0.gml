@@ -36,7 +36,9 @@ function Image (_spr, _posx, _posy, _scalex, _scaley, _alpha, _movement) constru
 		
 		if (movement.pattern == MOVE_PATTERN.COMIC) {
 			if (args.process < 1) {
-				args.process += accel_get_velocity(0.003, args.process, 0.005);
+				//args.process += accel_get_velocity(0.003, args.process, 0.005);
+				var comic_channel = animcurve_get_channel(ac_comic, 0);
+				args.process = animcurve_channel_evaluate(comic_channel, args.process);
 			} else if (args.process > 1) {
 				args.process = 1;
 			}

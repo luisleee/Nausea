@@ -40,6 +40,7 @@
     {"id":{"name":"get_person_name","path":"scripts/get_person_name/get_person_name.yy",},"order":10,},
     {"id":{"name":"snd_sfx_switch_options","path":"sounds/snd_sfx_switch_options/snd_sfx_switch_options.yy",},"order":3,},
     {"id":{"name":"draw_set_align","path":"scripts/draw_set_align/draw_set_align.yy",},"order":0,},
+    {"id":{"name":"ac_comic","path":"animcurves/ac_comic/ac_comic.yy",},"order":0,},
     {"id":{"name":"array_slice","path":"scripts/array_slice/array_slice.yy",},"order":15,},
     {"id":{"name":"spr_eyes_zzm_angry","path":"sprites/spr_eyes_zzm_angry/spr_eyes_zzm_angry.yy",},"order":4,},
     {"id":{"name":"spr_eyes_zzm","path":"sprites/spr_eyes_zzm/spr_eyes_zzm.yy",},"order":0,},
