@@ -1,6 +1,11 @@
-// Script assets have changed for v2.3.0 see
-// https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function draw_init(fnt, col, ali, apa){
+/**
+ * Initialize draw environment
+ * @param {asset.GMFont} fnt Font
+ * @param {Constant.Color} col Color
+ * @param {string} ali Align
+ * @param {real} apa Opacity
+ */
+function draw_init(fnt, col, ali, apa) {
 	draw_set_font(fnt);
 	draw_set_color(col);
 	draw_set_align(ali);

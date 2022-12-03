@@ -35,8 +35,11 @@ function Image (_spr, _posx, _posy, _scalex, _scaley, _alpha, _movement) constru
 		}
 		
 		if (movement.pattern == MOVE_PATTERN.COMIC) {
-			if(args.process < 1)args.process += accel_get_velocity(0.003, args.process, 0.005);
-				else if(args.process != 1)args.process = 1;
+			if (args.process < 1) {
+				args.process += accel_get_velocity(0.003, args.process, 0.005);
+			} else if (args.process > 1) {
+				args.process = 1;
+			}
 			var process = args.process;
 			draw_init(fnt_test, args.frame_col, "tl", 1);
 			var pos_l = sprite_get_bbox_left(spr);
@@ -53,7 +56,8 @@ function Image (_spr, _posx, _posy, _scalex, _scaley, _alpha, _movement) constru
 				scale_y * (pos_middle - hh/2 * process) - border_w,
 				scale_x * (pos_centre + ww/2 * process) + border_w,
 				scale_y * (pos_middle + hh/2 * process) + border_w,
-				0);
+				0
+			);
 				
 			draw_sprite_part_ext(
 				spr,
@@ -67,7 +71,8 @@ function Image (_spr, _posx, _posy, _scalex, _scaley, _alpha, _movement) constru
 				scale_x,
 				scale_y,
 				c_white,
-				1)
+				1
+			);
 		
 		}
 	}
@@ -84,26 +89,17 @@ var comic = new Movement(MOVE_PATTERN.COMIC, {
 });
 
 image_sources = [
-	new Image(spr_frame_computer, 0, 0, 8, 8, 1, comic),
-	new Image(spr_frame_shelf, 0, 0, 8, 8, 1, comic),
-	new Image(spr_frame_bed, 0, 0, 8, 8, 1, comic),
-	new Image(spr_frame_door, 0, 0, 8, 8, 1, comic),
+	new Image(spr_frame_computer, 0, 0, 8, 8, 1, clone(comic)),
+	new Image(spr_frame_shelf, 0, 0, 8, 8, 1, clone(comic)),
+	new Image(spr_frame_bed, 0, 0, 8, 8, 1, clone(comic)),
+	new Image(spr_frame_door, 0, 0, 8, 8, 1, clone(comic)),
 	new Image(spr_bedroom_mess, 0, 0, 8, 8, 1, no_movement),
 	new Image(spr_sunrise, 0, 0, 4, 4, 1, v1),
 	new Image(spr_person_zp, 0, -200, 8, 8, 1, no_movement),
-	new Image(spr_frame_bus, 0, 0, 4, 4, 1, comic),
-	
+	new Image(spr_frame_bus, 0, 0, 4, 4, 1, clone(comic)),
 ];
 
-enum IMAGE_GROUP {
-	BEDROOM,
-	BUS,
-}
-imgs[IMAGE_GROUP.BEDROOM] = [image_sources[0], image_sources[1],image_sources[2],image_sources[3]];
-imgs[IMAGE_GROUP.BUS] = [image_sources[7]];
+imgs_bedroom = array_slice(image_sources, 0, 3);
+imgs_bus = [image_sources[7]];
 
-cur_group = IMAGE_GROUP.BUS;
-/*
-for(var i = 0; i < array_length(imgs[cur_group]) - 1; i++){
-	comic_process[i] = 0;
-}*/
+imgs = imgs_bus;
