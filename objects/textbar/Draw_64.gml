@@ -3,8 +3,7 @@ draw_set_color(c_white);
 draw_set_align("tl");
 draw_set_alpha(1);
 
-///var definitions
-
+/// var definitions
 
 var display_w = display_get_gui_width();
 var display_h = display_get_gui_height();
@@ -105,33 +104,20 @@ var wrapped_text = string_wrap(
 	text_display,
 	display_w - portrait_w - 5 * border_w,
 	text_scale
-)
-
-/*
-draw_text_ext_transformed(
-	border_w * 2 + portrait_w + border_w,
-	display_h - frame_h + border_w + text_sep,
-	wrapped_text,
-	text_sep,
-	display_w - portrait_w - 5 * border_w,
-	text_scale,
-	text_scale,
-	0
 );
-*/
+
 
 var wrap_count = 0;
 var cur_line_width = 0;
-for(var i = 1; i <= string_length(wrapped_text); i ++){
+for (var i = 1; i <= string_length(wrapped_text); i++) {
 	var cur_char = string_char_at(wrapped_text, i);
-	if(cur_char == "\n"){
-		wrap_count ++;
+	if (cur_char == "\n") {
+		wrap_count++;
 		cur_line_width = 0;
-	}
-	else {
+	} else {
 		draw_text_transformed(
 			border_w * 2 + portrait_w + border_w + cur_line_width,
-			display_h - frame_h + border_w + text_sep + (text_sep + text_h)* wrap_count,
+			display_h - frame_h + border_w + text_sep + (text_sep + text_h) * wrap_count,
 			cur_char,
 			text_scale,
 			text_scale,

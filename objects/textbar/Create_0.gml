@@ -1,3 +1,5 @@
+auto_play = true;
+
 char_spd = 0.45;
 char_count = 1;
 char_real_count = 1;
@@ -11,6 +13,8 @@ function is_fully_displayed() {
 
 function display_to_end() {
 	char_real_count = string_length(current_text);
+	alarm_set(0, -1);
+	auto_play = false;
 }
 
 function set_text(_text) {
