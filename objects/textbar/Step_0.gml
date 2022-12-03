@@ -1,10 +1,13 @@
 /// typewriter effect
 char_count = floor(char_real_count);
 
-if (char_count < string_length(current_text)) {
-	var punc_halt = get_halt_time(string_char_at(current_text, char_count));
+var cur_line = parse_text(current_text);
+var raw_text = cur_line.raw_text;
+
+if (char_count < string_length(raw_text)) {
+	var punc_halt = get_halt_time(string_char_at(raw_text, char_count));
 	var pre_floor = floor(char_real_count);
-	char_real_count += char_spd / punc_halt;
+	char_real_count += char_spd / (punc_halt + cur_line.effects[char_count].halt);
 	var post_floor = floor(char_real_count);
 	if(pre_floor != post_floor){
 		if (char_count % 2 == 0) {

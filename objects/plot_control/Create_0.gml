@@ -13,13 +13,13 @@ enum ITEM_TYPE {
 
 var chain1_content = [{
 	type: ITEM_TYPE.DIALOG,
-	speaker: "Brain",
-	line: "（鞋带最好……呀，鞋带不就是用来开掉的嘛）",
-	emotion: 0
+	speaker: "Me",
+	line: "<color=red><shake=20>杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！",
+	emotion: 2
 },{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Brain",
-	line: "（事物就是为了它的毁灭才生成的啊，熵增才是一切的命运）",
+	line: "（事物就是为了它的毁灭才生成的啊，熵增才是一切的命运））））））",
 	emotion: 0
 },{
 	type: ITEM_TYPE.DIALOG,

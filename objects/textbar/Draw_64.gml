@@ -99,7 +99,10 @@ var text_h = string_width("啊") * text_scale;
 var text_w = string_width("啊") * text_scale;
 var text_sep = ((frame_h - border_w * 2) - text_h * 3)/4;
 
-var text_display = string_copy(current_text, 1, char_count);
+var cur_line = parse_text(current_text);
+
+var raw_text = cur_line.raw_text;
+var text_display = string_copy(raw_text, 1, char_count);
 var wrapped_text = string_wrap(
 	text_display,
 	display_w - portrait_w - 5 * border_w,
@@ -109,15 +112,27 @@ var wrapped_text = string_wrap(
 
 var wrap_count = 0;
 var cur_line_width = 0;
+var char_color = c_black;
+var char_shake_range = 0;
 for (var i = 1; i <= string_length(wrapped_text); i++) {
+	if(cur_line.effects[i].color != undefined){
+		char_color = cur_line.effects[i].color;
+		draw_set_color(char_color);
+	}
+	if(cur_line.effects[i].shake != undefined){
+		char_shake_range = cur_line.effects[i].shake;
+	}
+	//show_debug_message(cur_line.effects[i]);
 	var cur_char = string_char_at(wrapped_text, i);
 	if (cur_char == "\n") {
 		wrap_count++;
 		cur_line_width = 0;
 	} else {
+		var xoffset = random_range(-char_shake_range, char_shake_range);
+		var yoffset = random_range(-char_shake_range, char_shake_range);
 		draw_text_transformed(
-			border_w * 2 + portrait_w + border_w + cur_line_width,
-			display_h - frame_h + border_w + text_sep + (text_sep + text_h) * wrap_count,
+			border_w * 2 + portrait_w + border_w + cur_line_width + xoffset,
+			display_h - frame_h + border_w + text_sep + (text_sep + text_h) * wrap_count + yoffset,
 			cur_char,
 			text_scale,
 			text_scale,
