@@ -1,3 +1,8 @@
+/// @desc Wrap a string with punctuation
+/// @param {string} str The string
+/// @param {real} width Maximum width of the string
+/// @param {real} str_scale String scale
+/// @returns {string} Wrapped string
 function string_wrap(str, width, str_scale) {
 	var wrapped_text = "";
 	var total_width = 0;
