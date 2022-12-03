@@ -10,6 +10,12 @@ function Movement (_pattern, _args) constructor {
 	args = _args;
 }
 
+function Animation (_in, _main, _out) constructor {
+	in = _in;
+	main = _main;
+	out = _out;
+}
+
 function Image (_spr, _posx, _posy, _scalex, _scaley, _alpha, _movement) constructor {
 	spr = _spr;
 	pos_x = _posx;
@@ -41,7 +47,12 @@ function Image (_spr, _posx, _posy, _scalex, _scaley, _alpha, _movement) constru
 			} else if (args.process > 1) {
 				args.process = 1;
 			}
-			var process = args.process;
+			if(args.mode == 0){
+				var process = 1 - args.process;
+			}
+			if(args.mode == 1){
+				var process = args.process;
+			}
 			draw_init(fnt_test, args.frame_col, "tl", 1);
 			var pos_l = sprite_get_bbox_left(spr);
 			var pos_r = sprite_get_bbox_right(spr);
@@ -53,13 +64,12 @@ function Image (_spr, _posx, _posy, _scalex, _scaley, _alpha, _movement) constru
 			var pos_middle = pos_t + hh/2;
 			var border_w = 0.01 * display_get_gui_width();
 			draw_rectangle(
-				scale_x * (pos_centre - ww/2 * process) - border_w,
-				scale_y * (pos_middle - hh/2 * process) - border_w,
-				scale_x * (pos_centre + ww/2 * process) + border_w,
-				scale_y * (pos_middle + hh/2 * process) + border_w,
+				scale_x * (pos_centre - ww/2 * process) - border_w * process,
+				scale_y * (pos_middle - hh/2 * process) - border_w * process,
+				scale_x * (pos_centre + ww/2 * process) + border_w * process,
+				scale_y * (pos_middle + hh/2 * process) + border_w * process,
 				0
-			);
-				
+			);	
 			draw_sprite_part_ext(
 				spr,
 				0,
@@ -84,23 +94,34 @@ var v1 = new Movement(MOVE_PATTERN.VERTICAL, {
 	spd : -2,
 	stop_y : -sprite_get_height(spr_sunrise),
 });
-var comic = new Movement(MOVE_PATTERN.COMIC, {
+var comic_in = new Movement(MOVE_PATTERN.COMIC, {
 	frame_col : make_color_rgb(44,44,44),
 	process : 0,
+	mode : 1,
+});
+var comic_out = new Movement(MOVE_PATTERN.COMIC, {
+	frame_col : make_color_rgb(44,44,44),
+	process : 0,
+	mode : 0,
 });
 
 image_sources = [
-	new Image(spr_frame_computer, 0, 0, 8, 8, 1, clone(comic)),
-	new Image(spr_frame_shelf, 0, 0, 8, 8, 1, clone(comic)),
-	new Image(spr_frame_bed, 0, 0, 8, 8, 1, clone(comic)),
-	new Image(spr_frame_door, 0, 0, 8, 8, 1, clone(comic)),
+	new Image(spr_frame_computer, 0, 0, 8, 8, 1, clone(comic_in)),
+	new Image(spr_frame_shelf, 0, 0, 8, 8, 1, clone(comic_in)),
+	new Image(spr_frame_bed, 0, 0, 8, 8, 1, clone(comic_in)),
+	new Image(spr_frame_door, 0, 0, 8, 8, 1, clone(comic_in)),
+	new Image(spr_frame_computer, 0, 0, 8, 8, 1, clone(comic_out)),
+	new Image(spr_frame_shelf, 0, 0, 8, 8, 1, clone(comic_out)),
+	new Image(spr_frame_bed, 0, 0, 8, 8, 1, clone(comic_out)),
+	new Image(spr_frame_door, 0, 0, 8, 8, 1, clone(comic_out)),
 	new Image(spr_bedroom_mess, 0, 0, 8, 8, 1, no_movement),
 	new Image(spr_sunrise, 0, 0, 4, 4, 1, v1),
 	new Image(spr_person_zp, 0, -200, 8, 8, 1, no_movement),
-	new Image(spr_frame_bus, 0, 0, 4, 4, 1, clone(comic)),
+	new Image(spr_frame_bus, 0, 0, 4, 4, 1, clone(comic_in)),
 ];
 
-imgs_bedroom = array_slice(image_sources, 0, 3);
-imgs_bus = [image_sources[7]];
+imgs_bedroom_in = array_slice(image_sources, 0, 3);
+imgs_bedroom_out = array_slice(image_sources, 4, 7);//delete this shabi thing later pls
+imgs_bus = [image_sources[11]];
 
 imgs = imgs_bus;

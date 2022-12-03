@@ -1,13 +1,13 @@
-/// @desc Split string with single-character seperator
+/// @desc Split string with single-character separator
 /// @param {string} str Source string
-/// @param {string} seperator Single-character seperator
+/// @param {string} separator Single-character separator
 /// @returns {array<string>} Splited strings
-function split(str, seperator) {
+function split(str, separator) {
 	var cur_str = "";
 	var strs = [];
 	for (var i = 1; i <= string_length(str); i++) {
 		var ch = string_char_at(str, i);
-		if (ch == seperator) {
+		if (ch == separator) {
 			array_push(strs, cur_str);
 			cur_str = "";
 		} else {

@@ -1,5 +1,7 @@
-if (imgs == imgs_bedroom) {
+if (imgs == imgs_bedroom_in) {
+	imgs = imgs_bedroom_out;
+} else if (imgs == imgs_bedroom_out) {
 	imgs = imgs_bus;
-} else {
-	imgs = imgs_bedroom;
-}
+} else if (imgs == imgs_bus) {
+	imgs = imgs_bedroom_in;
+} 

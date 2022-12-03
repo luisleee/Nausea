@@ -14,12 +14,12 @@ enum ITEM_TYPE {
 var chain1_content = [{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Me",
-	line: "<color=red,shake=20>杀！杀！杀！杀！杀！杀！杀！杀！杀！^^^^^^杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！",
+	line: "<color=red,shake=20>杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！",
 	emotion: 2
 },{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Brain",
-	line: "（事物就是为了它的毁灭才生成的啊，熵增才是一切的命运））））））",
+	line: "（事物就是为了它的毁灭才生成的啊，<color=red>熵^^增^^<color=black>才是一切的命运）",
 	emotion: 0
 },{
 	type: ITEM_TYPE.DIALOG,
@@ -79,7 +79,7 @@ var chain1_content = [{
 },{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Zww",
-	line: "昊晨小生，今儿又迟到了？",
+	line: "昊晨小生，今儿又^^^迟到了？",
 	emotion: 0
 },{
 	type: ITEM_TYPE.DIALOG,
@@ -89,7 +89,7 @@ var chain1_content = [{
 },{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Zww",
-	line: "一分钟？你知道一分钟内这世界上可以发生多少变化吗？",
+	line: "一分钟？你知道一分钟内这世界上可以发生多少<shake=3>变化<shake=0>吗？",
 	emotion: 0
 },{
 	type: ITEM_TYPE.DIALOG,

@@ -7,7 +7,7 @@ if (char_count < string_length(raw_text)) {
 	char_real_count += char_spd / (punc_halt + text_effects[char_count].halt);
 	var post_floor = floor(char_real_count);
 	if(pre_floor != post_floor){
-		if (char_count % 2 == 0) {
+		if ((punc_halt + text_effects[char_count].halt) > 1 or char_count % 2 == 0) {
 			audio_play_sound(snd_sfx_text, 0, 0);
 		}
 	}
