@@ -12,6 +12,9 @@ function set_chain(_chain) {
 }
 
 function next() {
+	if (is_fully_displayed()) {
+		return;
+	}
 	if (!textbar.is_fully_displayed()) {
 		textbar.display_to_end();
 		return;
@@ -20,7 +23,6 @@ function next() {
 	if (current_item.type == ITEM_TYPE.OPTION) {
 		options_painter.select();
 	}
-	
 	current_index++;
 	display_current();
 }

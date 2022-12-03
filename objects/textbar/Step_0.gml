@@ -13,4 +13,10 @@ if (char_count < string_length(current_text)) {
 	}
 }
 
+debugger.show_var_value("alarm[0]", alarm[0]);
+
+if (is_fully_displayed() and auto_play and alarm_get(0) == -1) {
+	alarm_set(0, fps);
+}
+
 subimg += 0.2;
