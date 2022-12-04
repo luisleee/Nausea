@@ -14,7 +14,12 @@ enum ITEM_TYPE {
 var chain1_content = [{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Me",
-	line: "<color=red,shake=20>杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！",
+	line: "<color=red,shake=10>杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！",
+	emotion: 2
+},{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Me",
+	line: "<color=red,shake=5>kill！kill！kill！kill！kill！kill！kill！kill！kill！kill！kill！kill！kill！kill！kill！kill！kill！kill！kill！kill！kill！",
 	emotion: 2
 },{
 	type: ITEM_TYPE.DIALOG,

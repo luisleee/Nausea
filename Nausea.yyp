@@ -18,7 +18,9 @@
     {"id":{"name":"string_wrap","path":"scripts/string_wrap/string_wrap.yy",},"order":1,},
     {"id":{"name":"music_controller","path":"objects/music_controller/music_controller.yy",},"order":3,},
     {"id":{"name":"spr_person_zp","path":"sprites/spr_person_zp/spr_person_zp.yy",},"order":7,},
+    {"id":{"name":"task_manager","path":"objects/task_manager/task_manager.yy",},"order":10,},
     {"id":{"name":"spr_eyes_zp_normal","path":"sprites/spr_eyes_zp_normal/spr_eyes_zp_normal.yy",},"order":8,},
+    {"id":{"name":"rm_task","path":"rooms/rm_task/rm_task.yy",},"order":1,},
     {"id":{"name":"clone","path":"scripts/clone/clone.yy",},"order":14,},
     {"id":{"name":"get_halt_time","path":"scripts/get_halt_time/get_halt_time.yy",},"order":6,},
     {"id":{"name":"chain_controller","path":"objects/chain_controller/chain_controller.yy",},"order":2,},
@@ -42,7 +44,7 @@
     {"id":{"name":"parse_text","path":"scripts/parse_text/parse_text.yy",},"order":16,},
     {"id":{"name":"snd_sfx_switch_options","path":"sounds/snd_sfx_switch_options/snd_sfx_switch_options.yy",},"order":3,},
     {"id":{"name":"draw_set_align","path":"scripts/draw_set_align/draw_set_align.yy",},"order":0,},
-    {"id":{"name":"ac_comic","path":"animcurves/ac_comic/ac_comic.yy",},"order":0,},
+    {"id":{"name":"ac_zoom","path":"animcurves/ac_zoom/ac_zoom.yy",},"order":0,},
     {"id":{"name":"array_slice","path":"scripts/array_slice/array_slice.yy",},"order":15,},
     {"id":{"name":"spr_eyes_zzm_angry","path":"sprites/spr_eyes_zzm_angry/spr_eyes_zzm_angry.yy",},"order":4,},
     {"id":{"name":"spr_eyes_zzm","path":"sprites/spr_eyes_zzm/spr_eyes_zzm.yy",},"order":0,},
@@ -64,6 +66,7 @@
   },
   "RoomOrderNodes": [
     {"roomId":{"name":"room_main","path":"rooms/room_main/room_main.yy",},},
+    {"roomId":{"name":"rm_task","path":"rooms/rm_task/rm_task.yy",},},
   ],
   "Folders": [
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Animation Curves","folderPath":"folders/Animation Curves.yy","order":11,},

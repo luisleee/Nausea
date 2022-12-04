@@ -2,7 +2,7 @@ enum MOVE_PATTERN {
 	NONE,
 	VERTICAL,
 	HORIZONTAL,
-	COMIC,
+	ZOOM,
 }
 
 function Movement (_pattern, _args) constructor {
@@ -40,10 +40,10 @@ function Image (_spr, _posx, _posy, _scalex, _scaley, _alpha, _movement) constru
 			draw_sprite_ext(spr, spr.sprite_index, pos_x, pos_y, scale_x, scale_y, 0, c_white , alpha);	
 		}
 		
-		if (movement.pattern == MOVE_PATTERN.COMIC) {
+		if (movement.pattern == MOVE_PATTERN.ZOOM) {
 			if (args.process < 1) {
-				var comic_channel = animcurve_get_channel(ac_comic, 0);
-				args.process += animcurve_channel_evaluate(comic_channel, args.process);
+				var zoom_channel = animcurve_get_channel(ac_zoom, 0);
+				args.process += animcurve_channel_evaluate(zoom_channel, args.process);
 			} else if (args.process > 1) {
 				args.process = 1;
 			}
@@ -94,30 +94,30 @@ var v1 = new Movement(MOVE_PATTERN.VERTICAL, {
 	spd : -2,
 	stop_y : -sprite_get_height(spr_sunrise),
 });
-var comic_in = new Movement(MOVE_PATTERN.COMIC, {
+var zoom_in = new Movement(MOVE_PATTERN.ZOOM, {
 	frame_col : make_color_rgb(44,44,44),
 	process : 0,
 	mode : 1,
 });
-var comic_out = new Movement(MOVE_PATTERN.COMIC, {
+var zoom_out = new Movement(MOVE_PATTERN.ZOOM, {
 	frame_col : make_color_rgb(44,44,44),
 	process : 0,
 	mode : 0,
 });
 
 image_sources = [
-	new Image(spr_frame_computer, 0, 0, 8, 8, 1, clone(comic_in)),
-	new Image(spr_frame_shelf, 0, 0, 8, 8, 1, clone(comic_in)),
-	new Image(spr_frame_bed, 0, 0, 8, 8, 1, clone(comic_in)),
-	new Image(spr_frame_door, 0, 0, 8, 8, 1, clone(comic_in)),
-	new Image(spr_frame_computer, 0, 0, 8, 8, 1, clone(comic_out)),
-	new Image(spr_frame_shelf, 0, 0, 8, 8, 1, clone(comic_out)),
-	new Image(spr_frame_bed, 0, 0, 8, 8, 1, clone(comic_out)),
-	new Image(spr_frame_door, 0, 0, 8, 8, 1, clone(comic_out)),
+	new Image(spr_frame_computer, 0, 0, 8, 8, 1, clone(zoom_in)),
+	new Image(spr_frame_shelf, 0, 0, 8, 8, 1, clone(zoom_in)),
+	new Image(spr_frame_bed, 0, 0, 8, 8, 1, clone(zoom_in)),
+	new Image(spr_frame_door, 0, 0, 8, 8, 1, clone(zoom_in)),
+	new Image(spr_frame_computer, 0, 0, 8, 8, 1, clone(zoom_out)),
+	new Image(spr_frame_shelf, 0, 0, 8, 8, 1, clone(zoom_out)),
+	new Image(spr_frame_bed, 0, 0, 8, 8, 1, clone(zoom_out)),
+	new Image(spr_frame_door, 0, 0, 8, 8, 1, clone(zoom_out)),
 	new Image(spr_bedroom_mess, 0, 0, 8, 8, 1, no_movement),
 	new Image(spr_sunrise, 0, 0, 4, 4, 1, v1),
 	new Image(spr_person_zp, 0, -200, 8, 8, 1, no_movement),
-	new Image(spr_frame_bus, 0, 0, 4, 4, 1, clone(comic_in)),
+	new Image(spr_frame_bus, 0, 0, 4, 4, 1, clone(zoom_in)),
 ];
 
 imgs_bedroom_in = array_slice(image_sources, 0, 3);
