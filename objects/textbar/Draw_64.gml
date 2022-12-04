@@ -1,7 +1,4 @@
-draw_set_font(fnt_test);
-draw_set_color(c_white);
-draw_set_align("tl");
-draw_set_alpha(1);
+draw_init(fnt_test, c_white, "tl", 1);
 
 /// var definitions
 
@@ -107,19 +104,23 @@ var wrapped_text = string_wrap(
 	text_scale
 );
 
-
 var wrap_count = 0;
 var cur_line_width = 0;
 var j = 1;
+
 for (var i = 1; i <= string_length(wrapped_text); i++) {
 	draw_set_color(text_effects[j].color);
 	var char_shake_range = text_effects[j].shake;
 	
 	var cur_char = string_char_at(wrapped_text, i);
-	if (cur_char == "\n") {
+	if (cur_char == "^") {
 		wrap_count++;
 		cur_line_width = 0;
 		continue;
+	} 
+	if (cur_char == "\n") {
+		wrap_count++;
+		cur_line_width = 0;
 	} 
 	var xoffset = random_range(-char_shake_range, char_shake_range);
 	var yoffset = random_range(-char_shake_range, char_shake_range);

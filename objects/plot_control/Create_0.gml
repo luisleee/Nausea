@@ -19,7 +19,7 @@ var chain1_content = [{
 },{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Brain",
-	line: "（事物就是为了它的毁灭才生成的啊，<color=red>熵^^增^^<color=black>才是一切的命运）",
+	line: "（事物就是为了它的毁灭才\n生成的啊，<color=red>熵^^增^^<color=black>才是一切的命运）",
 	emotion: 0
 },{
 	type: ITEM_TYPE.DIALOG,
