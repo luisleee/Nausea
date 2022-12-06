@@ -11,6 +11,7 @@
     {"id":{"name":"spr_eyes_zzm_crazy","path":"sprites/spr_eyes_zzm_crazy/spr_eyes_zzm_crazy.yy",},"order":5,},
     {"id":{"name":"split","path":"scripts/split/split.yy",},"order":17,},
     {"id":{"name":"fnt_test","path":"fonts/fnt_test/fnt_test.yy",},"order":0,},
+    {"id":{"name":"spr_casio_list_up","path":"sprites/spr_casio_list_up/spr_casio_list_up.yy",},"order":19,},
     {"id":{"name":"spr_sunrise","path":"sprites/spr_sunrise/spr_sunrise.yy",},"order":3,},
     {"id":{"name":"snd_ost_day_main","path":"sounds/snd_ost_day_main/snd_ost_day_main.yy",},"order":2,},
     {"id":{"name":"plot_control","path":"objects/plot_control/plot_control.yy",},"order":7,},
@@ -21,6 +22,7 @@
     {"id":{"name":"music_controller","path":"objects/music_controller/music_controller.yy",},"order":3,},
     {"id":{"name":"spr_person_zp","path":"sprites/spr_person_zp/spr_person_zp.yy",},"order":7,},
     {"id":{"name":"task_manager","path":"objects/task_manager/task_manager.yy",},"order":10,},
+    {"id":{"name":"spr_casio_list_down","path":"sprites/spr_casio_list_down/spr_casio_list_down.yy",},"order":20,},
     {"id":{"name":"spr_eyes_zp_normal","path":"sprites/spr_eyes_zp_normal/spr_eyes_zp_normal.yy",},"order":8,},
     {"id":{"name":"rm_task","path":"rooms/rm_task/rm_task.yy",},"order":1,},
     {"id":{"name":"spr_debugger_icon","path":"sprites/spr_debugger_icon/spr_debugger_icon.yy",},"order":15,},
@@ -72,8 +74,8 @@
     "children": [],
   },
   "RoomOrderNodes": [
-    {"roomId":{"name":"room_main","path":"rooms/room_main/room_main.yy",},},
     {"roomId":{"name":"rm_task","path":"rooms/rm_task/rm_task.yy",},},
+    {"roomId":{"name":"room_main","path":"rooms/room_main/room_main.yy",},},
   ],
   "Folders": [
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Animation Curves","folderPath":"folders/Animation Curves.yy","order":11,},

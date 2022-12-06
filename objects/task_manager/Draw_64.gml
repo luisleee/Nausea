@@ -4,10 +4,12 @@ var gui_w = display_get_gui_width();
 var gui_h = display_get_gui_height();
 var text_scale = 3.5/1600 * gui_w;
 var text_title_scale = 4.5/1600 * gui_w;
+var text_state_scale = 2/1600 * gui_w;
 
 
 var xoffset = 96/400 * gui_w;
 var yoffset = 84/400 * gui_w;
+var taskbar_yoffset = 8/400 * gui_w;
 var scr_w = 208/400 * gui_w;
 var scr_h = 120/400 * gui_w;
 
@@ -84,7 +86,7 @@ draw_text_transformed(
 
 //draw task bar
 draw_set_font(fnt_test);
-for(var i = 0; i < array_length(tasks); i++) {
+for(var i = start_number; i < min(task_show_max + start_number, array_length(tasks)); i++) {
 	var text_scale_compressed = text_scale;
 	if(taskbar_w / string_width(tasks[i].name) < text_scale){
 		text_scale_compressed = taskbar_w / string_width(tasks[i].name);
@@ -93,15 +95,15 @@ for(var i = 0; i < array_length(tasks); i++) {
 		draw_set_color(text_col);
 		draw_rectangle(
 			xoffset,
-			yoffset + task_title_h + i * task_h,
+			yoffset + taskbar_yoffset + task_title_h + (i -  start_number) * task_h,
 			xoffset + taskbar_w,
-			yoffset + task_title_h + (i + 1) * task_h,
+			yoffset + taskbar_yoffset + task_title_h + (i + 1 -  start_number) * task_h,
 			0
 		);
 		draw_set_color(scr_col);
 		draw_text_transformed(
 			xoffset + taskbar_w/2,
-			yoffset + task_title_h + i * task_h + task_h/2,
+			yoffset + taskbar_yoffset + task_title_h + (i -  start_number) * task_h + task_h/2,
 			tasks[i].name,
 			text_scale_compressed,
 			text_scale,
@@ -111,7 +113,7 @@ for(var i = 0; i < array_length(tasks); i++) {
 		draw_set_color(text_col);
 		draw_text_transformed(
 			xoffset + taskbar_w/2,
-			yoffset + task_title_h + i * task_h + task_h/2,
+			yoffset + taskbar_yoffset + task_title_h + (i -  start_number) * task_h + task_h/2,
 			tasks[i].name,
 			text_scale_compressed,
 			text_scale,
@@ -119,6 +121,28 @@ for(var i = 0; i < array_length(tasks); i++) {
 		);
 	}
 }
+
+//draw the arrows
+draw_sprite_stretched_ext(
+	spr_casio_list_down,
+	subimg,
+	0,
+	pos_y,
+	gui_w,
+	gui_h,
+	c_white,
+	array_length(tasks) > start_number + task_show_max
+);
+draw_sprite_stretched_ext(
+	spr_casio_list_up,
+	subimg,
+	0,
+	pos_y,
+	gui_w,
+	gui_h,
+	c_white,
+	start_number > 0
+);
 
 //draw the description bar
 draw_init(fnt_task_title, text_col, "tl", 1);
@@ -138,10 +162,25 @@ draw_text_transformed(
 );
 
 draw_init(fnt_test, text_col, "tl", 1);
-var display_text = string_wrap(tasks[selected].description, text_area_w, text_scale, "\n");
+var state_h = string_height("M") * text_state_scale;
+var display_state = "";
+if(tasks[selected].state == TASK_STATE.IN_PROGRESS) {
+	display_state = "进行中";
+}else {
+	display_state = "已结束";
+}
 draw_text_transformed(
 	xoffset + taskbar_w + buffer,
 	yoffset + buffer * 2 + title_h,
+	display_state,
+	text_state_scale,
+	text_state_scale,
+	0
+);
+var display_text = string_wrap(tasks[selected].description, text_area_w, text_scale, "\n");
+draw_text_transformed(
+	xoffset + taskbar_w + buffer,
+	yoffset + buffer * 3 + title_h + state_h,
 	display_text,
 	text_scale,
 	text_scale,
