@@ -2,8 +2,9 @@
 /// @param {string} str The string
 /// @param {real} width Maximum width of the string
 /// @param {real} str_scale String scale
+/// @param {string} wrap_sign The sign of wrapping, "\n" or "^" etc.
 /// @returns {string} Wrapped string
-function string_wrap(str, width, str_scale) {
+function string_wrap(str, width, str_scale, wrap_sign) {
 	var wrapped_text = "";
 	var total_width = 0;
 	var char_w = string_width("啊") * str_scale;
@@ -15,7 +16,7 @@ function string_wrap(str, width, str_scale) {
 		if(next_char != "\n"){
 			if (total_width * str_scale >= width - char_w / 2) {
 				if (not is_punctuation(next_char)) {
-					wrapped_text += "^";
+					wrapped_text += wrap_sign;
 					total_width = 0;
 				}
 			}

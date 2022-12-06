@@ -1,5 +1,5 @@
 global.DEBUG = true;
-
+depth = 99999;
 vars = [];
 function show_var_value(name, val) {
 	var len = array_length(vars);

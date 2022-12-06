@@ -101,7 +101,8 @@ var text_display = string_copy(raw_text, 1, char_count);
 var wrapped_text = string_wrap(
 	text_display,
 	display_w - portrait_w - 5 * border_w,
-	text_scale
+	text_scale,
+	"^"
 );
 
 var wrap_count = 0;

@@ -1,0 +1,1 @@
+show_self = !show_self;

@@ -2,7 +2,10 @@
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
   "name": "debugger",
-  "spriteId": null,
+  "spriteId": {
+    "name": "spr_debugger_icon",
+    "path": "sprites/spr_debugger_icon/spr_debugger_icon.yy",
+  },
   "solid": false,
   "visible": true,
   "managed": true,
