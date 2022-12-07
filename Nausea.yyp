@@ -4,6 +4,7 @@
   "name": "Nausea",
   "resources": [
     {"id":{"name":"spr_casio","path":"sprites/spr_casio/spr_casio.yy",},"order":16,},
+    {"id":{"name":"constructors","path":"scripts/constructors/constructors.yy",},"order":18,},
     {"id":{"name":"is_punctuation","path":"scripts/is_punctuation/is_punctuation.yy",},"order":3,},
     {"id":{"name":"spr_frame_computer","path":"sprites/spr_frame_computer/spr_frame_computer.yy",},"order":1,},
     {"id":{"name":"snd_ost_day_intro","path":"sounds/snd_ost_day_intro/snd_ost_day_intro.yy",},"order":1,},
@@ -19,14 +20,10 @@
     {"id":{"name":"spr_frame_bus","path":"sprites/spr_frame_bus/spr_frame_bus.yy",},"order":13,},
     {"id":{"name":"spr_bedroom_mess","path":"sprites/spr_bedroom_mess/spr_bedroom_mess.yy",},"order":2,},
     {"id":{"name":"string_wrap","path":"scripts/string_wrap/string_wrap.yy",},"order":1,},
-    {"id":{"name":"spr_task_manager_icon","path":"sprites/spr_task_manager_icon/spr_task_manager_icon.yy",},"order":14,},
-    {"id":{"name":"music_controller","path":"objects/music_controller/music_controller.yy",},"order":3,},
     {"id":{"name":"spr_person_zp","path":"sprites/spr_person_zp/spr_person_zp.yy",},"order":7,},
     {"id":{"name":"task_manager","path":"objects/task_manager/task_manager.yy",},"order":10,},
     {"id":{"name":"spr_casio_list_down","path":"sprites/spr_casio_list_down/spr_casio_list_down.yy",},"order":20,},
     {"id":{"name":"spr_eyes_zp_normal","path":"sprites/spr_eyes_zp_normal/spr_eyes_zp_normal.yy",},"order":8,},
-    {"id":{"name":"rm_task","path":"rooms/rm_task/rm_task.yy",},"order":1,},
-    {"id":{"name":"spr_debugger_icon","path":"sprites/spr_debugger_icon/spr_debugger_icon.yy",},"order":15,},
     {"id":{"name":"fnt_task_title","path":"fonts/fnt_task_title/fnt_task_title.yy",},"order":2,},
     {"id":{"name":"clone","path":"scripts/clone/clone.yy",},"order":14,},
     {"id":{"name":"get_halt_time","path":"scripts/get_halt_time/get_halt_time.yy",},"order":6,},
@@ -62,11 +59,9 @@
     {"id":{"name":"room_main","path":"rooms/room_main/room_main.yy",},"order":0,},
   ],
   "Options": [
-    {"name":"Linux","path":"options/linux/options_linux.yy",},
-    {"name":"macOS","path":"options/mac/options_mac.yy",},
+    {"name":"Main","path":"options/main/options_main.yy",},
     {"name":"Windows","path":"options/windows/options_windows.yy",},
     {"name":"operagx","path":"options/operagx/options_operagx.yy",},
-    {"name":"Main","path":"options/main/options_main.yy",},
   ],
   "defaultScriptType": 1,
   "isEcma": false,
@@ -76,7 +71,6 @@
   },
   "RoomOrderNodes": [
     {"roomId":{"name":"room_main","path":"rooms/room_main/room_main.yy",},},
-    {"roomId":{"name":"rm_task","path":"rooms/rm_task/rm_task.yy",},},
   ],
   "Folders": [
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Animation Curves","folderPath":"folders/Animation Curves.yy","order":11,},

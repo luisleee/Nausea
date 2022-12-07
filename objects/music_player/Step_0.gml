@@ -2,7 +2,7 @@
 // play the intro
 
 
-if(intro_play_process != PLAY_STATE.NOT_PLAYING){
+if (intro_play_process != PLAY_STATE.NOT_PLAYING) {
 	var intro_len_in_ms = music_len_in_ms(cur_music.bpm, cur_music.intro_beats);
 	var main_len_in_ms = music_len_in_ms(cur_music.bpm, cur_music.main_beats);
 	var delta = current_time - start_time;

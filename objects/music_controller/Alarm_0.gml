@@ -1,1 +1,0 @@
-set_background_music("day");

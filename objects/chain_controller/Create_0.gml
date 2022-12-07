@@ -43,7 +43,7 @@ function display_current() {
 		options_painter.show();
 	}
 	if (current_item.type == ITEM_TYPE.MUSIC) {
-		music_controller.set_background_music(current_item.piece);
+		music_player.set_music(current_item.piece);
 		next();
 	}
 	if (current_item.type == ITEM_TYPE.IMAGE) {

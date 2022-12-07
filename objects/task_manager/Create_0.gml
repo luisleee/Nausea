@@ -1,15 +1,12 @@
-function Task(_name, _description, _state, _process) constructor {
-	name = _name;
-	description = _description;
-	state = _state;
-	process = _process;
-}
+
 
 enum TASK_STATE {
 	IN_PROGRESS,
 	ACCOMPLISHED,
 	FAILED,
 }
+
+display_states = ["进行中", "已结束", "已结束"];
 
 tasks = [
 	new Task("小鸟", "小鸟要起飞了……我想知道为什么。", TASK_STATE.IN_PROGRESS, 0),
@@ -19,12 +16,11 @@ tasks = [
 	new Task("魑魅魍魉", "张丕说需要三个硬币才能起卦。", TASK_STATE.IN_PROGRESS, 0),
 	new Task("6", "张丕说需要三个硬币才能起卦。", TASK_STATE.IN_PROGRESS, 0),
 	new Task("7", "张丕说需要三个硬币才能起卦。", TASK_STATE.IN_PROGRESS, 0),
-	//new Task("8", "张丕说需要三个硬币才能起卦。", TASK_STATE.IN_PROGRESS, 0),
+	new Task("8", "张丕说需要三个硬币才能起卦。", TASK_STATE.IN_PROGRESS, 0),
 ];
 
 
 show_self = false;
-alpha = show_self;
 selected = 0;
 task_show_max = 4;
 start_number = 0;

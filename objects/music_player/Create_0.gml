@@ -1,3 +1,23 @@
+music_pieces = [new BackgroundMusic("day", snd_ost_day_intro, snd_ost_day_main, 2 * 3, 32 * 3, 93)];
+
+function get_music_by_name(name) {
+	var len = array_length(music_pieces);
+	for (var i = 0; i < len; i++) {
+		if (music_pieces[i].name == name) {
+			return music_pieces[i];
+		}
+	}
+	return undefined;
+}
+
+function set_music(name) {
+	var music = get_music_by_name(name);
+	assert("Music is available", !is_undefined(music))
+	cur_music = music;
+	intro_play_process = PLAY_STATE.BEFORE;
+	start_time = current_time;
+}
+
 enum PLAY_STATE{
 	NOT_PLAYING,
 	BEFORE,
@@ -6,10 +26,5 @@ enum PLAY_STATE{
 }
 
 intro_play_process = PLAY_STATE.NOT_PLAYING;
-
-function set_music(music_piece) {
-	cur_music = music_piece;
-	intro_play_process = PLAY_STATE.BEFORE;
-	start_time = current_time;
-}
-
+cur_music = undefined;
+start_time = current_time;
