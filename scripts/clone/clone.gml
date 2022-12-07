@@ -2,7 +2,7 @@
 /// @param {any} src Object to clone
 /// @returns {any} The cloned object
 function clone(src) {
-	if (is_struct(src)) {
+	if (typeof(src) == "struct") {
 		var dest = {};
 		var entries = variable_struct_get_names(src);
 		for (var i = 0; i < array_length(entries); i++) {
@@ -12,7 +12,7 @@ function clone(src) {
 		}
 		return dest;
 	}
-	if (is_array(src)) {
+	if (typeof(src) == "array") {
 		var dest = [];
 		for (var i = 0; i < array_length(src); i++) {
 			var val = src[i];

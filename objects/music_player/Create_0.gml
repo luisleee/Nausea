@@ -1,4 +1,5 @@
 music_pieces = [new BackgroundMusic("day", snd_ost_day_intro, snd_ost_day_main, 2 * 3, 32 * 3, 93)];
+volume = 0.1;
 
 function get_music_by_name(name) {
 	var len = array_length(music_pieces);

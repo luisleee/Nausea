@@ -31,7 +31,7 @@ var chain1_content = [{
 	description: "杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！",
 },{
 	type: ITEM_TYPE.IMAGE,
-	add: [12],
+	add: [0, 1, 2, 3],
 	remove: []
 },{
 	type: ITEM_TYPE.DIALOG,
