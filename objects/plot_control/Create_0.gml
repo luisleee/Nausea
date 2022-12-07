@@ -8,6 +8,7 @@ enum ITEM_TYPE {
 	IMAGE,
 	MUSIC,
 	OPTION,
+	TASK,
 };
 
 
@@ -17,9 +18,25 @@ var chain1_content = [{
 	line: "<color=red,shake=10>杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！",
 	emotion: 2
 },{
+	type: ITEM_TYPE.MUSIC,
+	piece: "day",
+},{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Me",
-	line: "<color=red,shake=5>kill！kill！kill！kill！kill！kill！kill！kill！kill！kill！kill！kill！kill！kill！kill！kill！kill！kill！kill！kill！kill！",
+	line: "来点音乐",
+	emotion: 0
+},{
+	type: ITEM_TYPE.TASK,
+	name: "杀杀杀",
+	description: "杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！",
+},{
+	type: ITEM_TYPE.IMAGE,
+	add: [12],
+	remove: []
+},{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Me",
+	line: "获得任务：【<color=red,shake=5>杀杀杀<color=black,shake=0>】",
 	emotion: 2
 },{
 	type: ITEM_TYPE.DIALOG,
@@ -136,6 +153,11 @@ var br1_content = [{
 	speaker: "Me",
 	line: "对对对",
 	emotion: 1
+},{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Me",
+	line: "完成任务：【<color=red,shake=5>杀杀杀<color=black,shake=0>】",
+	emotion: 1
 }];
 
 var br2_content = [{
@@ -143,6 +165,11 @@ var br2_content = [{
 	speaker: "Me",
 	line: "算了",
 	emotion: 0
+},{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Me",
+	line: "任务失败：【<color=red,shake=5>杀杀杀<color=black,shake=0>】",
+	emotion: 1
 }];
 
 var chain_next_content = [{

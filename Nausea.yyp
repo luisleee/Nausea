@@ -12,6 +12,7 @@
     {"id":{"name":"split","path":"scripts/split/split.yy",},"order":17,},
     {"id":{"name":"fnt_test","path":"fonts/fnt_test/fnt_test.yy",},"order":0,},
     {"id":{"name":"spr_casio_list_up","path":"sprites/spr_casio_list_up/spr_casio_list_up.yy",},"order":19,},
+    {"id":{"name":"spr_shashasha","path":"sprites/spr_shashasha/spr_shashasha.yy",},"order":21,},
     {"id":{"name":"spr_sunrise","path":"sprites/spr_sunrise/spr_sunrise.yy",},"order":3,},
     {"id":{"name":"snd_ost_day_main","path":"sounds/snd_ost_day_main/snd_ost_day_main.yy",},"order":2,},
     {"id":{"name":"plot_control","path":"objects/plot_control/plot_control.yy",},"order":7,},
@@ -74,8 +75,8 @@
     "children": [],
   },
   "RoomOrderNodes": [
-    {"roomId":{"name":"rm_task","path":"rooms/rm_task/rm_task.yy",},},
     {"roomId":{"name":"room_main","path":"rooms/room_main/room_main.yy",},},
+    {"roomId":{"name":"rm_task","path":"rooms/rm_task/rm_task.yy",},},
   ],
   "Folders": [
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Animation Curves","folderPath":"folders/Animation Curves.yy","order":11,},

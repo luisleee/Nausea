@@ -118,10 +118,11 @@ image_sources = [
 	new Image(spr_sunrise, 0, 0, 4, 4, 1, v1),
 	new Image(spr_person_zp, 0, -200, 8, 8, 1, no_movement),
 	new Image(spr_frame_bus, 0, 0, 4, 4, 1, clone(zoom_in)),
+	new Image(spr_shashasha, 0, 0, 4, 4, 1, clone(zoom_in)),
 ];
 
 imgs_bedroom_in = array_slice(image_sources, 0, 3);
 imgs_bedroom_out = array_slice(image_sources, 4, 7);//delete this shabi thing later pls
 imgs_bus = [image_sources[11]];
 
-imgs = imgs_bus;
+imgs = [];//imgs_bus;

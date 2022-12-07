@@ -69,6 +69,7 @@ draw_sprite_ext(
 	1
 );
 
+
 ///draw text things
 //fit in the name and draw the name
 draw_set_alpha(1);

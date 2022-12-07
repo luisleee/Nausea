@@ -23,13 +23,13 @@ tasks = [
 ];
 
 
-show_self = true;
+show_self = false;
 alpha = show_self;
 selected = 0;
 task_show_max = 4;
 start_number = 0;
 
-pos_y = 0;
+pos_y = display_get_gui_height();
 
 subimg = 0;
 

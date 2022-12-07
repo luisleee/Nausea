@@ -42,4 +42,18 @@ function display_current() {
 		options_painter.set_name(current_item.name);
 		options_painter.show();
 	}
+	if (current_item.type == ITEM_TYPE.MUSIC) {
+		music_controller.set_background_music(current_item.piece);
+		next();
+	}
+	if (current_item.type == ITEM_TYPE.IMAGE) {
+		for(var i = 0; i < array_length(current_item.add); i ++) { 
+			array_push(image_painter.imgs, image_painter.image_sources[current_item.add[i]]);
+		}
+		next();
+	}
+	if (current_item.type == ITEM_TYPE.TASK) {
+		task_manager.create_new_task(current_item.name, current_item.description);
+		next();
+	}
 }
