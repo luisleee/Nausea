@@ -31,13 +31,17 @@ var chain1_content = [{
 	description: "杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！",
 },{
 	type: ITEM_TYPE.IMAGE,
-	add: [0, 1, 2, 3],
+	add: ["g1"],
 	remove: []
 },{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Me",
 	line: "获得任务：【<color=red,shake=5>杀杀杀<color=black,shake=0>】",
 	emotion: 2
+},{
+	type: ITEM_TYPE.IMAGE,
+	add: ["g2"],
+	remove: ["g1"]
 },{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Brain",

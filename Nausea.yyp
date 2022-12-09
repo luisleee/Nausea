@@ -22,6 +22,7 @@
     {"id":{"name":"string_wrap","path":"scripts/string_wrap/string_wrap.yy",},"order":1,},
     {"id":{"name":"spr_person_zp","path":"sprites/spr_person_zp/spr_person_zp.yy",},"order":7,},
     {"id":{"name":"task_manager","path":"objects/task_manager/task_manager.yy",},"order":10,},
+    {"id":{"name":"array_remove","path":"scripts/array_remove/array_remove.yy",},"order":19,},
     {"id":{"name":"spr_casio_list_down","path":"sprites/spr_casio_list_down/spr_casio_list_down.yy",},"order":20,},
     {"id":{"name":"spr_eyes_zp_normal","path":"sprites/spr_eyes_zp_normal/spr_eyes_zp_normal.yy",},"order":8,},
     {"id":{"name":"fnt_task_title","path":"fonts/fnt_task_title/fnt_task_title.yy",},"order":2,},
@@ -59,9 +60,9 @@
     {"id":{"name":"room_main","path":"rooms/room_main/room_main.yy",},"order":0,},
   ],
   "Options": [
+    {"name":"operagx","path":"options/operagx/options_operagx.yy",},
     {"name":"Main","path":"options/main/options_main.yy",},
     {"name":"Windows","path":"options/windows/options_windows.yy",},
-    {"name":"operagx","path":"options/operagx/options_operagx.yy",},
   ],
   "defaultScriptType": 1,
   "isEcma": false,

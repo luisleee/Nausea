@@ -47,8 +47,11 @@ function display_current() {
 		next();
 	}
 	if (current_item.type == ITEM_TYPE.IMAGE) {
-		for(var i = 0; i < array_length(current_item.add); i ++) { 
-			array_push(image_painter.imgs, image_painter.image_sources[current_item.add[i]]);
+		for (var i = 0; i < array_length(current_item.remove); i++) { 
+			image_painter.remove_image_group(current_item.remove[i]);
+		}
+		for (var i = 0; i < array_length(current_item.add); i++) { 
+			image_painter.add_image_group(current_item.add[i]);
 		}
 		next();
 	}
