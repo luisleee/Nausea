@@ -40,6 +40,10 @@ var chain1_content = [{
 	line: "（话说熵是……）",
 	emotion: 0
 },{
+	type: ITEM_TYPE.IMAGE,
+	add: ["g4"],
+	remove: ["g2"]
+},{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Brain",
 	line: "（记得克劳修斯好像）",
@@ -89,6 +93,10 @@ var chain1_content = [{
 	speaker: "Brain",
 	line: "（我说出宇宙的根本）",
 	emotion: 0
+},{
+	type: ITEM_TYPE.IMAGE,
+	add: ["g3"],
+	remove: []
 },{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Zww",

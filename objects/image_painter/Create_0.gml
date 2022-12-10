@@ -172,8 +172,8 @@ image_sources = [
 	new Image(spr_frame_shelf, 0, 0, 0, 0, 8, 8, 1, [clone(zoom_in), no_movement, clone(zoom_out)], draws[1]),
 	new Image(spr_frame_bed, 0, 0, 0, 0, 8, 8, 1, [clone(zoom_in), no_movement, clone(zoom_out)], draws[1]),
 	new Image(spr_frame_door, 0, 0, 0, 0, 8, 8, 1, [clone(zoom_in), no_movement, clone(zoom_out)], draws[1]),
-	new Image(spr_sunrise, 0, 0, 0, 0, 4, 4, 1, [v1, no_movement, no_movement], draws[0]),
-	new Image(spr_person_zp, 0, -200, 0, 0, 8, 8, 0, [fade_in, composed, no_movement], draws[0]),
+	new Image(spr_sunrise, 0, 0, 0, 0, 4, 4, 0, [clone(fade_in), v1, no_movement], draws[1]),//here comes a problem
+	new Image(spr_person_zp, 0, -200, 0, 0, 8, 8, 0, [clone(fade_in), no_movement, fade_out], draws[0]),
 	new Image(spr_frame_bus, 0, 0, 0, 0, 4, 4, 1, [clone(road_in), pingpong_road, clone(zoom_out)], draws[1]),
 	new Image(spr_shashasha, 0, 0, 0, 0, 4, 4, 1, [clone(zoom_in), no_movement, clone(zoom_out)], draws[1]),
 ];
@@ -181,6 +181,8 @@ image_sources = [
 img_groups = [
 	new ImageGroup("g1", 0, array_slice(image_sources, 0, 3)),
 	new ImageGroup("g2", 0, [image_sources[6]]),
+	new ImageGroup("g3", 0, [image_sources[5]]),
+	new ImageGroup("g4", 0, [image_sources[4]]),
 ];
 
 imgs = [];
