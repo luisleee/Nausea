@@ -2,7 +2,7 @@
 /// @param {array} arr Array
 /// @param {real} _start The starting index
 /// @param {real} _end  The ending index
-/// @returns {array} A slice of original array
+/// @returns {array<any*>} A slice of original array
 function array_slice(arr, _start, _end) {
 	var res = [];
 	var len = array_length(arr);

@@ -20,8 +20,12 @@ function next() {
 		return;
 	}
 	var current_item = chain[current_index];
+	var next_item = chain[current_index + 1];
 	if (current_item.type == ITEM_TYPE.OPTION) {
 		options_painter.select();
+	}
+	if (next_item.type == ITEM_TYPE.IMAGE and array_length(image_painter.img_queue) != 0) {
+		return;
 	}
 	current_index++;
 	display_current();
@@ -47,8 +51,11 @@ function display_current() {
 		next();
 	}
 	if (current_item.type == ITEM_TYPE.IMAGE) {
-		for(var i = 0; i < array_length(current_item.add); i ++) { 
-			array_push(image_painter.imgs, image_painter.image_sources[current_item.add[i]]);
+		for (var i = 0; i < array_length(current_item.remove); i++) { 
+			image_painter.remove_image_group(current_item.remove[i]);
+		}
+		for (var i = 0; i < array_length(current_item.add); i++) { 
+			image_painter.add_image_group(current_item.add[i]);
 		}
 		next();
 	}
