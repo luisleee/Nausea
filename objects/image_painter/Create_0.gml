@@ -22,34 +22,31 @@ basic_moves[MOVE_PATTERN.VERTICAL] = function (img, args) {
 	}
 };
 basic_moves[MOVE_PATTERN.FADE] = function (img, args) {
-	if(args.mode == 0){
-		if(img.alpha <= 0){
+	if (args.mode == 0) {
+		if (img.alpha <= 0) {
 			args.finished = true;
 		}
 		img.alpha -= args.spd;
 	}
-	if(args.mode == 1){
-		if(img.alpha >= 1){
+	if (args.mode == 1) {
+		if (img.alpha >= 1) {
 			args.finished = true;
 		}
 		img.alpha += args.spd;
 	}
 };
 basic_moves[MOVE_PATTERN.PINGPONG] = function (img, args) {
-	if(args.mode == 0){
-		args.t += 1/fps;
-		var road_channel = animcurve_get_channel(ac_road, 0);
-		img.xoffset = args.amplitude * animcurve_channel_evaluate(road_channel, get_reamainder(args.init_phase + args.t, args.period)/ args.period);
+	args.t += 1 / fps;
+	var road_channel = animcurve_get_channel(ac_road, 0);
+	if (args.mode == 0) {
+		img.xoffset = args.amplitude * animcurve_channel_evaluate(road_channel, get_remainder(args.init_phase + args.t, args.period) / args.period);
 	}
-	if(args.mode == 1){
-		args.t += 1/fps;
-		var road_channel = animcurve_get_channel(ac_road, 0);
-		img.yoffset = args.amplitude * animcurve_channel_evaluate(road_channel, get_reamainder(args.init_phase + args.t, args.period)/ args.period);
-
+	if (args.mode == 1) {
+		img.yoffset = args.amplitude * animcurve_channel_evaluate(road_channel, get_remainder(args.init_phase + args.t, args.period)/ args.period);
 	}
 };
 basic_moves[MOVE_PATTERN.ZOOM] = function (img, args) {
-	if(args.mode == 0 and args.process >= 0.7){
+	if (args.mode == 0 and args.process >= 0.7) {
 		args.finished = true;
 	}
 	if (args.process < 1) {
@@ -155,7 +152,7 @@ var pingpong_road = new Movement("basic", basic_moves[MOVE_PATTERN.PINGPONG], {
 	mode: 1,
 	amplitude: 50,
 	period: 60/108,
-	init_phase: get_reamainder(audio_sound_get_track_position(music_player.cur_track), 60/108),
+	init_phase: get_remainder(audio_sound_get_track_position(music_player.cur_track), 60/108),
 	t: 0
 })
 var f = new Movement("basic", function(img, args) {img.pos_x += 1; args.finished = img.pos_x > 200;}, {finished:false});

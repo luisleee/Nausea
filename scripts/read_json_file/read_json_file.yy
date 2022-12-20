@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "get_reamainder",
+  "name": "read_json_file",
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
