@@ -1,7 +1,3 @@
-enum PLOT_TYPE {
-	CHAIN,
-	BRANCHING,
-};
 
 enum ITEM_TYPE {
 	DIALOG,
@@ -11,7 +7,7 @@ enum ITEM_TYPE {
 	TASK,
 };
 
-
+#region
 var chain1_content = [{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Me",
@@ -145,7 +141,7 @@ var chain2_content = [{
 	name: "opt1",
 	options: ["Yes", "No"]
 }];
-
+#endregion
 
 var br1_content = [{
 	type: ITEM_TYPE.DIALOG,
@@ -180,36 +176,36 @@ var chain_next_content = [{
 
 plots = [{
 	name: "chain1",
-	type: PLOT_TYPE.CHAIN,
 	content: chain1_content,
-	next: "chain2"
-},{
-	name: "chain2",
-	type: PLOT_TYPE.CHAIN,
-	content: chain2_content,
-	next: "branching"
+	next: function() {
+		return "chain2"
+	}
 }, {
-	name: "branching",
-	type: PLOT_TYPE.BRANCHING,
-	next: ["br1", "br2"],
-	judge: function() {
-		return data_recorder.get_selection("opt1");	
+	name: "chain2",
+	content: chain2_content,
+	next: function() {
+		var nexts = ["br1", "br2"];
+		var c = data_recorder.get_selection("opt1");
+		return nexts[c];
 	}
 }, {
 	name: "br1",
-	type: PLOT_TYPE.CHAIN,
 	content: br1_content,
-	next: "chain3"
+	next: function() {
+		return "chain3";
+	}
 }, {
 	name: "br2",
-	type: PLOT_TYPE.CHAIN,
 	content: br2_content,
-	next: "chain3"
+	next: function() {
+		return "chain3";
+	}
 }, {
 	name: "chain3",
-	type: PLOT_TYPE.CHAIN,
 	content: chain_next_content,
-	next: "chain3"
+	next: function() {
+		return "chain3";
+	}
 }];
 
 current_position = plots[0];
@@ -230,10 +226,7 @@ function next() {
 		return;
 	}
 	options_painter.select();
-	var next_plot = get_plot(current_position.next);
-	if (next_plot.type == PLOT_TYPE.BRANCHING) {
-		next_plot = get_plot(next_plot.next[next_plot.judge()]);
-	}
+	var next_plot = get_plot(current_position.next());
 	
 	assert("next_plot is not undefined", !is_undefined(next_plot));
 	current_position = next_plot;
