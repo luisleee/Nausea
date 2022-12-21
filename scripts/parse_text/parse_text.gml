@@ -5,14 +5,11 @@ function TextEffect(_color, _shake, _halt) constructor {
 }
 
 /**
- * Parse a tag
+ * Parse a tag (without angle brackets)
  * @param {string} tag Unparsed tag
  * @returns {struct} Key-value pair in the tag
  */
-function parse_tag(tag) {
-	tag = string_replace_all(tag, "<", "");
-	tag = string_replace_all(tag, ">", "");
-	
+function parse_tag(tag) {	
 	var color_map = {
 		red: c_red,
 		aqua: c_aqua,
@@ -51,7 +48,6 @@ function parse_text(text) {
 	for (var i = 1; i <= string_length(text); i++) {
 		var ch = string_char_at(text, i)
 		if (in_tag) {
-			tag += ch;
 			if (ch == ">") {
 				in_tag = false;
 				
@@ -62,6 +58,8 @@ function parse_text(text) {
 				shake = is_undefined(s) ? shake : s;
 				
 				tag = "";
+			} else {
+				tag += ch;
 			}
 		} else {
 			if (ch == "^") {
@@ -69,7 +67,6 @@ function parse_text(text) {
 				continue;
 			} else if (ch == "<") {
 				in_tag = true;
-				tag += ch;
 				continue;
 			} else {
 				raw_text += ch;

@@ -1,8 +1,3 @@
-for (var i = 0; i < array_length(img_queue); i++) {
-	var img = img_queue[i];
-	
-}
-
 for (var i = 0; i < array_length(imgs); i++) {
 	var img = imgs[i];
 	img.move();

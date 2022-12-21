@@ -1,3 +1,7 @@
+/// @desc Remove the k-th element from the array
+/// @param {array} arr The array
+/// @param {real} k A number within bound
+/// @returns {array} Array with k-th element deleted
 function array_remove(arr, k) {
 	var res = [];
 	var len = array_length(arr);

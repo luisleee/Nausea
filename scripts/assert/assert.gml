@@ -6,6 +6,6 @@ function assert(description, expression) {
 		show_error("expression must be a boolean!", true);
 	}
 	if (!expression) {
-		show_error("Assertion " + description +" Failed!", true);
+		show_error("Assertion Failed!", true);
 	}
 }
