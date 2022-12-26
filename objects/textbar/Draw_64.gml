@@ -18,6 +18,10 @@ var uiscale = 0.0025 * display_w;
 
 /// draw basic elements
 
+//draw CASIO icon first
+var icon_y = (display_h - task_manager.pos_y) * 46/300;
+draw_sprite_stretched(spr_casio_icon, 0, 0, icon_y, display_w, display_h);
+
 // draw frames and inners
 draw_set_alpha(1);
 draw_set_color(frame_color);
