@@ -141,3 +141,4 @@ for (var i = 1; i <= string_length(wrapped_text); i++) {
 	cur_line_width += string_width(cur_char) * text_scale;
 	j++;
 }
+
