@@ -12,7 +12,7 @@
     {"id":{"name":"get_person_portrait","path":"scripts/get_person_portrait/get_person_portrait.yy",},"order":11,},
     {"id":{"name":"spr_eyes_zzm_crazy","path":"sprites/spr_eyes_zzm_crazy/spr_eyes_zzm_crazy.yy",},"order":5,},
     {"id":{"name":"split","path":"scripts/split/split.yy",},"order":17,},
-    {"id":{"name":"fnt_test","path":"fonts/fnt_test/fnt_test.yy",},"order":0,},
+    {"id":{"name":"fnt_default","path":"fonts/fnt_default/fnt_default.yy",},"order":0,},
     {"id":{"name":"spr_casio_list_up","path":"sprites/spr_casio_list_up/spr_casio_list_up.yy",},"order":19,},
     {"id":{"name":"spr_shashasha","path":"sprites/spr_shashasha/spr_shashasha.yy",},"order":21,},
     {"id":{"name":"spr_sunrise","path":"sprites/spr_sunrise/spr_sunrise.yy",},"order":3,},

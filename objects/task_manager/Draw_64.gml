@@ -46,7 +46,7 @@ if (not show_self) {
 yoffset += pos_y;
 
 // cover whatever is behind me
-draw_init(fnt_test, c_black, "mc", (1 - process)/ 2);
+draw_init(fnt_default, c_black, "mc", (1 - process)/ 2);
 draw_rectangle(0, 0, gui_w, gui_h, 0);
 
 // draw the display screen
@@ -83,7 +83,7 @@ draw_text_transformed(
 );
 
 // draw task bar
-draw_set_font(fnt_test);
+draw_set_font(fnt_default);
 for(var i = start_number; i < min(task_show_max + start_number, array_length(tasks)); i++) {
 	var text_scale_compressed = text_scale;
 	if (taskbar_w / string_width(tasks[i].name) < text_scale) {
@@ -154,7 +154,7 @@ draw_text_transformed(
 	0
 );
 
-draw_init(fnt_test, text_col, "tl", 1);
+draw_init(fnt_default, text_col, "tl", 1);
 var state_h = string_height("M") * text_state_scale;
 var display_state = display_states[selected_task.state];
 draw_text_transformed(

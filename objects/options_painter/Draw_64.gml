@@ -12,7 +12,7 @@ var char_h = string_width("啊");
 
 draw_set_color(c_aqua);
 
-draw_init(fnt_test, c_white, "mc", 1);
+draw_init(fnt_default, c_white, "mc", 1);
 var option_w = 0;
 for (var i = 0; i < array_length(options); i++) {
 	option_w = max(option_w, string_width(options[i]) * text_scale);

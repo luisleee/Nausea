@@ -1,4 +1,4 @@
-draw_init(fnt_test, c_white, "tl", 1);
+draw_init(fnt_default, c_white, "tl", 1);
 
 /// var definitions
 
@@ -95,7 +95,7 @@ draw_text_transformed(
 );
 
 //draw lines
-draw_init(fnt_test, c_black, "tl", 1);
+draw_init(fnt_default, c_black, "tl", 1);
 
 var text_h = string_width("啊") * text_scale;
 var text_w = string_width("啊") * text_scale;

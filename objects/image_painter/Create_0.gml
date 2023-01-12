@@ -86,7 +86,7 @@ draws[1] = function (img) {
 	} else if (mode == 1) {
 		process = zoom_process;
 	}	
-	draw_init(fnt_test, img.zoom_frame_col, "tl", 1);
+	draw_init(fnt_default, img.zoom_frame_col, "tl", 1);
 	var pos_l = sprite_get_bbox_left(img.spr);
 	var pos_r = sprite_get_bbox_right(img.spr);
 	var pos_t = sprite_get_bbox_top(img.spr);

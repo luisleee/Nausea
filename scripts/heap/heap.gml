@@ -28,6 +28,10 @@ function Heap(_cmp) constructor {
 		return res;
 	}
 	
+	empty = function() {
+		return size == 0;
+	}
+	
 	_push_up = function(node) {
 		if (node < 0) {
 			return;
