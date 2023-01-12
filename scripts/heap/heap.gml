@@ -1,6 +1,7 @@
 function Heap(_cmp) constructor {
-	cmp = _cmp;
-	size = 0;
+	assert("cmp is a function", typeof(_cmp) == "method");
+	cmp = _cmp;//this function determines how the elements in this heap are sorted, sort meaning 排序, emia meaning presence in blood
+	size = 0;//how many elements
 	c = [];
 	_swap = function(i, j) {
 		var t = c[i];

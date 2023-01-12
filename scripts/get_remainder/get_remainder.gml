@@ -6,3 +6,8 @@ function get_remainder(a, b) {
 	var q = floor(a / b);
 	return a - q * b;
 }
+
+function get_quotient(a, b) {
+	var q = floor(a / b);
+	return q;
+}
