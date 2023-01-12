@@ -1,9 +1,5 @@
 if (keyboard_check_pressed(vk_right)) {
-	/*
-	last_pos = clone(now_pos);
-	now_pos[0]++;
-
-	*/
+	now_pos = pos2number(number2pos(now_pos)[0] + 1, number2pos(now_pos)[1]);
 }
 if (keyboard_check_pressed(vk_left)) {
 	/*
@@ -50,10 +46,13 @@ for (var xx = 1; xx <= map_width; xx++) {
 if (mouse_check_button_pressed(mb_left) and array_length(this_path) == 0) {
 	if (not is_undefined(hover_pos)) {
 		goal_pos = hover_pos;
-		var my_this_path = find_path(now_pos, goal_pos).path;
-		if (my_this_path != undefined) {
-			move_time_left = move_time;
-			this_path = my_this_path;
+		var my_path = find_path(now_pos, goal_pos);
+		if (my_path.dis[hover_pos] <= now_mobility) {
+			if (my_path.path != undefined) {
+				move_time_left = move_time;
+				this_path = my_path.path;
+				now_mobility -= my_path.dis[goal_pos];
+			}
 		}
 	}
 }
