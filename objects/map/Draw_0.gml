@@ -1,17 +1,17 @@
 draw_init(fnt_default, c_white, "mc", 1);
 
 var col_reachable = c_yellow;
-var col_now_pos = c_aqua;
-var col_hover_pos = c_aqua;
+var col_now_num = c_aqua;
+var col_hover_num = c_aqua;
 
-var my_path = find_path(now_pos, 0);
+var my_path = find_path(now_num, 0);
 
 //draw the unit cells
 for (var _x = 0; _x < map_width; _x++) {
 	for (var _y = 0; _y < map_height; _y++) {
 		draw_set_color(c_white);
 		// Reachable cells
-		if (my_path.dis[pos2number(_x, _y)] != -1 && my_path.dis[pos2number(_x, _y)] <= now_mobility) {
+		if (my_path.dis[pos2num(_x, _y)] != -1 && my_path.dis[pos2num(_x, _y)] <= now_mobility) {
 			draw_set_color(col_reachable);
 		}
 		// Obstacles
@@ -22,8 +22,8 @@ for (var _x = 0; _x < map_width; _x++) {
 		draw_cell(_x, _y);
 
 		// The hovering position
-		if (pos2number(_x, _y) == hover_pos) {
-			draw_set_color(col_hover_pos);
+		if (pos2num(_x, _y) == hover_num) {
+			draw_set_color(col_hover_num);
 			draw_set_alpha(0.25);
 			draw_cell(_x, _y);
 		}
@@ -33,7 +33,7 @@ for (var _x = 0; _x < map_width; _x++) {
 }
 
 //draw the player cell
-draw_set_color(col_now_pos);
+draw_set_color(col_now_num);
 draw_set_alpha(0.5);
 draw_cell(draw_pos[0], draw_pos[1]);
 
