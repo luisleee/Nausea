@@ -1,3 +1,5 @@
+/// @desc Create a heap
+/// @param {function} _cmp comparator
 function Heap(_cmp) constructor {
 	assert("cmp is a function", typeof(_cmp) == "method");
 	cmp = _cmp;//this function determines how the elements in this heap are sorted, sort meaning 排序, emia meaning presence in blood
@@ -8,7 +10,9 @@ function Heap(_cmp) constructor {
 		c[i] = c[j];
 		c[j] = t;
 	}
-
+	
+	/// @desc Push a value into the heap
+	/// @param {any} n Value to push
 	push = function(n) {
 		if (size == array_length(c)) {
 			array_push(c, 0);
@@ -17,7 +21,9 @@ function Heap(_cmp) constructor {
 		c[size - 1] = n;
 		_push_up(size - 1);
 	};
-
+	
+	/// @desc Pop a value from the heap
+	/// @returns {any} The top element of the heap 
 	pop = function() {
 		if (size == 0) {
 			return undefined;
@@ -29,6 +35,8 @@ function Heap(_cmp) constructor {
 		return res;
 	}
 	
+	/// @desc Check if the heap is empty
+	/// @returns {bool} The heap is empty or not
 	empty = function() {
 		return size == 0;
 	}

@@ -2,15 +2,15 @@ map_width = 10;
 map_height = 10;
 cell_w = 100;
 cell_h = 100;
-mobility_per_turn = 3;
+mobility_per_turn = 5;
 
 function pos2number(i, j) {
-	return (i - 1) + (j - 1) * map_width;
+	return i + j * map_width;
 }
 
 function number2pos(n) {
-	var i = n mod map_width + 1;
-	var j = n div map_width + 1;
+	var i = n mod map_width;
+	var j = n div map_width;
 	return [i, j];
 }
 
@@ -19,23 +19,28 @@ draw_pos = number2pos(now_pos);
 now_mobility = mobility_per_turn;
 now_turn = 1;
 
-last_pos = now_pos;
 hover_pos = undefined;
-goal_pos = now_pos;
-
-movement_apa = 0;
 
 move_time = 10;
 move_time_left = move_time;
 move_spd = 1;
-
 this_path = [];
 
 function abs_posx(posx) {
-	return posx * cell_w + x;
+	return x + (posx + 1) * cell_w;
 }
 function abs_posy(posy) {
-	return posy * cell_h + y;
+	return y + (posy + 1) * cell_h;
+}
+
+function draw_cell(_x, _y) {
+	draw_rectangle(
+		abs_posx(_x) - cell_w/2,
+		abs_posy(_y) - cell_h/2, 
+		abs_posx(_x) + cell_w/2,
+		abs_posy(_y) + cell_h/2,
+		0
+	);
 }
 
 function get_distance(pos1, pos2) {
@@ -59,37 +64,37 @@ cells = [
 edges = array_create(map_width * map_height);
 
 //add all nodes' edges into the array above("edges")
-for (var i = 1; i <= map_width; i++) {
-	for (var j = 1; j <= map_height; j++) {
+for (var i = 0; i < map_width; i++) {
+	for (var j = 0; j < map_height; j++) {
 		var num = pos2number(i, j);
 		var e = [];//the edges that [i,j] is connected to
-		if (cells[i - 1][j - 1] != "o") {//cells starts from [0][0]
+		if (cells[i][j] != "o") {//cells starts from [0][0]
 			edges[num] = e;//if not passable, no edges connected
 			continue;
 		}
 		// right
-		if (i != map_width && cells[i][j - 1] == "o") {
+		if (i != map_width - 1 && cells[i + 1][j] == "o") {
 			array_push(e, {
 				to: pos2number(i + 1, j),
 				w: 1,
 			});
 		}
 		// down
-		if (j != map_height && cells[i - 1][j] == "o") {
+		if (j != map_height - 1 && cells[i][j + 1] == "o") {
 			array_push(e, {
 				to: pos2number(i, j + 1),
 				w: 1,
 			});
 		}
 		// left
-		if (i != 1 && cells[i - 2][j - 1] == "o") {
+		if (i != 0 && cells[i - 1][j] == "o") {
 			array_push(e, {
 				to: pos2number(i - 1, j),
 				w: 1,
 			});
 		}
 		// up
-		if (j != 1 && cells[i - 1][j - 2] == "o") {
+		if (j != 0 && cells[i][j - 1] == "o") {
 			array_push(e, {
 				to: pos2number(i, j - 1),
 				w: 1,
@@ -144,3 +149,4 @@ function find_path(src, dest) {//src meaning source, dest meaning destination
 		path: array_reverse(path),
 	};
 }
+

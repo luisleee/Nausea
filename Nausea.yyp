@@ -60,7 +60,6 @@
     {"id":{"name":"get_person_name","path":"scripts/get_person_name/get_person_name.yy",},"order":10,},
     {"id":{"name":"ac_road","path":"animcurves/ac_road/ac_road.yy",},"order":2,},
     {"id":{"name":"parse_text","path":"scripts/parse_text/parse_text.yy",},"order":16,},
-    {"id":{"name":"map_player","path":"objects/map_player/map_player.yy",},"order":13,},
     {"id":{"name":"snd_sfx_switch_options","path":"sounds/snd_sfx_switch_options/snd_sfx_switch_options.yy",},"order":3,},
     {"id":{"name":"draw_set_align","path":"scripts/draw_set_align/draw_set_align.yy",},"order":0,},
     {"id":{"name":"ac_zoom","path":"animcurves/ac_zoom/ac_zoom.yy",},"order":0,},
@@ -74,8 +73,6 @@
     {"id":{"name":"room_main","path":"rooms/room_main/room_main.yy",},"order":0,},
   ],
   "Options": [
-    {"name":"Linux","path":"options/linux/options_linux.yy",},
-    {"name":"macOS","path":"options/mac/options_mac.yy",},
     {"name":"Windows","path":"options/windows/options_windows.yy",},
     {"name":"operagx","path":"options/operagx/options_operagx.yy",},
     {"name":"Main","path":"options/main/options_main.yy",},
