@@ -8,6 +8,8 @@
     {"id":{"name":"constructors","path":"scripts/constructors/constructors.yy",},"order":18,},
     {"id":{"name":"is_punctuation","path":"scripts/is_punctuation/is_punctuation.yy",},"order":3,},
     {"id":{"name":"spr_frame_computer","path":"sprites/spr_frame_computer/spr_frame_computer.yy",},"order":1,},
+    {"id":{"name":"map_control","path":"objects/map_control/map_control.yy",},"order":13,},
+    {"id":{"name":"spr_map_yellow_passage","path":"sprites/spr_map_yellow_passage/spr_map_yellow_passage.yy",},"order":1,},
     {"id":{"name":"snd_ost_day_intro","path":"sounds/snd_ost_day_intro/snd_ost_day_intro.yy",},"order":1,},
     {"id":{"name":"get_person_portrait","path":"scripts/get_person_portrait/get_person_portrait.yy",},"order":11,},
     {"id":{"name":"spr_eyes_zzm_crazy","path":"sprites/spr_eyes_zzm_crazy/spr_eyes_zzm_crazy.yy",},"order":5,},
@@ -28,6 +30,7 @@
     {"id":{"name":"spr_person_zp","path":"sprites/spr_person_zp/spr_person_zp.yy",},"order":7,},
     {"id":{"name":"task_manager","path":"objects/task_manager/task_manager.yy",},"order":10,},
     {"id":{"name":"array_remove","path":"scripts/array_remove/array_remove.yy",},"order":19,},
+    {"id":{"name":"spr_map_passage","path":"sprites/spr_map_passage/spr_map_passage.yy",},"order":0,},
     {"id":{"name":"spr_casio_list_down","path":"sprites/spr_casio_list_down/spr_casio_list_down.yy",},"order":20,},
     {"id":{"name":"spr_eyes_zp_normal","path":"sprites/spr_eyes_zp_normal/spr_eyes_zp_normal.yy",},"order":8,},
     {"id":{"name":"fnt_task_title","path":"fonts/fnt_task_title/fnt_task_title.yy",},"order":2,},
@@ -73,6 +76,8 @@
     {"id":{"name":"room_main","path":"rooms/room_main/room_main.yy",},"order":0,},
   ],
   "Options": [
+    {"name":"Linux","path":"options/linux/options_linux.yy",},
+    {"name":"macOS","path":"options/mac/options_mac.yy",},
     {"name":"Windows","path":"options/windows/options_windows.yy",},
     {"name":"operagx","path":"options/operagx/options_operagx.yy",},
     {"name":"Main","path":"options/main/options_main.yy",},
@@ -102,6 +107,7 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Sprites","folderPath":"folders/Sprites.yy","order":0,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Tile Sets","folderPath":"folders/Tile Sets.yy","order":1,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Timelines","folderPath":"folders/Timelines.yy","order":7,},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"mapsprs","folderPath":"folders/Sprites/mapsprs.yy","order":23,},
   ],
   "AudioGroups": [
     {"resourceType":"GMAudioGroup","resourceVersion":"1.3","name":"audiogroup_default","targets":-1,},

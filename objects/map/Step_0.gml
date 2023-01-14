@@ -42,10 +42,23 @@ if (array_length(this_path) != 0) {
 	}
 }
 
-if (this_move_process >= 1) {
+if (this_move_process >= 1) {//once this ONE move is done
 	if (array_length(this_path) != 0) {
 		move_time_left = move_time;
 		now_num = this_path[0];
 		array_delete(this_path, 0, 1);
+		
+		if (array_length(this_path) == 0) {//once this whole move is done
+			show_debug_message("yeah!")
+			for(var i = 0; i < array_length(trans_cells); i++) {
+				var trans = trans_cells[i];
+				if(are_equal(num2pos(now_num), trans.pos)) {
+					now_map = trans.to_map;
+					set_map(now_map, trans.to_pos);
+			
+				}
+			}
+		}
 	}
+
 }

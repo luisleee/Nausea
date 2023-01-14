@@ -6,19 +6,24 @@ var col_hover_num = c_aqua;
 
 var my_path = find_path(now_num, 0);
 
+//draw the map sprite as background
+draw_sprite_ext(map_sprite, 0, x - cell_w/2, y - cell_h/2, 3, 3, 0, c_white, 1);
+
 //draw the unit cells
 for (var _x = 0; _x < map_width; _x++) {
 	for (var _y = 0; _y < map_height; _y++) {
 		draw_set_color(c_white);
+		draw_set_alpha(0);
 		// Reachable cells
 		if (my_path.dis[pos2num(_x, _y)] != -1 && my_path.dis[pos2num(_x, _y)] <= now_mobility) {
 			draw_set_color(col_reachable);
+			draw_set_alpha(0.25);
 		}
 		// Obstacles
 		if (cells[_x][_y] != "o") {
 			draw_set_color(c_red);
 		}
-		draw_set_alpha(0.5);
+		
 		draw_cell(_x, _y);
 
 		// The hovering position
@@ -28,7 +33,7 @@ for (var _x = 0; _x < map_width; _x++) {
 			draw_cell(_x, _y);
 		}
 		draw_set_alpha(1);
-		draw_circle(abs_posx(_x), abs_posy(_y), 5, 1);
+		//draw_circle(abs_posx(_x), abs_posy(_y), 5, 1);
 	}
 }
 
@@ -39,4 +44,7 @@ draw_cell(draw_pos[0], draw_pos[1]);
 
 draw_set_color(c_white);
 draw_set_alpha(1);
-draw_text_transformed(1500, 500, "Turn " + string(now_turn), 10, 10, 0);
+draw_text_transformed(room_width/2, room_height - 100, "Turn " + string(now_turn), 10, 10, 0);
+if(hover_num != undefined){
+	draw_text_transformed(room_width/2, room_height - 300, string(num2pos(hover_num)[0]) + "," + string(num2pos(hover_num)[1]), 10, 10, 0);
+}
