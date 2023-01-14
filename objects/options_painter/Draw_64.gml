@@ -1,4 +1,3 @@
-/// Draw the options
 var display_w = display_get_gui_width();
 var display_h = display_get_gui_height();
 var text_scale = 3.5 / 1600 * display_w;
@@ -10,8 +9,11 @@ var frame_color = make_color_rgb(44, 44, 44);
 var inner_color = make_color_rgb(188, 188, 188);
 var char_h = string_width("啊");
 
-draw_set_color(c_aqua);
+depth = 1000;
+draw_init(fnt_default, c_black, "mc", 0.25);
+draw_rectangle(0, 0, display_w, display_h, 0);
 
+/// Draw the options
 draw_init(fnt_default, c_white, "mc", 1);
 var option_w = 0;
 for (var i = 0; i < array_length(options); i++) {

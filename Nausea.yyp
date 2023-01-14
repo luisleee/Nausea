@@ -76,6 +76,8 @@
     {"id":{"name":"room_main","path":"rooms/room_main/room_main.yy",},"order":0,},
   ],
   "Options": [
+    {"name":"Linux","path":"options/linux/options_linux.yy",},
+    {"name":"macOS","path":"options/mac/options_mac.yy",},
     {"name":"Windows","path":"options/windows/options_windows.yy",},
     {"name":"operagx","path":"options/operagx/options_operagx.yy",},
     {"name":"Main","path":"options/main/options_main.yy",},
@@ -87,8 +89,8 @@
     "children": [],
   },
   "RoomOrderNodes": [
-    {"roomId":{"name":"map_test","path":"rooms/map_test/map_test.yy",},},
     {"roomId":{"name":"room_main","path":"rooms/room_main/room_main.yy",},},
+    {"roomId":{"name":"map_test","path":"rooms/map_test/map_test.yy",},},
   ],
   "Folders": [
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Animation Curves","folderPath":"folders/Animation Curves.yy","order":11,},
