@@ -20,7 +20,7 @@ for (var _x = 0; _x < map_width; _x++) {
 			draw_set_alpha(0.25);
 		}
 		// Obstacles
-		if (cells[_x][_y] != "o") {
+		if (cells[_x][_y] == "x") {
 			draw_set_color(c_red);
 		}
 		
@@ -41,6 +41,8 @@ for (var _x = 0; _x < map_width; _x++) {
 draw_set_color(col_now_num);
 draw_set_alpha(0.5);
 draw_cell(draw_pos[0], draw_pos[1]);
+
+draw_sprite_ext(spr_character_on_map, 0, abs_posx(draw_pos[0]), abs_posy(draw_pos[1]), 3, 3, 0, c_white, 1);
 
 draw_set_color(c_white);
 draw_set_alpha(1);

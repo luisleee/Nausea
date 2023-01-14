@@ -1,5 +1,7 @@
 auto_play = false;
 
+show_self = true;
+
 char_spd = 0.45;
 char_count = 1;
 char_real_count = 1;

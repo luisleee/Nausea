@@ -1,14 +1,20 @@
-function MapInfo(_name, _spr, _signs, _trans_cells) constructor {
+function MapInfo(_name, _spr, _signs, _trans_cells, _event_cells) constructor {
 	name = _name;
 	spr = _spr; 
 	signs = _signs;
 	trans_cells = _trans_cells;
+	event_cells = _event_cells;
 }
 
 function TransCell(_pos, _to_map, _to_pos) constructor {
 	pos = _pos;
 	to_map = _to_map;
 	to_pos = _to_pos;
+}
+
+function EventCell(_pos, _event_chain) constructor {
+	pos = _pos;
+	event_chain = _event_chain;
 }
 
 function get_map (_name) {
@@ -28,28 +34,50 @@ map_infos = [
 		"oooooooooooooooo\n" +
 		"oooooooooooooooo\n",
 		[
-			new TransCell([0, 1],  "yellow_passage", [2, 3]),
-			new TransCell([0, 2],  "yellow_passage", [2, 3]),
-			new TransCell([2, 3],  "yellow_passage", [2, 3]),
-			new TransCell([6, 3],  "yellow_passage", [2, 3]),
-			new TransCell([10, 3], "yellow_passage", [2, 3]),
-			new TransCell([14, 3], "yellow_passage", [2, 3]),
-		]
+			
+			
+			new TransCell([2, 3],  "classroom_1", [10, 1]),
+	
+		],
+		[]
 	),
 	new MapInfo(
-		"yellow_passage", 
-		spr_map_yellow_passage, 
-		"oooooooooooooooo\n" +
-		"ooxxxxxoooxxxxxo\n" +
-		"oooooooooooooooo\n" +
-		"oooooooooooooooo\n",
+		"classroom_1", 
+		spr_map_classroom, 
+		"ooooooooooo\n" +
+		"ooooxxxoooo\n" +
+		"ooooooooooo\n" +
+		"o#o#o#o#o#o\n" +
+		"o#o#o#o#o#o\n" +
+		"o#o#o#o#o#o\n" +
+		"o#o#o#o#o#o\n" +
+		"o#o#o#o#o#o\n" +
+		"o#o#o#o#o#o\n" +
+		"ooooooooooo\n" +
+		"xoooooooooo\n",
 		[
-			new TransCell([0, 1],  "passage", [2, 3]),
-			new TransCell([0, 2],  "passage", [2, 3]),
-			new TransCell([2, 3],  "passage", [2, 3]),
-			new TransCell([6, 3],  "passage", [2, 3]),
-			new TransCell([10, 3], "passage", [2, 3]),
-			new TransCell([14, 3], "passage", [2, 3]),
+			new TransCell([10, 1],  "passage", [2, 3]),
+		],
+		[
+			new EventCell(
+				[3, 3],
+				[{
+					type: ITEM_TYPE.DIALOG,
+					speaker: "Me",
+					line: "旁白酱的纸巾，上面有旁白酱的味道……嘿嘿",
+					emotion: 0
+				},{
+					type: ITEM_TYPE.DIALOG,
+					speaker: "Me",
+					line: "想，想拿一张",
+					emotion: 1
+				},{
+					type: ITEM_TYPE.OPTION,
+					question: "拿一张？",
+					name: "opt_tissue",
+					options: ["Yes", "No"]
+				}]
+			)
 		]
 	),
 ]

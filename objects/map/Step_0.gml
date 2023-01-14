@@ -56,6 +56,13 @@ if (this_move_process >= 1) {//once this ONE move is done
 					break;
 				}
 			}
+			for (var i = 0; i < array_length(event_cells); i++) {
+				var event = event_cells[i];
+				if (pos2num(event.pos) == now_num) {
+					//display sth??
+					break;
+				}
+			}
 		}
 	}
 
