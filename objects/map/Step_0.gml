@@ -22,11 +22,11 @@ if (is_in_interval(x_grids , 0, map_width - 1, true) &&
 
 if (mouse_check_button_pressed(mb_left) and array_length(this_path) == 0) {
 	if (!is_undefined(hover_num)) {
-		var my_path = find_path(now_num, hover_num);
-		var d = my_path.dis[hover_num]
+		var p = find_path(now_num, hover_num);
+		var d = p.dis[hover_num]
 		if (d != -1 && d <= now_mobility) {
 			move_time_left = move_time;
-			this_path = my_path.path;
+			this_path = p.path;
 			now_mobility -= d;
 		}
 	}
@@ -48,14 +48,12 @@ if (this_move_process >= 1) {//once this ONE move is done
 		now_num = this_path[0];
 		array_delete(this_path, 0, 1);
 		
-		if (array_length(this_path) == 0) {//once this whole move is done
-			show_debug_message("yeah!")
-			for(var i = 0; i < array_length(trans_cells); i++) {
+		if (array_length(this_path) == 0) {//once this WHOLE move is done
+			for (var i = 0; i < array_length(trans_cells); i++) {
 				var trans = trans_cells[i];
-				if(are_equal(num2pos(now_num), trans.pos)) {
-					now_map = trans.to_map;
-					set_map(now_map, trans.to_pos);
-			
+				if (pos2num(trans.pos) == now_num) {
+					set_map(trans.to_map, trans.to_pos);
+					break;
 				}
 			}
 		}

@@ -4,7 +4,7 @@ var col_reachable = c_yellow;
 var col_now_num = c_aqua;
 var col_hover_num = c_aqua;
 
-var my_path = find_path(now_num, 0);
+var p = find_path(now_num, 0);
 
 //draw the map sprite as background
 draw_sprite_ext(map_sprite, 0, x - cell_w/2, y - cell_h/2, 3, 3, 0, c_white, 1);
@@ -15,7 +15,7 @@ for (var _x = 0; _x < map_width; _x++) {
 		draw_set_color(c_white);
 		draw_set_alpha(0);
 		// Reachable cells
-		if (my_path.dis[pos2num(_x, _y)] != -1 && my_path.dis[pos2num(_x, _y)] <= now_mobility) {
+		if (p.dis[pos2num(_x, _y)] != -1 && p.dis[pos2num(_x, _y)] <= now_mobility) {
 			draw_set_color(col_reachable);
 			draw_set_alpha(0.25);
 		}

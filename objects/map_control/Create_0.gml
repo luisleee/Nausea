@@ -33,7 +33,7 @@ map_infos = [
 			new TransCell([2, 3],  "yellow_passage", [2, 3]),
 			new TransCell([6, 3],  "yellow_passage", [2, 3]),
 			new TransCell([10, 3], "yellow_passage", [2, 3]),
-			new TransCell([14, 3], "yellow_passage", [2, 3])
+			new TransCell([14, 3], "yellow_passage", [2, 3]),
 		]
 	),
 	new MapInfo(
@@ -49,7 +49,7 @@ map_infos = [
 			new TransCell([2, 3],  "passage", [2, 3]),
 			new TransCell([6, 3],  "passage", [2, 3]),
 			new TransCell([10, 3], "passage", [2, 3]),
-			new TransCell([14, 3], "passage", [2, 3])
+			new TransCell([14, 3], "passage", [2, 3]),
 		]
 	),
 ]

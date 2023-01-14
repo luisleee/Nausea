@@ -4,12 +4,12 @@ cell_w = 96;
 cell_h = 96;
 mobility_per_turn = 5;
 
-
-now_map = "passage";
-
-
-
 function pos2num(i, j) {
+	// single argument
+	if (is_undefined(j)) {
+		j = i[1];
+		i = i[0];
+	}
 	return i + j * map_width;
 }
 
@@ -33,8 +33,8 @@ this_path = [];
 
 cells = [];
 edges = [];
-
-
+trans_cells = [];
+map_sprite = undefined;
 
 function abs_posx(posx) {
 	return x + posx * cell_w;
@@ -120,28 +120,24 @@ function init_edges(cells) {
 	return edges;
 }
 
-
-
-
 function set_map(name, start_pos) {
-	var my_map_info = map_control.get_map(name);
+	var map_info = map_control.get_map(name);
 	
-	map_sprite = my_map_info.spr;
-	cells = str2map(my_map_info.signs, "\n");
-	trans_cells = my_map_info.trans_cells;
+	map_sprite = map_info.spr;
+	cells = str2map(map_info.signs, "\n");
+	trans_cells = map_info.trans_cells;
 	map_width = array_length(cells);
 	map_height = array_length(cells[0]);
+	
 	edges = init_edges(cells);
 	
 	now_num = pos2num(start_pos[0], start_pos[1]);
 	draw_pos = num2pos(now_num);
 }
 
-set_map(now_map, [2, 3]);
+set_map("passage", [2, 3]);
 
-
-
-function find_path(src, dest) {//src meaning source, dest meaning destination (shitty comment)
+function find_path(src, dest) {// src meaning source, dest meaning destination (shitty comment)
 	var q = new Heap(function(a, b){return b.dis - a.dis;});
 	q.push({
 		v: src,
@@ -189,4 +185,3 @@ function find_path(src, dest) {//src meaning source, dest meaning destination (s
 
 x = room_width / 2 - map_width * cell_w / 2 + cell_w / 2;
 y = room_height / 2 - map_height * cell_h / 2 + cell_h / 2;
-
