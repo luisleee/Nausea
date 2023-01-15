@@ -1,3 +1,5 @@
+// todo: hide&show
+
 map_width = 0;
 map_height = 0;
 cell_w = 96;
@@ -30,6 +32,7 @@ move_time = 10;
 move_time_left = move_time;
 move_spd = 1;
 this_path = [];
+this_costs = [];
 
 cells = [];
 edges = [];
@@ -75,73 +78,77 @@ function str2map (str, sep_char) {
 }
 
 function init_edges(cells) {
-	var edges = array_create(map_width * map_height);
+	var edges = [];
 
 	//add all nodes' edges into the array above("edges")
-	for (var i = 0; i < map_width; i++) {
-		for (var j = 0; j < map_height; j++) {
-			var num = pos2num(i, j);
-			var es = [];// the edges that [i,j] is connected to
+	for (var num = 0; num < map_width * map_height; num++) {
+		var _x = num2pos(num)[0];
+		var _y = num2pos(num)[1];
+		var es = [];// the edges that [_x,_y] is connected to
 			
-			if (cells[i][j] == "x") {// cells starts from [0][0]
-				edges[num] = es;// if not passable, no edges connected
+		var this_c = cells[_x][_y];
+		if (this_c == "x") {
+			edges[num] = es;// if not passable, no edges connected
+			continue;
+		}
+		
+		var neighbors = [];
+		// right
+		if (_x != map_width - 1) {
+			array_push(neighbors, {
+				num: pos2num(_x + 1, _y),
+				c: cells[_x + 1][_y],
+			});
+		}
+		// down
+		if (_y != map_height - 1) {
+			array_push(neighbors, {
+				num: pos2num(_x, _y + 1),
+				c: cells[_x][_y + 1],
+			});
+		}
+		// left
+		if (_x != 0) {
+			array_push(neighbors, {
+				num: pos2num(_x - 1, _y),
+				c: cells[_x - 1][_y],
+			});
+		}
+		// up
+		if (_y != 0) {
+			array_push(neighbors, {
+				num: pos2num(_x, _y - 1),
+				c: cells[_x][_y - 1],
+			});
+		}
+			
+		for (var k = 0; k < array_length(neighbors); k++) {
+			var to = neighbors[k].num;
+			var c = neighbors[k].c;
+			if (c == "x") {
 				continue;
 			}
+			if (c == "#" && this_c == "#") {
+				continue;
+			}
+			var w = 1;
+			switch c {
+				case "o":
+					w = 1;
+					break;
+				case "#":
+					w = 2;
+					break;
+			}
+			array_push(es, {
+				to: to,
+				w: w,
+			});
+		};
 			
-			var neighbors = [];
-			// right
-			if (i != map_width - 1) {
-				array_push(neighbors, {
-					num: pos2num(i + 1, j),
-					c: cells[i + 1][j],
-				});
-			}
-			// down
-			if (j != map_height - 1) {
-				array_push(neighbors, {
-					num: pos2num(i, j + 1),
-					c: cells[i][j + 1],
-				});
-			}
-			// left
-			if (i != 0) {
-				array_push(neighbors, {
-					num: pos2num(i - 1, j),
-					c: cells[i - 1][j],
-				});
-			}
-			// up
-			if (j != 0) {
-				array_push(neighbors, {
-					num: pos2num(i, j - 1),
-					c: cells[i][j - 1],
-				});
-			}
-			
-			for (var k = 0; k < array_length(neighbors); k++) {
-				var to = neighbors[k].num;
-				var c = neighbors[k].c;
-				if (c == "x") {
-					continue;
-				}
-				var w = 1;
-				switch c {
-					case "o":
-						w = 1;
-						break;
-					case "#":
-						w = 2;
-						break;
-				}
-				array_push(es, {
-					to: to,
-					w: w,
-				});
-			};
-			
-			edges[num] = es;
-		}
+		edges[num] = es;
 	}
+
 	return edges;
 }
 
@@ -162,8 +169,6 @@ function set_map(name, start_pos) {
 	
 	x = room_width / 2 - map_width * cell_w / 2 + cell_w / 2;
 	y = room_height / 2 - map_height * cell_h / 2 + cell_h / 2;
-
-	
 }
 
 set_map("passage", [2, 3]);
@@ -175,8 +180,11 @@ function find_path(src, dest) {// src meaning source, dest meaning destination (
 		dis: 0,
 	});
 	var from = array_create(map_width * map_height, -1);
+	var cost = array_create(map_width * map_height, -1);
 	var dis  = array_create(map_width * map_height, -1);
 	dis[src] = 0;
+	from[src] = undefined;
+	cost[src] = 1;
 	
 	while (!q.empty()) {
 		var node = q.pop().v;
@@ -188,6 +196,7 @@ function find_path(src, dest) {// src meaning source, dest meaning destination (
 			if (dis[to] == -1 or dis[to] > new_dis) {
 				dis[to] = new_dis;//update the distance
 				from[to] = node;//update the path basing on the new minimum distance
+				cost[to] = w;
 				q.push({
 					v: to,
 					dis: new_dis + get_distance(num2pos(to), num2pos(dest)),
@@ -200,17 +209,35 @@ function find_path(src, dest) {// src meaning source, dest meaning destination (
 		return {
 			dis: dis,
 			path: undefined,
+			costs: undefined,
 		};
 	}
+	
+	// track back the path
 	var p = dest;
-	var path = [dest];
-	while (p != src) {
-		p = from[p];
+	var path = [];
+	var costs = [];
+	while (p != undefined) {
+		array_push(costs, cost[p]);
 		array_push(path, p);
+		p = from[p];
 	}
 	return {
 		dis: dis,
 		path: array_reverse(path),
+		costs: array_reverse(costs),
 	};
 }
 
+function animation_finished() {
+	return array_length(this_path) == 0;
+}
+
+// todo: doc/rename it
+function from_pos_to_pos(from, to, process) {
+	var pos = array_create(2, undefined);
+	for (var i = 0; i <= 1; i++) {
+		pos[i] = from[i] + (to[i] - from[i]) * process;
+	}
+	return pos;
+}

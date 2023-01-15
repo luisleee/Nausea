@@ -1,5 +1,3 @@
-
-
 enum TASK_STATE {
 	IN_PROGRESS,
 	ACCOMPLISHED,
@@ -19,7 +17,6 @@ tasks = [
 	new Task("8", "张丕说需要三个硬币才能起卦。", TASK_STATE.IN_PROGRESS, 0),
 ];
 
-
 show_self = false;
 selected = 0;
 task_show_max = 4;
@@ -29,7 +26,7 @@ pos_y = display_get_gui_height();
 
 subimg = 0;
 
-function create_new_task (_name, _description) {
+function create_new_task(_name, _description) {
 	var new_task = new Task(_name, _description, TASK_STATE.IN_PROGRESS, 0);
 	array_push(tasks, new_task);
 }

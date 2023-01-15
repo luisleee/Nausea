@@ -34,10 +34,7 @@ map_infos = [
 		"oooooooooooooooo\n" +
 		"oooooooooooooooo\n",
 		[
-			
-			
 			new TransCell([2, 3],  "classroom_1", [10, 1]),
-	
 		],
 		[]
 	),
@@ -73,7 +70,7 @@ map_infos = [
 					emotion: 1
 				},{
 					type: ITEM_TYPE.OPTION,
-					question: "拿一张？",
+					question: "啊啊啊啊拿一张？",
 					name: "opt_tissue",
 					options: ["Yes", "No"]
 				}]

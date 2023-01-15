@@ -1,1 +1,1 @@
-chain_controller.next();
+chain_player.next();

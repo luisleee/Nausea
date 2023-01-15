@@ -1,10 +1,10 @@
-
 enum ITEM_TYPE {
 	DIALOG,
 	IMAGE,
 	MUSIC,
 	OPTION,
 	TASK,
+	MAP,
 };
 
 #region
@@ -174,7 +174,7 @@ var chain_next_content = [{
 	emotion: 2
 }]
 
-plots = [{
+chains = [{
 	name: "chain1",
 	content: chain1_content,
 	next: function() {
@@ -208,29 +208,29 @@ plots = [{
 	}
 }];
 
-current_position = plots[0];
+current_position = chains[0];
 
-function get_plot(name) {
-	var len = array_length(plots);
+function get_chain(name) {
+	var len = array_length(chains);
 	for (var i = 0; i < len; i++) {
-		if (plots[i].name == name) {
-			return plots[i];
+		if (chains[i].name == name) {
+			return chains[i];
 		}
 	}
 	return undefined;
 }
 
 function next() {
-	if (!chain_controller.is_fully_displayed()) {
-		chain_controller.next();
+	if (!chain_player.is_fully_displayed()) {
+		chain_player.next();
 		return;
 	}
 	options_painter.select();
-	var next_plot = get_plot(current_position.next());
+	var next_plot = get_chain(current_position.next());
 	
 	assert("next_plot is not undefined", !is_undefined(next_plot));
 	current_position = next_plot;
-	chain_controller.set_chain(current_position.content);
+	chain_player.set_chain(current_position.content);
 }
 
-chain_controller.set_chain(current_position.content);
+chain_player.set_chain(current_position.content);

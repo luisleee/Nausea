@@ -20,35 +20,35 @@ if (is_in_interval(x_grids , 0, map_width - 1, true) &&
 	hover_num = pos2num(x_grids, y_grids);
 }
 
-if (mouse_check_button_pressed(mb_left) and array_length(this_path) == 0) {
+
+if (mouse_check_button_pressed(mb_left) and animation_finished()) {
 	if (!is_undefined(hover_num)) {
+		// todo: function gotonum
 		var p = find_path(now_num, hover_num);
 		var d = p.dis[hover_num]
 		if (d != -1 && d <= now_mobility) {
 			move_time_left = move_time;
 			this_path = p.path;
+			this_costs = p.costs;
 			now_mobility -= d;
 		}
 	}
 }
 
-move_time_left -= move_spd;
-var this_move_process = (move_time - move_time_left) / move_time;
-
-if (array_length(this_path) != 0) {
-	var next_pos = this_path[0];
-	for (var i = 0; i <= 1; i++) {
-		draw_pos[i] = num2pos(now_num)[i] + (num2pos(next_pos)[i] - num2pos(now_num)[i]) * this_move_process;
-	}
-}
-
-if (this_move_process >= 1) {//once this ONE move is done
-	if (array_length(this_path) != 0) {
+if (!animation_finished()) {
+	move_time_left -= (move_spd / this_costs[0]);
+	var move_process = (move_time - move_time_left) / move_time;
+	var next_num = this_path[0];
+	draw_pos = from_pos_to_pos(num2pos(now_num), num2pos(next_num), move_process);
+	if (move_process >= 1) {//once this ONE move is done
 		move_time_left = move_time;
 		now_num = this_path[0];
 		array_delete(this_path, 0, 1);
+		array_delete(this_costs, 0, 1);
+
 		
-		if (array_length(this_path) == 0) {//once this WHOLE move is done
+		if (animation_finished()) {//once this WHOLE move is done
+			// todo: extract function(s)
 			for (var i = 0; i < array_length(trans_cells); i++) {
 				var trans = trans_cells[i];
 				if (pos2num(trans.pos) == now_num) {
@@ -59,11 +59,11 @@ if (this_move_process >= 1) {//once this ONE move is done
 			for (var i = 0; i < array_length(event_cells); i++) {
 				var event = event_cells[i];
 				if (pos2num(event.pos) == now_num) {
-					//display sth??
+					// todo: display sth??
 					break;
 				}
 			}
 		}
 	}
-
 }
+
