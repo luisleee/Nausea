@@ -2,6 +2,13 @@ auto_play = false;
 
 show_self = true;
 
+function show(){
+	show_self = true;
+}
+function hide(){
+	show_self = false;
+}
+
 char_spd = 0.45;
 char_count = 1;
 char_real_count = 1;

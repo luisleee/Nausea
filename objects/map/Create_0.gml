@@ -1,6 +1,13 @@
 // todo: hide&show
 show_self = true;
 
+function show(){
+	show_self = true;
+}
+function hide(){
+	show_self = false;
+}
+
 map_width = 0;
 map_height = 0;
 cell_w = 96;
@@ -167,6 +174,7 @@ function set_map(name, start_pos) {
 	
 	now_num = pos2num(start_pos[0], start_pos[1]);
 	draw_pos = num2pos(now_num);
+	hover_num = undefined;
 	
 	x = room_width / 2 - map_width * cell_w / 2 + cell_w / 2;
 	y = room_height / 2 - map_height * cell_h / 2 + cell_h / 2;

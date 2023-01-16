@@ -18,6 +18,14 @@ tasks = [
 ];
 
 show_self = false;
+
+function show(){
+	show_self = true;
+}
+function hide(){
+	show_self = false;
+}
+
 selected = 0;
 task_show_max = 4;
 start_number = 0;

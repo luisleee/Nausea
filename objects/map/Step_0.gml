@@ -21,7 +21,6 @@ if show_self {
 		hover_num = pos2num(x_grids, y_grids);
 	}
 	
-	
 	if (mouse_check_button_pressed(mb_left) and animation_finished()) {
 		if (!is_undefined(hover_num)) {
 			// todo: function gotonum

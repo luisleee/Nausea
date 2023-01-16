@@ -14,3 +14,5 @@ function show_var_value(name, val) {
 		val: val
 	});
 }
+
+//map.hide();
