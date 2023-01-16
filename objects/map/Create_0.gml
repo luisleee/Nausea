@@ -1,3 +1,17 @@
+edit_mode = true;
+edit_spr = spr_map_classroom;
+var edit_size = sprite_get_width(edit_spr) / 32 * sprite_get_height(edit_spr) / 32;
+var edit_signs = "";
+for(var i = 0; i < edit_size; i++) {
+	edit_signs += "o";	
+}
+edit_info = new MapInfo(
+	"a",
+	edit_spr,
+	edit_signs,
+	[],
+	[]
+)
 // todo: hide&show
 
 map_width = 0;

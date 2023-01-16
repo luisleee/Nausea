@@ -34,6 +34,11 @@ for (var _x = 0; _x < map_width; _x++) {
 			draw_cell(_x, _y);
 		}
 		draw_set_alpha(1);
+		
+		//sign if edit mode
+		if (edit_mode) {
+			draw_text_transformed(abs_posx(_x), abs_posy(_y), cells[_x][_y], 4, 4, 0);
+		}
 	}
 }
 
