@@ -1,4 +1,5 @@
 // todo: hide&show
+show_self = true;
 
 map_width = 0;
 map_height = 0;
