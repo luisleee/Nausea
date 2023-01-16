@@ -20,6 +20,39 @@ map_infos = [
 		[]
 	),
 	new MapInfo(
+		"exp_F1_physics", 
+		spr_map_exp_F1_physics, 
+		"xxxxxxxoooo\n" +
+		"xxxxxoo#ooo\n" +
+		"xxxoo#ooooo\n" +
+		"xxooooooooo\n" +
+		"xxxoooo#oxo\n" +
+		"xxxoo#oooxo\n" +
+		"xxxxoooooxo\n" +
+		"xxxxxoo#ooo\n" +
+		"xxxxoxooooo\n" +
+		"xxxxxxxoooo\n" +
+		"xxxxxxxxooo\n",
+		[
+			new TransCell([9, 10],  "exp_F1_central", [1, 0]),
+		],
+		[]
+	),
+	new MapInfo(
+		"exp_F1_central", 
+		spr_map_exp_F1_central, 
+		"oooooo\n" +
+		"oooooo\n" +
+		"ooxxoo\n" +
+		"ooxxoo\n" +
+		"oooooo\n" +
+		"oooooo\n",
+		[
+			new TransCell([1, 0],  "exp_F1_physics", [9, 10]),
+		],
+		[]
+	),
+	new MapInfo(
 		"classroom_1", 
 		spr_map_classroom, 
 		"ooooooooooo\n" +

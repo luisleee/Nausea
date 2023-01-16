@@ -1,17 +1,3 @@
-edit_mode = true;
-edit_spr = spr_map_classroom;
-var edit_size = sprite_get_width(edit_spr) / 32 * sprite_get_height(edit_spr) / 32;
-var edit_signs = "";
-for(var i = 0; i < edit_size; i++) {
-	edit_signs += "o";	
-}
-edit_info = new MapInfo(
-	"a",
-	edit_spr,
-	edit_signs,
-	[],
-	[]
-)
 // todo: hide&show
 
 map_width = 0;
@@ -185,7 +171,7 @@ function set_map(name, start_pos) {
 	y = room_height / 2 - map_height * cell_h / 2 + cell_h / 2;
 }
 
-set_map("passage", [2, 3]);
+set_map("exp_F1_physics", [9, 10]);
 
 function find_path(src, dest) {// src meaning source, dest meaning destination (shitty comment)
 	var q = new Heap(function(a, b){return b.dis - a.dis;});
