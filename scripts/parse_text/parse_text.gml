@@ -38,7 +38,7 @@ function parse_tag(tag) {
  */
 function parse_text(text) {
 	var raw_text = "";
-	var effects = [new TextEffect(c_black, 0, 0)];
+	var effects = [new TextEffect(c_black, 0, 0)];// string starts from f**king 1
 	var tag = "";
 	var in_tag = false;
 

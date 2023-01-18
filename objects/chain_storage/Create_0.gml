@@ -8,7 +8,7 @@ enum ITEM_TYPE {
 };
 
 #region
-var chain1_content = [{
+var chain1_items = [{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Me",
 	line: "<color=red,shake=10>杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！",
@@ -18,7 +18,7 @@ var chain1_content = [{
 	piece: "road",
 },{
 	type: ITEM_TYPE.IMAGE,
-	add: ["g2"],
+	add: ["bus"],
 	remove: []
 },{
 	type: ITEM_TYPE.DIALOG,
@@ -37,8 +37,8 @@ var chain1_content = [{
 	emotion: 0
 },{
 	type: ITEM_TYPE.IMAGE,
-	add: ["g4"],
-	remove: ["g2"]
+	add: [],
+	remove: ["bus"]
 },{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Brain",
@@ -47,51 +47,11 @@ var chain1_content = [{
 },{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Brain",
-	line: "（啊Q/T对）",
-	emotion: 0
-},{
-	type: ITEM_TYPE.DIALOG,
-	speaker: "Brain",
-	line: "（不太直观）",
-	emotion: 0
-},{
-	type: ITEM_TYPE.DIALOG,
-	speaker: "Brain",
-	line: "（玻尔兹曼，更好是Boltzmann对对对对S=klnΩ）",
-	emotion: 0
-},{
-	type: ITEM_TYPE.DIALOG,
-	speaker: "Brain",
-	line: "（k就是Boltzmann常数嗯嗯Ω是可能的状态数）",
-	emotion: 0
-},{
-	type: ITEM_TYPE.DIALOG,
-	speaker: "Brain",
-	line: "（如果一堆围棋子一半是白的一半是黑的，和全是）",
-	emotion: 0
-},{
-	type: ITEM_TYPE.DIALOG,
-	speaker: "Brain",
-	line: "（黑的或白的，比起来哪个更，混乱？）",
-	emotion: 0
-},{
-	type: ITEM_TYPE.DIALOG,
-	speaker: "Brain",
-	line: "（应该一半一半的更，算起来：Sigma Pi ln Pi咦负数）",
-	emotion: 0
-},{
-	type: ITEM_TYPE.DIALOG,
-	speaker: "Brain",
-	line: "（那所有的所有都要变成铁了？稳定的元素，我明白）",
-	emotion: 0
-},{
-	type: ITEM_TYPE.DIALOG,
-	speaker: "Brain",
 	line: "（我说出宇宙的根本）",
 	emotion: 0
 },{
 	type: ITEM_TYPE.IMAGE,
-	add: ["g3"],
+	add: ["furnitures"],
 	remove: []
 },{
 	type: ITEM_TYPE.DIALOG,
@@ -120,7 +80,7 @@ var chain1_content = [{
 	emotion: 0
 }];
 
-var chain2_content = [{
+var chain2_items = [{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Me",
 	line: "人活着哪有不疯的？硬撑罢了！人活着哪有不疯的？硬撑罢了！人活着哪有不疯的？硬撑罢了！",
@@ -143,7 +103,7 @@ var chain2_content = [{
 }];
 #endregion
 
-var br1_content = [{
+var br1_items = [{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Me",
 	line: "对对对",
@@ -155,7 +115,7 @@ var br1_content = [{
 	emotion: 1
 }];
 
-var br2_content = [{
+var br2_items = [{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Me",
 	line: "算了",
@@ -167,7 +127,7 @@ var br2_content = [{
 	emotion: 1
 }];
 
-var chain_next_content = [{
+var chain_next_items = [{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Me",
 	line: "杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！",
@@ -176,13 +136,13 @@ var chain_next_content = [{
 
 chains = [{
 	name: "chain1",
-	content: chain1_content,
+	items: chain1_items,
 	next: function() {
 		return "chain2"
 	}
 }, {
 	name: "chain2",
-	content: chain2_content,
+	items: chain2_items,
 	next: function() {
 		var nexts = ["br1", "br2"];
 		var c = data_recorder.get_selection("opt1");
@@ -190,25 +150,23 @@ chains = [{
 	}
 }, {
 	name: "br1",
-	content: br1_content,
+	items: br1_items,
 	next: function() {
 		return "chain3";
 	}
 }, {
 	name: "br2",
-	content: br2_content,
+	items: br2_items,
 	next: function() {
 		return "chain3";
 	}
 }, {
 	name: "chain3",
-	content: chain_next_content,
+	items: chain_next_items,
 	next: function() {
 		return "chain3";
 	}
 }];
-
-current_position = chains[0];
 
 function get_chain(name) {
 	var len = array_length(chains);
@@ -219,18 +177,3 @@ function get_chain(name) {
 	}
 	return undefined;
 }
-
-function next() {
-	if (!chain_player.is_fully_displayed()) {
-		chain_player.next();
-		return;
-	}
-	options_painter.select();
-	var next_plot = get_chain(current_position.next());
-	
-	assert("next_plot is not undefined", !is_undefined(next_plot));
-	current_position = next_plot;
-	chain_player.set_chain(current_position.content);
-}
-
-chain_player.set_chain(current_position.content);

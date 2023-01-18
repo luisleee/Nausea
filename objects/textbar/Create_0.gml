@@ -2,10 +2,17 @@ auto_play = false;
 
 show_self = true;
 
-function show(){
+function stop_auto_play() {
+	alarm_set(0, -1);
+	auto_play = false;
+}
+
+function show() {
 	show_self = true;
 }
-function hide(){
+
+function hide() {
+	stop_auto_play();
 	show_self = false;
 }
 
@@ -25,9 +32,7 @@ function is_fully_displayed() {
 
 function display_to_end() {
 	char_real_count = string_length(raw_text);
-
-	alarm_set(0, -1);
-	auto_play = false;
+	stop_auto_play();
 }
 
 function set_text(_text) {
