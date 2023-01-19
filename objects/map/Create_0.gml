@@ -22,7 +22,7 @@ map_width = 0;
 map_height = 0;
 cell_w = 96;
 cell_h = 96;
-mobility_per_turn = 15;
+mobility_per_turn = 10;
 
 function pos2num(i, j) {
 	// single argument
@@ -197,8 +197,6 @@ function set_map(name, start_pos) {
 	x = room_width / 2 - map_width * cell_w / 2 + cell_w / 2;
 	y = room_height / 2 - map_height * cell_h / 2 + cell_h / 2;
 }
-
-set_map("exp_F1_physics", [9, 10]);
 
 function find_path(src, dest) {// src meaning source, dest meaning destination (shitty comment)
 	var q = new Heap(function(a, b){return b.dis - a.dis;});

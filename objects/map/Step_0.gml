@@ -62,17 +62,21 @@ if (!animation_finished()) {
 					chain_player.unfreeze();
 					textbar.show();
 					chain_player.set_chain(event.chain);
-					break;
+					exit;
 				}
 			}
-			// Brennschluss, powerout.
-			if (now_mobility == 0) {
-				freeze();
-				hide();
-				chain_player.unfreeze();
-				textbar.show();
-				chain_player.next();
-			}
+			
 		}
+	}
+}
+
+if (animation_finished()) {
+	// Brennschluss, powerout.
+	if (now_mobility == 0) {
+		freeze();
+		hide();
+		chain_player.unfreeze();
+		textbar.show();
+		chain_player.next();
 	}
 }
