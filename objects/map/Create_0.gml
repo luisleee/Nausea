@@ -22,7 +22,7 @@ map_width = 0;
 map_height = 0;
 cell_w = 96;
 cell_h = 96;
-mobility_per_turn = 15;
+mobility_per_turn = 10;
 
 function pos2num(i, j) {
 	// single argument
