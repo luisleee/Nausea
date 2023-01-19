@@ -207,3 +207,8 @@ function remove_image_group(_name) {
 		}
 	}
 }
+
+function clear() {
+	imgs = [];
+	imgs_queue = [];
+}

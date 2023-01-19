@@ -15,6 +15,7 @@ function select_previous() {
 function set_options(_option_text) {
 	option_text = _option_text;
 	selected_num = 0;
+	selected = false;
 }
 
 function set_name(_name) {

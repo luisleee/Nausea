@@ -7,6 +7,7 @@ enum ITEM_TYPE {
 	MAP,
 };
 
+// todo: contructors...
 #region
 var chain1_items = [{
 	type: ITEM_TYPE.DIALOG,
@@ -22,16 +23,6 @@ var chain1_items = [{
 	remove: []
 },{
 	type: ITEM_TYPE.DIALOG,
-	speaker: "Me",
-	line: "来点音乐",
-	emotion: 0
-},{
-	type: ITEM_TYPE.DIALOG,
-	speaker: "Brain",
-	line: "（事物就是为了它的毁灭才\n生成的啊，<color=red>熵^^增^^<color=black>才是一切的命运）",
-	emotion: 0
-},{
-	type: ITEM_TYPE.DIALOG,
 	speaker: "Brain",
 	line: "（话说熵是……）",
 	emotion: 0
@@ -45,34 +36,9 @@ var chain1_items = [{
 	line: "（记得克劳修斯好像）",
 	emotion: 0
 },{
-	type: ITEM_TYPE.DIALOG,
-	speaker: "Brain",
-	line: "（我说出宇宙的根本）",
-	emotion: 0
-},{
 	type: ITEM_TYPE.IMAGE,
 	add: ["furnitures"],
 	remove: []
-},{
-	type: ITEM_TYPE.DIALOG,
-	speaker: "Zww",
-	line: "昊晨小生，今儿又^^^迟到了？",
-	emotion: 0
-},{
-	type: ITEM_TYPE.DIALOG,
-	speaker: "Me",
-	line: "也就一分钟吧。",
-	emotion: 0
-},{
-	type: ITEM_TYPE.DIALOG,
-	speaker: "Zww",
-	line: "一分钟？你知道一分钟内这世界上可以发生多少<shake=3>变化<shake=0>吗？",
-	emotion: 0
-},{
-	type: ITEM_TYPE.DIALOG,
-	speaker: "Me",
-	line: "我不知道。也许足够你从佛教徒转变成基督教徒了。",
-	emotion: 0
 },{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Zww",
@@ -83,18 +49,8 @@ var chain1_items = [{
 var chain2_items = [{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Me",
-	line: "人活着哪有不疯的？硬撑罢了！人活着哪有不疯的？硬撑罢了！人活着哪有不疯的？硬撑罢了！",
+	line: "人活着哪有不疯的？硬撑罢了！人活着哪有不疯的？硬撑罢了！人活着哪有不疯的？硬撑罢了！彻底疯狂！彻底疯狂！彻底疯狂！彻底疯狂！彻底疯狂！",
 	emotion: 0
-},{
-	type: ITEM_TYPE.DIALOG,
-	speaker: "Me",
-	line: "妈的，忍不了，一拳把地球打爆！",
-	emotion: 1
-},{
-	type: ITEM_TYPE.DIALOG,
-	speaker: "Me",
-	line:"彻底疯狂！彻底疯狂！彻底疯狂！彻底疯狂！彻底疯狂！",
-	emotion: 2
 },{
 	type: ITEM_TYPE.OPTION,
 	question: "彻底疯狂?",
@@ -127,12 +83,40 @@ var br2_items = [{
 	emotion: 1
 }];
 
-var chain_next_items = [{
+var chain3_items = [{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Me",
 	line: "杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！",
 	emotion: 2
-}]
+}];
+
+var chain_map_items = [{
+	type: ITEM_TYPE.MAP,
+	map_name: "classroom_1",
+	pos: [10, 1],
+}];
+
+var chain_keep_map_items = [{
+	type: ITEM_TYPE.MAP,
+	map_name: undefined,
+}];
+
+var event_paper_items = [{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Me",
+	line: "旁白酱的纸巾，上面有旁白酱的味道……嘿嘿",
+	emotion: 0
+},{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Me",
+	line: "想，想拿一张",
+	emotion: 1
+},{
+	type: ITEM_TYPE.OPTION,
+	question: "啊啊啊啊拿一张？",
+	name: "opt_tissue",
+	options: ["Yes", "No"]
+}];
 
 chains = [{
 	name: "chain1",
@@ -162,9 +146,27 @@ chains = [{
 	}
 }, {
 	name: "chain3",
-	items: chain_next_items,
+	items: chain3_items,
 	next: function() {
-		return "chain3";
+		return "map_classroom1";
+	}
+}, {
+	name: "map_classroom1",
+	items: chain_map_items,
+	next: function() {
+		return "chain1";
+	}
+}, {
+	name: "keep_map",
+	items: chain_keep_map_items,
+	next: function() {
+		return "chain1";
+	}
+}, {
+	name: "paper",
+	items: event_paper_items,
+	next: function() {
+		return "keep_map";
 	}
 }];
 

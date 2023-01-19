@@ -2,6 +2,10 @@ if (!show_self) {
 	exit;
 }
 
+if (frozen) {
+	exit;
+}
+
 if (keyboard_check_pressed(vk_right)) {}
 if (keyboard_check_pressed(vk_left)) {}
 if (keyboard_check_pressed(vk_up)) {}
@@ -11,7 +15,7 @@ if (keyboard_check_pressed(vk_space)) {
 	now_mobility = mobility_per_turn;
 	now_turn++;
 }
-	
+
 //detect the cursor
 hover_num = undefined;
 var x0 = abs_posx(-1/2);
@@ -54,9 +58,20 @@ if (!animation_finished()) {
 			for (var i = 0; i < array_length(event_cells); i++) {
 				var event = event_cells[i];
 				if (pos2num(event.pos) == now_num) {
-					// todo: display sth??
+					freeze();
+					chain_player.unfreeze();
+					textbar.show();
+					chain_player.set_chain(event.chain);
 					break;
 				}
+			}
+			// Brennschluss, powerout.
+			if (now_mobility == 0) {
+				freeze();
+				hide();
+				chain_player.unfreeze();
+				textbar.show();
+				chain_player.next();
 			}
 		}
 	}

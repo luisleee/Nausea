@@ -1,5 +1,15 @@
 // todo: in & out
 show_self = false;
+// show, but no control
+frozen = false;
+
+function freeze() {
+	frozen = true;
+}
+
+function unfreeze() {
+	frozen = false;	
+}
 
 function show() {
 	show_self = true;
@@ -12,7 +22,7 @@ map_width = 0;
 map_height = 0;
 cell_w = 96;
 cell_h = 96;
-mobility_per_turn = 5;
+mobility_per_turn = 15;
 
 function pos2num(i, j) {
 	// single argument
@@ -158,6 +168,14 @@ function init_edges(cells) {
 	}
 
 	return edges;
+}
+
+function set_max_mobility(m) {
+	mobility_per_turn = m;
+}
+
+function full_mobility() {
+	now_mobility = mobility_per_turn;
 }
 
 function set_map(name, start_pos) {

@@ -1,6 +1,16 @@
 current_item_index = 0;
 chain = undefined;
 
+frozen = false;
+
+function freeze() {
+	frozen = true;
+}
+
+function unfreeze() {
+	frozen = false;	
+}
+
 function get_current_item() {
 	return chain.items[current_item_index];
 }
@@ -31,6 +41,18 @@ function display_current_item() {
 		options.set_name(current_item.name);
 		options.show();
 	}
+	if (current_item.type == ITEM_TYPE.MAP) {
+		// todo: extract function
+		image_painter.clear();
+		textbar.hide();
+		freeze();
+		if (!is_undefined(current_item.map_name)) {
+			map.set_map(current_item.map_name, current_item.pos);
+			map.full_mobility();
+		}
+		map.unfreeze();
+		map.show();
+	}
 	
 	/// quick step forward
 	if (current_item.type == ITEM_TYPE.MUSIC) {
@@ -53,13 +75,13 @@ function display_current_item() {
 	}
 }
 
-function set_chain(_chain) {
-	chain = _chain;
+function set_chain(chain_name) {
+	chain = chain_storage.get_chain(chain_name);
 	current_item_index = 0;
 	display_current_item();
 }
 
-set_chain(chain_storage.get_chain("chain1"));
+set_chain("chain1");
 
 function next() {
 	if (!is_fully_displayed()) {
@@ -67,9 +89,7 @@ function next() {
 		return;
 	}
 	
-	var next_chain = chain_storage.get_chain(chain.next());
-	assert("next_chain is not undefined", !is_undefined(next));
-	set_chain(next_chain);
+	set_chain(chain.next());
 }
 
 function next_item() {
