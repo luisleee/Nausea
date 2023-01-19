@@ -1,4 +1,4 @@
-///Draw the Task UI
+/// Draw the Task UI
 var gui_w = display_get_gui_width();
 var gui_h = display_get_gui_height();
 var text_scale = 3.5/1600 * gui_w;
@@ -34,7 +34,7 @@ if (show_self) {
 		pos_y = 0;
 	}
 }
-if (not show_self) {
+if (!show_self) {
 	if (pos_y < gui_h) {
 		var zoom_channel = animcurve_get_channel(ac_task_manager, 0);
 		pos_y += animcurve_channel_evaluate(zoom_channel, process);

@@ -72,22 +72,7 @@ map_infos = [
 		[
 			new EventCell(
 				[3, 3],
-				[{
-					type: ITEM_TYPE.DIALOG,
-					speaker: "Me",
-					line: "旁白酱的纸巾，上面有旁白酱的味道……嘿嘿",
-					emotion: 0
-				},{
-					type: ITEM_TYPE.DIALOG,
-					speaker: "Me",
-					line: "想，想拿一张",
-					emotion: 1
-				},{
-					type: ITEM_TYPE.OPTION,
-					question: "啊啊啊啊拿一张？",
-					name: "opt_tissue",
-					options: ["Yes", "No"]
-				}]
+				"paper"
 			)
 		]
 	),

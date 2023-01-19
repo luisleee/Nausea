@@ -14,9 +14,16 @@ function get_music_by_name(name) {
 	return undefined;
 }
 
+intro_play_process = PLAY_STATE.NOT_PLAYING;
+cur_music = undefined;
+start_time = current_time;
+cur_track = noone;
+
 function set_music(name) {
 	var music = get_music_by_name(name);
-	assert("Music is available", !is_undefined(music))
+	assert("Music is available", !is_undefined(music));
+	
+	audio_stop_sound(cur_track);
 	cur_music = music;
 	intro_play_process = PLAY_STATE.BEFORE;
 	start_time = current_time;
@@ -29,7 +36,3 @@ enum PLAY_STATE{
 	PLAYED,
 }
 
-intro_play_process = PLAY_STATE.NOT_PLAYING;
-cur_music = undefined;
-start_time = current_time;
-cur_track = noone;

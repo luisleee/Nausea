@@ -1,3 +1,7 @@
+if (!show_self) {
+	exit;
+}
+
 draw_init(fnt_default, c_white, "tl", 1);
 
 /// var definitions
@@ -80,7 +84,7 @@ draw_set_alpha(1);
 draw_set_color(c_black);
 var name_yscale = name_h / string_height(person_name);
 var name_xscale = name_yscale;
-if((portrait_w - border_w) / string_width(person_name) < name_yscale){
+if ((portrait_w - border_w) / string_width(person_name) < name_yscale) {
 	name_xscale = (portrait_w - border_w) / string_width(person_name);
 }
 
@@ -112,7 +116,7 @@ var wrapped_text = string_wrap(
 
 var wrap_count = 0;
 var cur_line_width = 0;
-var j = 1;
+var j = 1; // index not including the wrapping "^"
 
 for (var i = 1; i <= string_length(wrapped_text); i++) {
 	draw_set_color(text_effects[j].color);

@@ -115,7 +115,7 @@ function TransCell(_pos, _to_map, _to_pos) constructor {
 	to_pos = _to_pos;
 }
 
-function EventCell(_pos, _event_chain) constructor {
+function EventCell(_pos, _chain) constructor {
 	pos = _pos;
-	event_chain = _event_chain;
+	chain = _chain;
 }

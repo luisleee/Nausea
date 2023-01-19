@@ -1,10 +1,20 @@
-// todo: hide&show
-show_self = true;
+// todo: in & out
+show_self = false;
+// show, but no control
+frozen = false;
 
-function show(){
+function freeze() {
+	frozen = true;
+}
+
+function unfreeze() {
+	frozen = false;	
+}
+
+function show() {
 	show_self = true;
 }
-function hide(){
+function hide() {
 	show_self = false;
 }
 
@@ -12,7 +22,7 @@ map_width = 0;
 map_height = 0;
 cell_w = 96;
 cell_h = 96;
-mobility_per_turn = 5;
+mobility_per_turn = 15;
 
 function pos2num(i, j) {
 	// single argument
@@ -160,8 +170,16 @@ function init_edges(cells) {
 	return edges;
 }
 
+function set_max_mobility(m) {
+	mobility_per_turn = m;
+}
+
+function full_mobility() {
+	now_mobility = mobility_per_turn;
+}
+
 function set_map(name, start_pos) {
-	var map_info = map_control.get_map(name);
+	var map_info = map_storage.get_map(name);
 	
 	map_sprite = map_info.spr;
 	cells = str2map(map_info.signs, "\n");
@@ -238,12 +256,23 @@ function find_path(src, dest) {// src meaning source, dest meaning destination (
 	};
 }
 
+function goto_num(dest) {
+	var p = find_path(now_num, hover_num);
+	var d = p.dis[hover_num]
+	if (d != -1 && d <= now_mobility) {
+		move_time_left = move_time;
+		this_path = p.path;
+		this_costs = p.costs;
+		now_mobility -= d;
+	}
+}
+
 function animation_finished() {
 	return array_length(this_path) == 0;
 }
 
-// todo: doc/rename it
-function from_pos_to_pos(from, to, process) {
+
+function linear_animation(from, to, process) {
 	var pos = array_create(2, undefined);
 	for (var i = 0; i <= 1; i++) {
 		pos[i] = from[i] + (to[i] - from[i]) * process;
