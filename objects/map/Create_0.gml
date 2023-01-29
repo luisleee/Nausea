@@ -198,8 +198,6 @@ function set_map(name, start_pos) {
 	y = room_height / 2 - map_height * cell_h / 2 + cell_h / 2;
 }
 
-set_map("passage", [9, 10]);
-
 function find_path(src, dest) {// src meaning source, dest meaning destination (shitty comment)
 	var q = new Heap(function(a, b){return b.dis - a.dis;});
 	q.push({

@@ -6,6 +6,7 @@ if (frozen) {
 	exit;
 }
 
+
 if (keyboard_check_pressed(vk_right)) {}
 if (keyboard_check_pressed(vk_left)) {}
 if (keyboard_check_pressed(vk_up)) {}
@@ -22,9 +23,10 @@ var x0 = abs_posx(-1/2);
 var y0 = abs_posy(-1/2);
 var x_grids = get_quotient(mouse_x - x0, cell_w);
 var y_grids = get_quotient(mouse_y - y0, cell_h);
-if (is_in_interval(x_grids , 0, map_width - 1, true) &&
-	is_in_interval(y_grids , 0, map_height - 1, true)
-) {
+
+
+
+if (point_in_rectangle(x_grids, y_grids, 0, 0, map_width - 1, map_height - 1)) {
 	hover_num = pos2num(x_grids, y_grids);
 }
 	
@@ -62,17 +64,21 @@ if (!animation_finished()) {
 					chain_player.unfreeze();
 					textbar.show();
 					chain_player.set_chain(event.chain);
-					break;
+					exit;
 				}
 			}
-			// Brennschluss, powerout.
-			if (now_mobility == 0) {
-				freeze();
-				hide();
-				chain_player.unfreeze();
-				textbar.show();
-				chain_player.next();
-			}
+			
 		}
+	}
+}
+
+if (animation_finished()) {
+	// Brennschluss, powerout.
+	if (now_mobility == 0) {
+		freeze();
+		hide();
+		chain_player.unfreeze();
+		textbar.show();
+		chain_player.next();
 	}
 }

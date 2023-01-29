@@ -60,4 +60,20 @@ for (var i = 0; i < array_length(option_text); i++) {
 		text_scale,
 		0
 	);
+	
+	//Detect the hovering one
+	if (point_in_rectangle(
+		mouse_x,
+		mouse_y,
+		display_w / 2 - option_w / 2 - border_w * 3,
+		baseline + offset - char_h - border_w * 3,
+		display_w / 2 + option_w / 2 + border_w * 3,
+		baseline + offset + char_h + border_w * 3
+	)) {
+		if(selected_num != i) {
+			selected_num = i;
+			audio_play_sound(snd_sfx_switch_options, 0, 0);
+		}
+	}
+	
 }

@@ -23,7 +23,7 @@
     {"id":{"name":"are_equal","path":"scripts/are_equal/are_equal.yy",},"order":23,},
     {"id":{"name":"snd_ost_day_main","path":"sounds/snd_ost_day_main/snd_ost_day_main.yy",},"order":2,},
     {"id":{"name":"chain_storage","path":"objects/chain_storage/chain_storage.yy",},"order":7,},
-    {"id":{"name":"is_in_section","path":"scripts/is_in_section/is_in_section.yy",},"order":24,},
+    {"id":{"name":"is_in_interval","path":"scripts/is_in_interval/is_in_interval.yy",},"order":24,},
     {"id":{"name":"spr_character_on_map","path":"sprites/spr_character_on_map/spr_character_on_map.yy",},"order":3,},
     {"id":{"name":"is_integer","path":"scripts/is_integer/is_integer.yy",},"order":26,},
     {"id":{"name":"spr_frame_bus","path":"sprites/spr_frame_bus/spr_frame_bus.yy",},"order":13,},

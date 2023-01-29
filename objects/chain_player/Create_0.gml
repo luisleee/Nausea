@@ -81,7 +81,7 @@ function set_chain(chain_name) {
 	display_current_item();
 }
 
-set_chain("chain1");
+set_chain("chain3");
 
 function next() {
 	if (!is_fully_displayed()) {
