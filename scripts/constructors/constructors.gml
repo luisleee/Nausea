@@ -119,3 +119,25 @@ function EventCell(_pos, _chain) constructor {
 	pos = _pos;
 	chain = _chain;
 }
+
+function MindSymbol(_spr, _desc, _other_desc) constructor {
+	spr = _spr;
+	desc = _desc;
+	un_desc = variable_struct_get(_other_desc, "un");
+	re_desc = variable_struct_get(_other_desc, "re");
+	val_desc = variable_struct_get(_other_desc, "val");
+}
+
+function AnswerSymbol(_symbol, _mark) constructor {
+	spr = _symbol.spr;
+	desc = _symbol.desc;
+	un_desc = _symbol.un_desc;
+	re_desc = _symbol.re_desc;
+	val_desc = _symbol.val_desc;
+	mark = _mark;
+}
+
+function Answer(_concepts, _sentence) constructor {
+	concepts = _concepts;
+	sentence = _sentence;
+}
