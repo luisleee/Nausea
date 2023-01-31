@@ -17,7 +17,7 @@
   "soundFile": "snd_sfx_switch_options.wav",
   "duration": 1.877574,
   "parent": {
-    "name": "Sounds",
-    "path": "folders/Sounds.yy",
+    "name": "SFXs",
+    "path": "folders/Sounds/SFXs.yy",
   },
 }

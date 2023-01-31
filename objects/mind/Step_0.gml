@@ -30,6 +30,7 @@ if (keyboard_check_pressed(vk_left)) {
 if (keyboard_check_pressed(vk_backspace)) {
 	if (placement[now_placing_num] != undefined) {
 		placement[now_placing_num] = undefined;
+		display_particle(c_white);
 		audio_play_sound(snd_sfx_ms_remove, 0, 0);
 	}
 }

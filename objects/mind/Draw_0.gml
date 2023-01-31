@@ -97,6 +97,7 @@ if(now_hover_num != undefined and apa == 1 and data_recorder.mind_symbols_unlock
 	if (mouse_check_button_pressed(mb_left)) {
 		if(placement[now_placing_num] == undefined){
 			placement[now_placing_num] = new AnswerSymbol(global.mind_symbols[now_hover_num], "");
+			display_particle(c_red);
 			audio_play_sound(snd_sfx_ms_place, 0, 0);
 		} else if (placement[now_placing_num].spr == global.mind_symbols[now_hover_num].spr) {
 			var marks = ["", "un", "re", "val"];
@@ -107,34 +108,40 @@ if(now_hover_num != undefined and apa == 1 and data_recorder.mind_symbols_unlock
 					now_mark_num = i;
 				}
 				if(i > now_mark_num) {
-					//todo: add sfx for each of these marks
 					switch marks[i] {
 						case "un":
 						if(placement[now_placing_num].un_desc != undefined) {
 							placement[now_placing_num].mark = marks[i];
 							i = array_length(marks);
+							audio_play_sound(snd_sfx_ms_un, 0, 0);
 						}
 						break;
 						case "re":
 						if(placement[now_placing_num].re_desc != undefined) {
 							placement[now_placing_num].mark = marks[i];
 							i = array_length(marks);
+							audio_play_sound(snd_sfx_ms_re, 0, 0);
 						}
 						break;
 						case "val":
 						if(placement[now_placing_num].val_desc != undefined) {
 							placement[now_placing_num].mark = marks[i];
 							i = array_length(marks);
+							audio_play_sound(snd_sfx_ms_val, 0, 0);
 						}
 						break;
 					}
 				}
 			}
 			if (placement[now_placing_num].mark == now_mark) {
-				placement[now_placing_num].mark = "";
+				if(now_mark != "") {
+					placement[now_placing_num].mark = "";
+					audio_play_sound(snd_sfx_ms_remove, 0, 0);
+				}
 			}
 		} else {
 			placement[now_placing_num] = new AnswerSymbol(global.mind_symbols[now_hover_num], "");
+			display_particle(c_red);
 			audio_play_sound(snd_sfx_ms_place, 0, 0);
 		}
 	}
@@ -143,7 +150,7 @@ if(now_hover_num != undefined and apa == 1 and data_recorder.mind_symbols_unlock
 
 //draw the answering place
 var xori = (room_width - max_concept_num * (symbol_w + answer_sep_w) + answer_sep_w)/2;
-var yori = 700;
+var yori = answer_place_y;
 draw_set_alpha(1);
 for (var i = 0; i < max_concept_num; i ++) {
 	if(i != now_placing_num) {
@@ -205,8 +212,9 @@ for (var i = 0; i < max_concept_num; i ++) {
 	}
 	
 	if(i == now_placing_num) {
+		var spr = placement[i] == undefined ? spr_ms_void_placing : spr_ms_placed;
 		draw_sprite_stretched(
-			spr_ms_void_placing,
+			spr,
 			image_index,
 			xori + i * (symbol_w + answer_sep_w),
 			yori,
@@ -220,3 +228,5 @@ for (var i = 0; i < max_concept_num; i ++) {
 
 draw_text_transformed(room_width/2, room_height/2 - 50, question, 4, 4, 0);
 draw_text_transformed(room_width/2, room_height/2 + 50, judge_display, 4, 4, 0);
+
+//draw_getpixel_ext()

@@ -17,7 +17,7 @@
   "soundFile": "snd_sfx_ms_place.ogg",
   "duration": 0.60576,
   "parent": {
-    "name": "Sounds",
-    "path": "folders/Sounds.yy",
+    "name": "SFXs",
+    "path": "folders/Sounds/SFXs.yy",
   },
 }
