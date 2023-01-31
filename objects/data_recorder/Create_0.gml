@@ -31,6 +31,7 @@ global.mind_symbols = [
 	new MindSymbol(spr_ms_footprint, "痕迹、历史、过去、记忆", {val: "观测"}),
 	new MindSymbol(spr_ms_line, "简单、起始", {}),
 	new MindSymbol(spr_ms_arrow, "进行、推理", {re: "倒退"}),
+	new MindSymbol(spr_ms_hexagram, "神秘、宗教、魔法", {}),
 ]
 
 mind_symbols_unlocked = [];

@@ -1,4 +1,4 @@
-//todo: put all of this object in to options?
+//todo: put all of this object in to options? maybe no need now
 
 symbol_w = 128;
 symbol_h = 128;
@@ -33,6 +33,7 @@ answers = [
 	new Answer(["简单", "推理", "无穷"], "见微知著地了解世界运行的规律"),
 	new Answer(["有穷", "生命", "无穷"], "在有限的生命里创造无限的价值！"),
 	new Answer(["我", "推理", "无穷"], "我无所不知"),
+	new Answer(["", "", "", "", "", "", ""], "你是不是闲啊"),
 ];
 max_concept_num = 0;
 for (var i = 0; i < array_length(answers); i ++) {
@@ -136,4 +137,17 @@ function display_particle(col) {
 		ps_distr_linear
 	);
 	part_emitter_burst(ms_part_system, ms_part_emitter, ms_particle, 10);
+}
+
+function get_ms_color(spr) {
+	for (var xx = 1; xx < sprite_width; xx ++) {
+		for (var yy = 1; yy < sprite_width; yy ++) {
+			var rgb = sprite_getpixel(spr, 0, xx, yy);
+			if (rgb[3] != 0) {
+				return make_color_rgb(rgb[0], rgb[1], rgb[2]);
+				break;
+			}
+		}
+	}
+	
 }

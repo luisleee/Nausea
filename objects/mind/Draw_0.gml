@@ -97,7 +97,7 @@ if(now_hover_num != undefined and apa == 1 and data_recorder.mind_symbols_unlock
 	if (mouse_check_button_pressed(mb_left)) {
 		if(placement[now_placing_num] == undefined){
 			placement[now_placing_num] = new AnswerSymbol(global.mind_symbols[now_hover_num], "");
-			display_particle(c_red);
+			display_particle(get_ms_color(global.mind_symbols[now_hover_num].spr));
 			audio_play_sound(snd_sfx_ms_place, 0, 0);
 		} else if (placement[now_placing_num].spr == global.mind_symbols[now_hover_num].spr) {
 			var marks = ["", "un", "re", "val"];
@@ -141,7 +141,7 @@ if(now_hover_num != undefined and apa == 1 and data_recorder.mind_symbols_unlock
 			}
 		} else {
 			placement[now_placing_num] = new AnswerSymbol(global.mind_symbols[now_hover_num], "");
-			display_particle(c_red);
+			display_particle(get_ms_color(global.mind_symbols[now_hover_num].spr));
 			audio_play_sound(snd_sfx_ms_place, 0, 0);
 		}
 	}
@@ -228,5 +228,3 @@ for (var i = 0; i < max_concept_num; i ++) {
 
 draw_text_transformed(room_width/2, room_height/2 - 50, question, 4, 4, 0);
 draw_text_transformed(room_width/2, room_height/2 + 50, judge_display, 4, 4, 0);
-
-//draw_getpixel_ext()

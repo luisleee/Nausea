@@ -4,12 +4,9 @@
 /// @param  subimg
 /// @param  x
 /// @param  y
-function sprite_getpixel(argument0, argument1, argument2, argument3) {
+function sprite_getpixel(_sprite, _subimg, _x, _y) {
 	// Returns an array with the color info of a pixel inside a sprite
-	var _sprite = argument0;
-	var _subimg = argument1;
-	var _x = argument2;
-	var _y = argument3;
+
 
 	//Important vars
 	var sprW = sprite_get_width(_sprite);
@@ -30,7 +27,7 @@ function sprite_getpixel(argument0, argument1, argument2, argument3) {
     
 	    exists = 1;
     
-	    if (array_length_1d(arr) > _subimg && buffer_exists(arr[_subimg])){
+	    if (array_length(arr) > _subimg && buffer_exists(arr[_subimg])){
 	        exists = 2;
 	    }
 	}
@@ -69,7 +66,7 @@ function sprite_getpixel(argument0, argument1, argument2, argument3) {
     
 	    surface_reset_target();
     
-	    buffer_get_surface(arr[_subimg], surf, 0, 0, 0);
+	    buffer_get_surface(arr[_subimg], surf, 0);
     
 	    surface_free(surf);
     

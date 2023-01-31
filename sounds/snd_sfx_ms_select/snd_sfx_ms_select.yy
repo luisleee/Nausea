@@ -1,7 +1,7 @@
 {
   "resourceType": "GMSound",
   "resourceVersion": "1.0",
-  "name": "snd_sfx_ms_re",
+  "name": "snd_sfx_ms_select",
   "conversionMode": 0,
   "compression": 0,
   "volume": 1.0,
@@ -14,7 +14,7 @@
     "name": "audiogroup_default",
     "path": "audiogroups/audiogroup_default",
   },
-  "soundFile": "snd_sfx_ms_re.ogg",
+  "soundFile": "snd_sfx_ms_select.ogg",
   "duration": 0.596145,
   "parent": {
     "name": "SFXs",

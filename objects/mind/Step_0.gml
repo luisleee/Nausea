@@ -21,9 +21,11 @@ if show_self {
 //placement position change
 if (keyboard_check_pressed(vk_right)) {
 	placing_next();
+	audio_play_sound(snd_sfx_ms_select, 0, 0);
 }
 if (keyboard_check_pressed(vk_left)) {
 	placing_previous();
+	audio_play_sound(snd_sfx_ms_select, 0, 0);
 }
 
 //delete this placement
@@ -71,14 +73,11 @@ for (var k = 0; k < array_length(answers); k ++) {
 			used_placement_num ++;
 		}
 	}
-	if (used_placement_num > array_length(answers[k].concepts)) {
+	if (used_placement_num != array_length(answers[k].concepts)) {
 		not_abused = false;
 	}
 	//determining what will show as the final option
 	if (is_contained and not_abused) {
 			judge_display = answers[k].sentence;
-		} 
-	//if (keyboard_check_pressed(vk_space)) {
-	//	
-	//}
+	} 
 }

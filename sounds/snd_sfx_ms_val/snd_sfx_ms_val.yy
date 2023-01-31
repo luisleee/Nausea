@@ -15,7 +15,7 @@
     "path": "audiogroups/audiogroup_default",
   },
   "soundFile": "snd_sfx_ms_val.ogg",
-  "duration": 30.600952,
+  "duration": 0.596145,
   "parent": {
     "name": "SFXs",
     "path": "folders/Sounds/SFXs.yy",
