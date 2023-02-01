@@ -35,7 +35,7 @@ if (mouse_check_button_pressed(mb_left) and animation_finished()) {
 		goto_num(hover_num);
 	}
 }
-	
+
 if (!animation_finished()) {
 	move_time_left -= move_spd / this_costs[0];
 	var move_process = (move_time - move_time_left) / move_time;

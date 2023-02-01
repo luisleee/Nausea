@@ -5,6 +5,7 @@ enum ITEM_TYPE {
 	OPTION,
 	TASK,
 	MAP,
+	MIND,
 };
 
 // todo: contructors...
@@ -14,6 +15,13 @@ var chain1_items = [{
 	speaker: "Me",
 	line: "<color=red,shake=10>杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！",
 	emotion: 2
+},{
+	type: ITEM_TYPE.MIND,
+	question: "www?",
+	answers: [
+		new Answer(["我", "无穷"], "我牛逼"),
+		new Answer(["我", "否定"], "我是傻逼"),
+	],
 },{
 	type: ITEM_TYPE.MUSIC,
 	piece: "road",

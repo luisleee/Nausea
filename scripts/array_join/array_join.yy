@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "array_remove",
+  "name": "array_join",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {

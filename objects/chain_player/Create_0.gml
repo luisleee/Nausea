@@ -53,6 +53,7 @@ function display_current_item() {
 		map.unfreeze();
 		map.show();
 	}
+	// todo: type MIND
 	
 	/// quick step forward
 	if (current_item.type == ITEM_TYPE.MUSIC) {
