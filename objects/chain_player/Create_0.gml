@@ -33,11 +33,7 @@ function display_current_item() {
 		textbar.set_name(get_person_name(current_item.speaker));
 		textbar.set_portrait(get_person_portrait(current_item.speaker, current_item.emotion));
 		if variable_struct_exists(current_item, "mode_switch") {
-			switch current_item.mode_switch {
-				case DISPLAY_MODES.MIND:
-					set_mode(DISPLAY_MODES.MIND);
-					break;
-			}
+			set_mode(variable_struct_get(current_item, "mode_switch"));
 		}
 	}
 	if (current_item.type == ITEM_TYPE.OPTION) {
@@ -49,16 +45,14 @@ function display_current_item() {
 		options.show();
 	}
 	if (current_item.type == ITEM_TYPE.MAP) {
-		// todo: extract function
 		set_mode(DISPLAY_MODES.MAP);
 		
 		if (!is_undefined(current_item.map_name)) {
 			map.set_map(current_item.map_name, current_item.pos);
 			map.full_mobility();
 		}
-		
 	}
-	// todo: type MIND
+	
 	if (current_item.type == ITEM_TYPE.MIND) {
 		textbar.set_text(current_item.question);
 		mind.set_answers(current_item.default_answer, current_item.answers);
@@ -123,8 +117,7 @@ function next_item() {
 	}
 	var next_item = chain.items[current_item_index + 1];
 	
-	// todo: fix img_painter & extract a function for this
-	if (next_item.type == ITEM_TYPE.IMAGE and array_length(image_painter.img_queue) != 0) {
+	if (next_item.type == ITEM_TYPE.IMAGE and !image_painter.animation_finished()) {
 		return;
 	}
 	current_item_index++;

@@ -208,6 +208,10 @@ function remove_image_group(_name) {
 	}
 }
 
+function animation_finished() {
+	return array_length(image_painter.img_queue) == 0;	
+}
+
 function clear() {
 	imgs = [];
 	imgs_queue = [];

@@ -1,9 +1,4 @@
-function TextEffect(_color, _shake, _halt, _float) constructor {
-	color = _color;
-	shake = _shake;
-	halt = _halt;
-	float = _float;
-}
+
 
 /**
  * Parse a tag (without angle brackets)

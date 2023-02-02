@@ -2,11 +2,9 @@ if (!show_self) {
 	exit;
 }
 
-display_w = display_get_gui_width();
-display_h = display_get_gui_height();
-
 draw_init(fnt_default, c_white, "tl", textbar_apa);
 
+/// var definitions
 var frame_h = 0.2 * display_w;
 var border_w = 0.02 * display_w;
 var portrait_w = 0.15 * display_w;

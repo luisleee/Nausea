@@ -5,7 +5,7 @@
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
-    "name": "SpriteData",
-    "path": "folders/Scripts/SpriteData.yy",
+    "name": "Scripts",
+    "path": "folders/Scripts.yy",
   },
 }

@@ -1,4 +1,4 @@
-// todo: in & out
+
 show_self = false;
 // show, but no control
 frozen = false;

@@ -1,11 +1,11 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "sprite_data_begin",
+  "name": "__misc",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
-    "name": "Internal",
-    "path": "folders/Scripts/SpriteData/Internal.yy",
+    "name": "constructors",
+    "path": "folders/Scripts/constructors.yy",
   },
 }

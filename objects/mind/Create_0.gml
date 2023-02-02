@@ -79,8 +79,7 @@ function display_particle(col) {
 	var xori = (room_width - max_concept_num * (symbol_w + answer_sep_w) + answer_sep_w)/2;
 	var yori = answer_place_y;
 	
-	// todo: extract a fucking function
-	// todo: fuck me
+	// todo: extract function
 	//up
 	part_type_direction(ms_particle, 90, 90, 0, 0);
 	part_emitter_region(
@@ -141,7 +140,7 @@ function display_particle(col) {
 function get_ms_color(spr) {
 	for (var xx = 1; xx < sprite_width; xx ++) {
 		for (var yy = 1; yy < sprite_width; yy ++) {
-			var rgb = sprite_getpixel(spr, 0, xx, yy);
+			var rgb = sprite_get_pixel(spr, 0, xx, yy);
 			if (rgb[3] != 0) {
 				return make_color_rgb(rgb[0], rgb[1], rgb[2]);
 			}
