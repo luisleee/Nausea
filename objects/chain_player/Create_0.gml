@@ -32,6 +32,13 @@ function display_current_item() {
 		textbar.set_text(current_item.line);
 		textbar.set_name(get_person_name(current_item.speaker));
 		textbar.set_portrait(get_person_portrait(current_item.speaker, current_item.emotion));
+		if variable_struct_exists(current_item, "mode_switch") {
+			switch current_item.mode_switch {
+				case DISPLAY_MODES.MIND:
+					set_mode(DISPLAY_MODES.MIND);
+					break;
+			}
+		}
 	}
 	if (current_item.type == ITEM_TYPE.OPTION) {
 		textbar.set_text(current_item.question);
@@ -43,17 +50,25 @@ function display_current_item() {
 	}
 	if (current_item.type == ITEM_TYPE.MAP) {
 		// todo: extract function
-		image_painter.clear();
-		textbar.hide();
-		freeze();
+		set_mode(DISPLAY_MODES.MAP);
+		
 		if (!is_undefined(current_item.map_name)) {
 			map.set_map(current_item.map_name, current_item.pos);
 			map.full_mobility();
 		}
-		map.unfreeze();
-		map.show();
+		
 	}
-	
+	// todo: type MIND
+	if (current_item.type == ITEM_TYPE.MIND) {
+		textbar.set_text(current_item.question);
+		mind.set_answers(current_item.default_answer, current_item.answers);
+		mind.answer_mode = true;
+		freeze();
+		
+		if (display_mode != DISPLAY_MODES.MIND) {
+			set_mode(DISPLAY_MODES.MIND);
+		}
+	}
 	/// quick step forward
 	if (current_item.type == ITEM_TYPE.MUSIC) {
 		music_player.set_music(current_item.piece);
@@ -81,7 +96,7 @@ function set_chain(chain_name) {
 	display_current_item();
 }
 
-set_chain("chain3");
+set_chain("chain1");
 
 function next() {
 	if (!is_fully_displayed()) {
@@ -114,4 +129,31 @@ function next_item() {
 	}
 	current_item_index++;
 	display_current_item();
+}
+
+enum DISPLAY_MODES {
+	MAP,
+	MIND,
+	DIALOG,
+}
+display_mode = DISPLAY_MODES.DIALOG;
+
+function set_mode(_mode) {
+	display_mode = _mode;
+	switch _mode {
+		case DISPLAY_MODES.MAP:
+			image_painter.clear();
+			textbar.hide();
+			freeze();
+			map.unfreeze();
+			map.show();
+			break;
+		case DISPLAY_MODES.DIALOG:
+			break;
+		case DISPLAY_MODES.MIND:
+			image_painter.clear();
+			textbar.mind_mode = true;
+			
+			break;
+	}
 }

@@ -5,6 +5,7 @@ enum ITEM_TYPE {
 	OPTION,
 	TASK,
 	MAP,
+	MIND,
 };
 
 // todo: contructors...
@@ -14,6 +15,40 @@ var chain1_items = [{
 	speaker: "Me",
 	line: "<color=red,shake=10>杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！",
 	emotion: 2
+},{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Me",
+	line: "冷静。我需要知道自己是个什么东西",
+	emotion: 0,
+	mode_switch: DISPLAY_MODES.MIND,
+},{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Me",
+	line: "首先，很显然，\n我是个<color=red>东西。",
+	emotion: 0,
+},{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Me",
+	line: "东西，汉语词语，拼音是dōng xī，方位名。\n东方与西方，东边与西边，东部与西部等；\n从东到西；近旁，旁侧；四方；指七、八十岁；\n物产于四方，约言称之为东西；古代亦以指产业；\n泛指各种具体或抽象的人、事、物。",
+	emotion: 0,
+},{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Me",
+	line: "（还好把百度百科做成思想钢印烙进脑子里了嘻嘻）",
+	emotion: 0,
+},{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Me",
+	line: "那么现在我要回答这个<shake=2>终^^^极^^^<shake=0>哲学问题：",
+	emotion: 0,
+},{
+	type: ITEM_TYPE.MIND,
+	question: "我^^是^^什^^么^^东^^西^^？",
+	answers: [
+		new Answer(["我", "无穷"], "我牛逼"),
+		new Answer(["我", "否定"], "我是傻逼"),
+	],
+	default_answer: "我不知道",
 },{
 	type: ITEM_TYPE.MUSIC,
 	piece: "road",
@@ -86,7 +121,7 @@ var br2_items = [{
 var chain3_items = [{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Me",
-	line: "杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！杀！",
+	line: "aaaa",
 	emotion: 2
 }];
 

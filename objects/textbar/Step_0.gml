@@ -22,4 +22,32 @@ if (is_fully_displayed() and auto_play and alarm_get(0) == -1) {
 	alarm_set(0, fps);
 }
 
+if (mind_mode) {
+	if(is_fully_displayed()) {
+		if (mind_process < 1) {
+			draw_set_font(fnt_default);
+			
+			var x_goal = display_w/2 - string_width(raw_text)/2 * text_scale - display_text_x;
+			var y_goal = display_h/2 - string_height(raw_text)/2 * text_scale - display_text_y;
+			mind_process += 0.01;
+			var zoom_channel = animcurve_get_channel(ac_textbar_mind, 0);
+			mind_yoffset = animcurve_channel_evaluate(zoom_channel, mind_process) * y_goal;
+			mind_xoffset = animcurve_channel_evaluate(zoom_channel, mind_process) * x_goal;
+			textbar_apa = 1 - animcurve_channel_evaluate(zoom_channel, mind_process);
+			mind_background_apa = animcurve_channel_evaluate(zoom_channel, mind_process);
+			default_text_col = make_color_hsv(0, 0, (mind_process) * 255);
+			
+			if (mind_process >= 1) {
+				default_text_col = c_white;
+				audio_play_sound(snd_sfx_ms_place, 0, 0);
+				set_text("<float=1>" + raw_text);
+				display_to_end();
+				mind.show();
+			}
+		}
+	} 
+}
+
+
 subimg += 0.2;
+time += 0.1;
