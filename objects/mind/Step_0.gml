@@ -1,10 +1,6 @@
-if not show_self {
-	exit;
+if (mind_flash_apa > 0) {
+	mind_flash_apa -= 0.025;
 }
-
-//if (keyboard_check_pressed(vk_tab)) {
-//	show_showcase = !show_showcase;
-//}
 
 if not answer_mode {
 	if (apa > 0) {
@@ -20,8 +16,38 @@ if answer_mode {
 var zoom_channel = animcurve_get_channel(ac_ms_sep, 0);
 sep_w = animcurve_channel_evaluate(zoom_channel, apa) * 32;
 sep_h = animcurve_channel_evaluate(zoom_channel, apa) * 32;
+surface_width = max_number_w * (symbol_w + sep_w) - sep_w;
+surface_height = 2.2 * (symbol_h + sep_h);
+
+
+if not show_self {
+	exit;
+}
 
 if (answer_mode) {
+	//scroll
+	var mouse_dir = mouse_wheel_up() - mouse_wheel_down();
+	var key_dir = keyboard_check(vk_up) - keyboard_check(vk_down);
+	var offset_max_h = showcase_height - surface_height;
+	var offset_min_h = -showcase_shadow_h;
+	var mouse_next_offset = showcase_scroll_offset - mouse_dir * mouse_scroll_spd;
+	var key_next_offset = showcase_scroll_offset - key_dir * keyboard_scroll_spd;
+	if (mouse_in_surface()) {
+		if (is_in_interval(mouse_next_offset, offset_min_h, offset_max_h, false)) {
+			showcase_scroll_offset = mouse_next_offset;
+		} else {
+			showcase_scroll_offset = mouse_next_offset >= offset_max_h ? offset_max_h : offset_min_h;
+		}
+	}
+	
+	if (keyboard_check(vk_up) or keyboard_check(vk_down)) {
+		if (is_in_interval(key_next_offset, offset_min_h, offset_max_h, false)) {
+			showcase_scroll_offset = key_next_offset;
+		} else {
+			showcase_scroll_offset = key_next_offset >= offset_max_h ? offset_max_h : offset_min_h;
+		}
+	}
+	
 	//placement position change
 	if (keyboard_check_pressed(vk_right)) {
 		placing_next();
@@ -72,8 +98,35 @@ if (answer_mode) {
 			judge_display = answers[k].sentence;
 		} 
 	}
+	
+	//final judge
+	if(keyboard_check_pressed(ord("D")) and not judge_rising) {
+		judge_rising = true;
+		textbar.set_text("");
+		
+	}
+		
 }
 
-if (mind_flash_apa > 0) {
-	mind_flash_apa -= 0.025;
+
+
+
+
+if (judge_rising) {
+	if (judge_process < 1) {
+		judge_process += 0.025;
+		if(judge_process >= 1) { //once this rising reached its end
+			judge_rising = false;
+			judge_process = 0;
+			textbar.set_text(judge_display);
+			textbar.display_to_end();
+			audio_play_sound(snd_sfx_ms_place, 0, 0);
+			chain_player.unfreeze();
+			exit_answer_mode();
+			
+			if (conclusion) {
+				chain_player.set_mode(DISPLAY_MODES.DIALOG);
+			} 
+		}
+	}
 }

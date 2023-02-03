@@ -39,7 +39,7 @@ function is_fully_displayed() {
 	return char_count >= string_length(raw_text);
 }
 function animation_fully_displayed() {
-	return !mind_mode or mind_process >= 1;
+	return (not mind_mode and mind_process == 0) or (mind_mode and mind_process >= 1);
 }
 
 function display_to_end() {

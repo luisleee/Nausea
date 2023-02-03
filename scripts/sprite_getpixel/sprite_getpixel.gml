@@ -45,7 +45,7 @@ function sprite_get_pixel(_sprite, _subimg, _x, _y) {
 	    arr[@ _subimg] = buff;
 
 	    var surf = surface_create(sprW, sprH);
-
+		var old_surf = surface_get_target();
 	    surface_set_target(surf);
 
 	    draw_clear_alpha(c_white, 0);
@@ -56,11 +56,14 @@ function sprite_get_pixel(_sprite, _subimg, _x, _y) {
 
 	    gpu_set_blendmode(bm_normal);
 
-	    surface_reset_target();
-
+		surface_reset_target();
 	    buffer_get_surface(arr[_subimg], surf, 0);
-
-	    surface_free(surf);
+		
+		
+		if(surface_exists(surf)) {
+			surface_free(surf);
+		}
+	   
 	}
 
 	//Get pixel

@@ -34,6 +34,7 @@ global.mind_symbols = [
 	new MindSymbol(spr_ms_hexagram, "神秘、宗教、魔法", {}),
 ]
 
+ms_marks = ["no", "un", "re", "val"];
 mind_symbols_unlocked = [];
 
 for (var i = 0; i < array_length(global.mind_symbols); i ++) {

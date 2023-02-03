@@ -169,7 +169,7 @@ image_sources = [
 	new Image(spr_frame_shelf, 0, 0, 0, 0, 8, 8, 1, [clone(zoom_in), no_movement, clone(zoom_out)], draws[1]),
 	new Image(spr_frame_bed, 0, 0, 0, 0, 8, 8, 1, [clone(zoom_in), no_movement, clone(zoom_out)], draws[1]),
 	new Image(spr_frame_door, 0, 0, 0, 0, 8, 8, 1, [clone(zoom_in), no_movement, clone(zoom_out)], draws[1]),
-	new Image(spr_sunrise, 0, 0, 0, 0, 4, 4, 0, [clone(fade_in), v1, no_movement], draws[1]),// todo: here comes a problem // yeah, but why
+	new Image(spr_sunrise, 0, 0, 0, 0, 4, 4, 0, [clone(fade_in), v1, no_movement], draws[0]),// todo: here comes a problem // yeah, but why
 	new Image(spr_person_zp, 0, -200, 0, 0, 8, 8, 0, [clone(fade_in), no_movement, fade_out], draws[0]),
 	new Image(spr_frame_bus, 0, 0, 0, 0, 4, 4, 1, [clone(road_in), pingpong_road, clone(zoom_out)], draws[1]),
 	new Image(spr_shashasha, 0, 0, 0, 0, 4, 4, 1, [clone(zoom_in), no_movement, clone(zoom_out)], draws[1]),
@@ -216,3 +216,4 @@ function clear() {
 	imgs = [];
 	imgs_queue = [];
 }
+

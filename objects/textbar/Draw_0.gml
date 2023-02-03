@@ -61,22 +61,22 @@ draw_rectangle(
 	0
 );
 
-assert("person_portrait is not undefined", !is_undefined(person_portrait));
+
 //draw eyes
-draw_sprite_ext(
-	person_portrait,
-	subimg,
-	border_w + border_w / 2,
-	display_h - frame_h + border_w + border_w / 2,
-	uiscale * (52 / sprite_get_width(person_portrait)),
-	uiscale * (28 / sprite_get_height(person_portrait)),
-	0,
-	c_white,
-	textbar_apa
-);
+if (person_portrait != undefined) {
+	draw_sprite_ext(
+		person_portrait,
+		subimg,
+		border_w + border_w / 2,
+		display_h - frame_h + border_w + border_w / 2,
+		uiscale * (52 / sprite_get_width(person_portrait)),
+		uiscale * (28 / sprite_get_height(person_portrait)),
+		0,
+		c_white,
+		textbar_apa
+	);
+}
 
-
-///draw text things
 //fit in the name and draw the name
 draw_set_alpha(textbar_apa);
 draw_set_color(c_black);
@@ -87,15 +87,16 @@ if ((portrait_w - border_w) / string_width(person_name) < name_yscale) {
 }
 
 draw_set_align("mc");
-draw_text_transformed(
-	border_w + portrait_w / 2,
-	display_h - border_w - border_w / 2 - name_h/2,
-	person_name,
-	name_xscale,
-	name_yscale,
-	0
-);
-
+if (person_name != undefined) {
+	draw_text_transformed(
+		border_w + portrait_w / 2,
+		display_h - border_w - border_w / 2 - name_h/2,
+		person_name,
+		name_xscale,
+		name_yscale,
+		0
+	);
+}
 //draw mind background
 draw_set_alpha(mind_background_apa);
 draw_set_color(c_black);

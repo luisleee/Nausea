@@ -13,7 +13,6 @@ var frame_color = make_color_rgb(44, 44, 44);
 var inner_color = make_color_rgb(188, 188, 188);
 var char_h = string_width("啊");
 
-depth = 1000;
 draw_init(fnt_default, c_black, "mc", 0.25);
 draw_rectangle(0, 0, display_w, display_h, 0);
 
