@@ -114,6 +114,9 @@ var chain3_items = [{
 	line: "我——以——前——呀——带——过——<shake=5>咳咳<shake=0>一——个——学——生——",
 	emotion: 2
 },{
+	type: ITEM_TYPE.MUSIC,
+	piece: "gg"
+},{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Me",
 	line: "特——有——活——力——还——特——聪——明——<shake=5>咳",

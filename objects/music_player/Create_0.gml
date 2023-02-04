@@ -2,6 +2,7 @@ music_pieces = [
 	new BackgroundMusic("day", snd_ost_day_intro, snd_ost_day_main, 2 * 3, 32 * 3, 93),
 	new BackgroundMusic("road", undefined, snd_ost_on_the_road, 0, 16 * 4, 108),
 	new BackgroundMusic("mind", undefined, snd_ost_mind, 0, (6 * 8 + 1 + 2) * 2, 130),
+	new BackgroundMusic("gg", snd_ost_gg_intro, snd_ost_gg_main, 4, 16 * 3 - 0.5, 139),
 ];
 volume = 1;
 
