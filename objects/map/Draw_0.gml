@@ -51,7 +51,7 @@ draw_sprite_ext(spr_character_on_map, 0, abs_posx(draw_pos[0]), abs_posy(draw_po
 	
 draw_set_color(c_white);
 draw_set_alpha(1);
-draw_text_transformed(room_width/2, room_height - 100, "Turn " + string(now_turn), 10, 10, 0);
+//draw_text_transformed(room_width/2, room_height - 100, "Turn " + string(now_turn), 10, 10, 0);
 if (hover_num != undefined) {
-	draw_text_transformed(room_width/2, room_height - 300, string(num2pos(hover_num)[0]) + "," + string(num2pos(hover_num)[1]), 10, 10, 0);
+	//draw_text_transformed(room_width/2, room_height - 300, string(num2pos(hover_num)[0]) + "," + string(num2pos(hover_num)[1]), 10, 10, 0);
 }

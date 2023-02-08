@@ -165,7 +165,7 @@ draw_text_transformed(
 	text_state_scale,
 	0
 );
-var display_text = string_wrap(selected_task.description, text_area_w, text_scale, "\n");
+var display_text = string_wrap(selected_task.desc, text_area_w, text_scale, "\n");
 draw_text_transformed(
 	xoffset + taskbar_w + buffer,
 	yoffset + buffer * 3 + title_h + state_h,

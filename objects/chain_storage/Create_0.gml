@@ -39,10 +39,11 @@ var chain1_items = [{
 	emotion: 0,
 },{
 	type: ITEM_TYPE.MIND,
-	question: "我^^是^^什^^么^^东^^西^^？",
+	question: "我该……怎么做？",
 	answers: [
 		new Answer(["我", "无穷"], "我牛逼"),
 		new Answer(["我", "否定"], "我是傻逼"),
+		new Answer(["我", "生命", "不可逆"], "我的人生不能重来"),
 	],
 	default_answer: "我不知道",
 	conclusion: true,
@@ -115,7 +116,7 @@ var chain3_items = [{
 	emotion: 2
 },{
 	type: ITEM_TYPE.MUSIC,
-	piece: "gg"
+	piece: "birthday"
 },{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Me",
@@ -127,6 +128,15 @@ var chain3_items = [{
 	line: "只不过是小聪明",
 	emotion: 2
 },{
+	type: ITEM_TYPE.TASK,
+	name: "暴打年级主任",
+	desc: "忍不了，一拳打爆！！"
+},{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Me",
+	line: "获得任务：【<color=red,shake=5>暴打年级主任<color=black,shake=0>】",
+	emotion: 1
+},{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Me",
 	line: "<shake=5>咳咳咳<shake=0>也——从——来——不——看——重——<shake=5>咳咳<shake=0>各——种——各——样——的——考——试——",
@@ -137,10 +147,29 @@ var chain3_items = [{
 	line: "总——是——想——着——以——后——再——复——习——就——好——了——",
 	emotion: 2
 },{
+	type: ITEM_TYPE.TASK,
+	name: "暴打年级主任",
+	desc: "我忍不了了哦哦哦哦哦"
+},{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Me",
+	line: "任务更新：【<color=red,shake=5>暴打年级主任<color=black,shake=0>】",
+	emotion: 1
+},{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Me",
 	line: "怎——么——劝——都——不——听——哟——<shake=5>咳咳咳",
 	emotion: 2
+},{
+	type: ITEM_TYPE.TASK,
+	name: "暴打年级主任",
+	state: TASK_STATE.ACCOMPLISHED,
+	desc: "爽拉"
+},{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Me",
+	line: "完成任务：【<color=red,shake=5>暴打年级主任<color=black,shake=0>】",
+	emotion: 1
 },{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Me",

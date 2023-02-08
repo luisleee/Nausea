@@ -87,7 +87,7 @@ if (now_hover_num != undefined and apa == 1 and data_recorder.mind_symbols_unloc
 	draw_init(fnt_default, c_white, "mc", 1);
 	var hover_symbol = global.mind_symbols[now_hover_num];
 
-	var show_text = split(hover_symbol.full_desc(), "、");
+	var show_text = hover_symbol.full_desc();
 	draw_text_transformed(mouse_x, mouse_y, show_text, text_scale, text_scale, 0);
 /*	for (var i = 0; i < array_length(data_recorder.ms_marks); i++) {
 		var this_mark = data_recorder.ms_marks[i];

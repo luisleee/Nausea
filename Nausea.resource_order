@@ -36,6 +36,7 @@
     {"name":"get_person_portrait","order":7,"path":"scripts/get_person_portrait/get_person_portrait.yy",},
     {"name":"spr_eyes_zzm_crazy","order":5,"path":"sprites/spr_eyes_zzm_crazy/spr_eyes_zzm_crazy.yy",},
     {"name":"split","order":11,"path":"scripts/split/split.yy",},
+    {"name":"snd_ost_birthday","order":12,"path":"sounds/snd_ost_birthday/snd_ost_birthday.yy",},
     {"name":"spr_casio_list_up","order":19,"path":"sprites/spr_casio_list_up/spr_casio_list_up.yy",},
     {"name":"spr_shashasha","order":21,"path":"sprites/spr_shashasha/spr_shashasha.yy",},
     {"name":"mind","order":14,"path":"objects/mind/mind.yy",},

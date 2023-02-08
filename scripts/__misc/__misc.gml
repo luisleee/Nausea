@@ -7,9 +7,9 @@ function BackgroundMusic(_name, _intro, _main, _intro_beats, _main_beats, _bpm) 
 	bpm = _bpm;
 }
 
-function Task(_name, _description, _state, _process) constructor {
+function Task(_name, _desc, _state, _process) constructor {
 	name = _name;
-	description = _description;
+	desc = _desc;
 	state = _state;
 	process = _process;
 }

@@ -117,7 +117,17 @@ function display_current_item() {
 	}
 	if (current_item.type == ITEM_TYPE.TASK) {
 		// todo: fail/complete a task
-		task_manager.create_new_task(current_item.name, current_item.description);
+		if not (task_manager.task_exists(current_item.name)) {//create
+			task_manager.create_new_task(current_item.name, current_item.desc);
+		} else { //update
+			if(variable_struct_exists(current_item, "desc")) {
+				task_manager.task_update(current_item.name, current_item.desc);
+			}
+			if(variable_struct_exists(current_item, "state")) {
+				task_manager.task_finish(current_item.name, current_item.state);
+			}
+		}
+		
 		next_item();
 	}
 }

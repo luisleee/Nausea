@@ -1,0 +1,54 @@
+DIALOG:
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Me",
+	line: "blablabla",
+	emotion: 1, (index of emotion)
+	*mode_switch: ITEM_TYPE.MIND
+	
+	By inputing mode_switch, DIALOG item can switch the current mode of chain_player to other modes(now only MIND).
+
+IMAGE:
+	type: ITEM_TYPE.IMAGE,
+	add: ["g4"], (array of image_group names)
+	remove: ["bus"] (array of image_group names)
+	
+	For some reason, IMAGE item cannot be put in the first one of a chain by now.
+	
+MUSIC:
+	type: ITEM_TYPE.MUSIC,
+	piece: "birthday" (piece's name)
+
+OPTION:
+	type: ITEM_TYPE.OPTION,
+	question: "啊啊啊啊拿一张？", 
+	name: "opt_tissue", 
+	options: ["Yes", "No"] (array of option names)
+	
+TASK:
+	type: ITEM_TYPE.TASK,
+	name: "暴打年级主任",
+	*state: TASK_STATE.ACCOMPLISHED,
+	desc: "爽拉"
+	
+	TASK item creates a new TASK in task_manager when task named <name> does not exist.
+	Otherwise, it updates that TASK in task_manager.
+	!!!Note: Every TASK item should be followed with a DIALOG item to tell the player something has changed!
+	
+
+MAP:
+	type: ITEM_TYPE.MAP,
+	map_name: "classroom_1",
+	pos: [10, 1]
+
+MIND:
+	type: ITEM_TYPE.MIND,
+	question: "我该……怎么做？", 
+	answers: [
+		new Answer(["我", "无穷"], "我牛逼"),
+	], (array of struct Answer)
+	default_answer: "我不知道", 
+	*conclusion: true, bool defining whether this is the final conclusion
+	
+	A MIND item switches chain_player's mode to MIND if it is not.
+	If <conclusion> is inputed, the mode switched back to DIALOG when the answer is judged.
+
