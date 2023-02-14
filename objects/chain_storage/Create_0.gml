@@ -6,6 +6,7 @@ enum ITEM_TYPE {
 	TASK,
 	MAP,
 	MIND,
+	SYMBOL,
 };
 
 // todo: contructors...
@@ -112,16 +113,32 @@ var br2_items = [{
 var chain3_items = [{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Me",
-	line: "我——以——前——呀——带——过——<shake=5>咳咳<shake=0>一——个——学——生——",
+	line: "第二条：「我国要构建集政治安全、国土安全、军事安全、经济安全、文化安全、社会安全、科技安全、网络安全、生态安全、资源安全、核安全等于一体的国家安全体系。」",
 	emotion: 2
 },{
+	type: ITEM_TYPE.SYMBOL,
+	symbol: spr_ms_dot,
+	desc: "「我睁开双眼，注视这个世界。」"
+},{
+	type: ITEM_TYPE.SYMBOL,
+	symbol: spr_ms_sprout,
+	desc: "「今天是我的生日……」"
+},{
 	type: ITEM_TYPE.MUSIC,
-	piece: "birthday"
+	piece: "gg"
 },{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Me",
 	line: "特——有——活——力——还——特——聪——明——<shake=5>咳",
 	emotion: 2
+},{
+	type: ITEM_TYPE.SYMBOL,
+	symbol: spr_ms_cube,
+	desc: "「物质、存在与精神、思维的对立构成了哲学的基本问题。」"
+},{
+	type: ITEM_TYPE.SYMBOL,
+	symbol: spr_ms_spirit,
+	desc: "「物质、存在与精神、思维的对立构成了哲学的基本问题。」"
 },{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Me",
@@ -131,6 +148,10 @@ var chain3_items = [{
 	type: ITEM_TYPE.TASK,
 	name: "暴打年级主任",
 	desc: "忍不了，一拳打爆！！"
+},{
+	type: ITEM_TYPE.SYMBOL,
+	symbol: spr_ms_footprint,
+	desc: "「一串串足印连起来，就是我们的历史。」"
 },{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Me",

@@ -37,6 +37,23 @@ global.mind_symbols = [
 ms_marks = ["no", "un", "re", "val"];
 mind_symbols_unlocked = [];
 
-for (var i = 0; i < array_length(global.mind_symbols); i ++) {
-	mind_symbols_unlocked[i] = true;
+for (var i = 0; i < array_length(global.mind_symbols); i++) {
+	mind_symbols_unlocked[i] = false;
+}
+
+function ms_spr2ms(_spr) {
+	for (var i = 0; i < array_length(global.mind_symbols); i++) {
+		if (global.mind_symbols[i].spr == _spr) {
+			return global.mind_symbols[i];
+		}
+	}
+	return undefined;
+}
+
+function unlock_symbol(_spr) {
+	for (var i = 0; i < array_length(global.mind_symbols); i++) {
+		if (global.mind_symbols[i].spr == _spr) {
+			mind_symbols_unlocked[i] = true;
+		}
+	}
 }

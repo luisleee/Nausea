@@ -61,6 +61,9 @@ function is_fully_displayed() {
 
 function display_current_item() {
 	var current_item = get_current_item();
+	
+	textbar.symbol_mode = false;
+	
 	if (current_item.type == ITEM_TYPE.DIALOG) {
 		textbar.set_text(current_item.line);
 		textbar.set_name(get_person_name(current_item.speaker));
@@ -71,6 +74,12 @@ function display_current_item() {
 		if (display_mode == DISPLAY_MODES.MIND) {
 			mind.answer_mode = false;
 		}
+	}
+	if (current_item.type == ITEM_TYPE.SYMBOL) {
+		textbar.set_text(current_item.desc);
+		textbar.symbol_mode = true;
+		textbar.set_symbol(current_item.symbol);
+		data_recorder.unlock_symbol(current_item.symbol);
 	}
 	if (current_item.type == ITEM_TYPE.OPTION) {
 		textbar.set_text(current_item.question);
