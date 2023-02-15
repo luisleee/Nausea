@@ -7,6 +7,7 @@ enum ITEM_TYPE {
 	MAP,
 	MIND,
 	SYMBOL,
+	TRANSITION,
 };
 
 // todo: contructors...
@@ -113,7 +114,40 @@ var br2_items = [{
 var chain3_items = [{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Me",
-	line: "第二条：「我国要构建集政治安全、国土安全、军事安全、经济安全、文化安全、社会安全、科技安全、网络安全、生态安全、资源安全、核安全等于一体的国家安全体系。」",
+	line: "第二条：「我国要构建集政治安全、国土安全、军事安全、经济安全、文化安全、社会安全、科技安全、网络安全、生态安全、资源安全、",
+	emotion: 2
+},{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Me",
+	line: "核安全等于一体的国家安全体系。」",
+	emotion: 2
+},{
+	type: ITEM_TYPE.TRANSITION,
+	pattern: "color_fade",
+	time: 60,
+	infos: {
+		color: c_black
+	}
+},{
+	type: ITEM_TYPE.TASK,
+	name: "暴打年级主任",
+	desc: "我忍不了了哦哦哦哦哦"
+},{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Me",
+	line: "任务更新：【<color=red,shake=5>暴打年级主任<color=black,shake=0>】",
+	emotion: 1
+},{
+	type: ITEM_TYPE.TRANSITION,
+	pattern: "color_fade",
+	time: 100,
+	infos: {
+		color: c_white
+	}
+},{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Me",
+	line: "怎——么——劝——都——不——听——哟——<shake=5>咳咳咳",
 	emotion: 2
 },{
 	type: ITEM_TYPE.SYMBOL,
@@ -166,20 +200,6 @@ var chain3_items = [{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Me",
 	line: "总——是——想——着——以——后——再——复——习——就——好——了——",
-	emotion: 2
-},{
-	type: ITEM_TYPE.TASK,
-	name: "暴打年级主任",
-	desc: "我忍不了了哦哦哦哦哦"
-},{
-	type: ITEM_TYPE.DIALOG,
-	speaker: "Me",
-	line: "任务更新：【<color=red,shake=5>暴打年级主任<color=black,shake=0>】",
-	emotion: 1
-},{
-	type: ITEM_TYPE.DIALOG,
-	speaker: "Me",
-	line: "怎——么——劝——都——不——听——哟——<shake=5>咳咳咳",
 	emotion: 2
 },{
 	type: ITEM_TYPE.TASK,

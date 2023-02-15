@@ -110,6 +110,10 @@ function display_current_item() {
 		}
 		
 	}
+	
+	if (current_item.type == ITEM_TYPE.TRANSITION) {
+		textbar.perform_transition(current_item.pattern, current_item.time, current_item.infos);
+	}
 	/// quick step forward
 	if (current_item.type == ITEM_TYPE.MUSIC) {
 		music_player.set_music(current_item.piece);

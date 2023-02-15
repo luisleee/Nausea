@@ -79,5 +79,23 @@ if (symbol_mode) {
 	}
 }
 
+if (trans_mode) {
+	if (trans_pattern == "color_fade") {
+		if (trans_phase == 1) {
+			if (trans_apa < 1) {
+				trans_apa += trans_spd;
+			}
+		}
+		if (trans_phase == 2) {
+			if (trans_apa > 0) {
+				trans_apa -= trans_spd;
+			} else {
+				transition_init();
+			}
+		}
+		
+	}
+}
+
 subimg += 0.2;
 time += 0.1;

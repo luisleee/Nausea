@@ -101,3 +101,25 @@ symbol_background_apa = 0;
 symbol_spr_x_goal = 8/80 * display_w;
 symbol_spr_path_l = 200;
 symbol_show_process = 0;
+
+trans_mode = false;
+trans_pattern = "";
+trans_spd = 0;
+trans_apa = 0;
+trans_phase = 0;
+trans_infos = undefined;
+
+function perform_transition(pattern, time, infos) {
+	trans_mode = true;
+	alarm[1] = time;
+	trans_pattern = pattern;
+	trans_spd = 1/time * 2;
+	trans_phase = 1;
+	trans_infos = infos;
+}
+
+function transition_init() {
+	trans_mode = false;
+	trans_phase = 0;
+	trans_apa = 0;
+}
