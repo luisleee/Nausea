@@ -94,6 +94,7 @@
     {"name":"snd_sfx_ms_un","order":4,"path":"sounds/snd_sfx_ms_un/snd_sfx_ms_un.yy",},
     {"name":"music_len","order":3,"path":"scripts/music_len/music_len.yy",},
     {"name":"spr_frame_shelf","order":10,"path":"sprites/spr_frame_shelf/spr_frame_shelf.yy",},
+    {"name":"snd_snare","order":14,"path":"sounds/snd_snare/snd_snare.yy",},
     {"name":"array_includes","order":1,"path":"scripts/array_includes/array_includes.yy",},
     {"name":"snd_ost_gg_intro","order":10,"path":"sounds/snd_ost_gg_intro/snd_ost_gg_intro.yy",},
     {"name":"snd_sfx_ms_gain","order":8,"path":"sounds/snd_sfx_ms_gain/snd_sfx_ms_gain.yy",},

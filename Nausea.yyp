@@ -121,6 +121,7 @@
     {"id":{"name":"music_len","path":"scripts/music_len/music_len.yy",},"order":3,},
     {"id":{"name":"textbar","path":"objects/textbar/textbar.yy",},"order":0,},
     {"id":{"name":"spr_frame_shelf","path":"sprites/spr_frame_shelf/spr_frame_shelf.yy",},"order":10,},
+    {"id":{"name":"snd_snare","path":"sounds/snd_snare/snd_snare.yy",},"order":14,},
     {"id":{"name":"array_includes","path":"scripts/array_includes/array_includes.yy",},"order":1,},
     {"id":{"name":"snd_ost_gg_intro","path":"sounds/snd_ost_gg_intro/snd_ost_gg_intro.yy",},"order":10,},
     {"id":{"name":"snd_sfx_ms_gain","path":"sounds/snd_sfx_ms_gain/snd_sfx_ms_gain.yy",},"order":8,},
