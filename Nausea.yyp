@@ -39,7 +39,7 @@
   ],
   "isEcma": false,
   "MetaData": {
-    "IDEVersion": "2023.1.1.62",
+    "IDEVersion": "2023.1.0.58",
   },
   "resources": [
     {"id":{"name":"spr_casio","path":"sprites/spr_casio/spr_casio.yy",},"order":16,},
@@ -133,7 +133,7 @@
     {"id":{"name":"spr_bike_back_test","path":"sprites/spr_bike_back_test/spr_bike_back_test.yy",},"order":6,},
     {"id":{"name":"rm_test","path":"rooms/rm_test/rm_test.yy",},"order":1,},
     {"id":{"name":"snd_ost_gg_main","path":"sounds/snd_ost_gg_main/snd_ost_gg_main.yy",},"order":11,},
-    {"id":{"name":"sprite_getpixel","path":"scripts/sprite_getpixel/sprite_getpixel.yy",},"order":24,},
+    {"id":{"name":"sprite_get_pixel","path":"scripts/sprite_get_pixel/sprite_get_pixel.yy",},"order":0,},
     {"id":{"name":"snd_sfx_ms_place","path":"sounds/snd_sfx_ms_place/snd_sfx_ms_place.yy",},"order":1,},
     {"id":{"name":"spr_ms_sprout","path":"sprites/spr_ms_sprout/spr_ms_sprout.yy",},"order":10,},
     {"id":{"name":"music_interact","path":"objects/music_interact/music_interact.yy",},"order":15,},
@@ -150,6 +150,7 @@
     {"id":{"name":"spr_frame_door","path":"sprites/spr_frame_door/spr_frame_door.yy",},"order":11,},
     {"id":{"name":"spr_casio_keypressed_down","path":"sprites/spr_casio_keypressed_down/spr_casio_keypressed_down.yy",},"order":18,},
     {"id":{"name":"music_player","path":"objects/music_player/music_player.yy",},"order":1,},
+    {"id":{"name":"struct_extend","path":"scripts/struct_extend/struct_extend.yy",},"order":0,},
     {"id":{"name":"get_person_name","path":"scripts/get_person_name/get_person_name.yy",},"order":6,},
     {"id":{"name":"ac_road","path":"animcurves/ac_road/ac_road.yy",},"order":2,},
     {"id":{"name":"parse_text","path":"scripts/parse_text/parse_text.yy",},"order":10,},
@@ -177,8 +178,8 @@
     {"id":{"name":"room_main","path":"rooms/room_main/room_main.yy",},"order":0,},
   ],
   "RoomOrderNodes": [
-    {"roomId":{"name":"rm_test","path":"rooms/rm_test/rm_test.yy",},},
     {"roomId":{"name":"room_main","path":"rooms/room_main/room_main.yy",},},
+    {"roomId":{"name":"rm_test","path":"rooms/rm_test/rm_test.yy",},},
   ],
   "TextureGroups": [
     {"resourceType":"GMTextureGroup","resourceVersion":"1.3","name":"Default","autocrop":true,"border":2,"compressFormat":"bz2","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"targets":-1,},

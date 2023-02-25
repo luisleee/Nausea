@@ -1,7 +1,7 @@
 {
   "resourceType": "GMScript",
   "resourceVersion": "1.0",
-  "name": "sprite_getpixel",
+  "name": "struct_extend",
   "isCompatibility": false,
   "isDnD": false,
   "parent": {

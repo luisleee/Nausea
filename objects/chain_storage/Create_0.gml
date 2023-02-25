@@ -19,8 +19,60 @@ var chain1_items = [{
 	emotion: 0
 },{
 	type: ITEM_TYPE.IMAGE,
-	add: ["g4"],
+	
+	add: [{
+		class: "bedroom",
+		spr: spr_frame_computer,
+		comic: true,
+		posx: 0,
+		posy: 0,
+		args: {
+			scale_x: 8,
+			scale_y: 8,
+		},
+		movements: [{
+			type: "zoom",
+			in: true,
+			args: {},
+		}, {
+			type: "no",
+		}, {
+			type: "zoom",
+			in: false,
+			args: {},
+		}],
+	}, {
+		class: "bedroom",
+		spr: spr_frame_door,
+		comic: true,
+		posx: 0,
+		posy: 0,
+		args: {
+			scale_x: 8,
+			scale_y: 8,
+		},
+		movements: [{
+			type: "zoom",
+			in: true,
+			args: {},
+		}, {
+			type: "no",
+		}, {
+			type: "zoom",
+			in: false,
+			args: {},
+		}],
+	}],
 	remove: []
+},{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Brain",
+	line: "（话说熵是……）",
+	emotion: 0
+},{
+	type: ITEM_TYPE.IMAGE,
+	add: [],
+	remove: ["bedroom"]
 },{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Brain",
@@ -49,25 +101,7 @@ var chain1_items = [{
 	],
 	default_answer: "我不知道",
 	conclusion: true,
-},{
-	type: ITEM_TYPE.DIALOG,
-	speaker: "Brain",
-	line: "（话说熵是……）",
-	emotion: 0
-},{
-	type: ITEM_TYPE.IMAGE,
-	add: [],
-	remove: ["bus"]
-},{
-	type: ITEM_TYPE.DIALOG,
-	speaker: "Brain",
-	line: "（记得克劳修斯好像）",
-	emotion: 0
-},{
-	type: ITEM_TYPE.IMAGE,
-	add: ["furnitures"],
-	remove: []
-},{
+}, {
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Zww",
 	line:"谬矣！最近我在研究《易经》呢。来，我给你起一卦！",

@@ -5,10 +5,10 @@ instance_create_depth(0, 0, 0, data_recorder);
 instance_create_depth(0, 0, 0, chain_storage);
 instance_create_depth(0, 0, 0, map_storage);
 
-//non-display conponents
+//non-display components
 instance_create_depth(0, 0, 0, music_player);
 
-//display conponents
+//display components
 instance_create_depth(0, 0, 0, map);
 instance_create_depth(0, 0, -10, image_painter);
 
