@@ -22,7 +22,7 @@ var chain1_items = [{
 	
 	add: [{
 		class: "bedroom",
-		spr: spr_frame_computer,
+		spr: spr_frame_shelf,
 		comic: true,
 		posx: 0,
 		posy: 0,
@@ -33,17 +33,15 @@ var chain1_items = [{
 		movements: [{
 			type: "zoom",
 			in: true,
-			args: {},
 		}, {
 			type: "no",
 		}, {
 			type: "zoom",
 			in: false,
-			args: {},
 		}],
 	}, {
 		class: "bedroom",
-		spr: spr_frame_door,
+		spr: spr_frame_bed,
 		comic: true,
 		posx: 0,
 		posy: 0,
@@ -54,13 +52,11 @@ var chain1_items = [{
 		movements: [{
 			type: "zoom",
 			in: true,
-			args: {},
 		}, {
 			type: "no",
 		}, {
 			type: "zoom",
 			in: false,
-			args: {},
 		}],
 	}],
 	remove: []
@@ -71,7 +67,54 @@ var chain1_items = [{
 	emotion: 0
 },{
 	type: ITEM_TYPE.IMAGE,
-	add: [],
+	add: [{
+		class: "bus",
+		spr: spr_frame_bus,
+		comic: true,
+		posx: 0,
+		posy: 0,
+		args: {
+			scale_x: 4,
+			scale_y: 4,
+		},
+		movements: [{
+			type: "parallel",
+			movements: [{
+				type: "zoom",
+				in: true,
+			}, {
+				type: "pingpong",
+				horizontal: false,
+				args: {
+					amplitude: 50,
+					period: 60/108,
+					init_phase: get_remainder(audio_sound_get_track_position(music_player.cur_track), 60/108),
+				},
+			}],
+		}, {
+			type: "pingpong",
+			horizontal: false,
+			args: {
+				amplitude: 50,
+				period: 60/108,
+				init_phase: get_remainder(audio_sound_get_track_position(music_player.cur_track), 60/108),
+			},
+		}, {
+			type: "parallel",
+			movements: [{
+				type: "zoom",
+				in: false,
+			}, {
+				type: "pingpong",
+				horizontal: false,
+				args: {
+					amplitude: 50,
+					period: 60/108,
+					init_phase: get_remainder(audio_sound_get_track_position(music_player.cur_track), 60/108),
+				},
+			}],
+		}],
+	}],
 	remove: ["bedroom"]
 },{
 	type: ITEM_TYPE.DIALOG,
@@ -119,7 +162,7 @@ var chain2_items = [{
 	name: "opt1",
 	options: ["Yes", "No"]
 }];
-#endregion
+
 
 var br1_items = [{
 	type: ITEM_TYPE.DIALOG,
@@ -284,56 +327,56 @@ var event_paper_items = [{
 	name: "opt_tissue",
 	options: ["Yes", "No"]
 }];
+#endregion
 
 chains = [{
 	name: "chain1",
 	items: chain1_items,
-	next: function() {
-		return "chain2"
+	next: {
+		"chain2" : {},
 	}
 }, {
 	name: "chain2",
 	items: chain2_items,
-	next: function() {
-		var nexts = ["br1", "br2"];
-		var c = data_recorder.get_selection("opt1");
-		return nexts[c];
+	next: {
+		br1: {options: {opt1: 0}},
+		br2: {options: {opt1: 1}},
 	}
 }, {
 	name: "br1",
 	items: br1_items,
-	next: function() {
-		return "chain3";
+	next: {
+		"chain3" : {},
 	}
 }, {
 	name: "br2",
 	items: br2_items,
-	next: function() {
-		return "chain3";
+	next: {
+		"chain3" : {},
 	}
 }, {
 	name: "chain3",
 	items: chain3_items,
-	next: function() {
-		return "map_classroom1";
+	next: {
+		"map_classroom1" : {},
 	}
 }, {
 	name: "map_classroom1",
 	items: chain_map_items,
-	next: function() {
-		return "chain1";
+	next: {
+		"chain1" : {},
 	}
 }, {
 	name: "keep_map",
 	items: chain_keep_map_items,
-	next: function() {
-		return "chain1";
+	next: {
+		"chain1" : {},
 	}
 }, {
 	name: "paper",
 	items: event_paper_items,
-	next: function() {
-		return "keep_map";
+	next: {
+		"keep_map" : {},
 	}
 }];
 

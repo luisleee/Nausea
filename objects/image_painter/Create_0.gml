@@ -1,4 +1,4 @@
-
+// todo: use image/mov preset
 /*
 var no_movement = new NoMovement();
 var zoom_in = new ZoomMovement(true);

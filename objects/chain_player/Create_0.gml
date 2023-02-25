@@ -159,7 +159,12 @@ function next() {
 		return;
 	}
 	
-	set_chain(chain.next());
+	var successors = variable_struct_get_names(chain.next);
+	var successor_idx = array_find_index(successors, function(name) {
+		return data_recorder.meets_requirement(variable_struct_get(chain.next, name));
+	});
+	
+	set_chain(successors[successor_idx]);
 }
 
 function next_item() {

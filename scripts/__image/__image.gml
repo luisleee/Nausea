@@ -197,9 +197,23 @@ function MovementGroup(_movements) constructor {
 
 function createMovement(obj) {
 	if (obj.type == "no") {
-		return new NoMovement();	
+		return new NoMovement();
 	} else if (obj.type == "zoom") {
-		return new ZoomMovement(obj.in, obj.args);	
+		var args = variable_struct_get(obj, "args");
+		return new ZoomMovement(obj.in, args);
+	} else if (obj.type == "pingpong") {
+		var args = variable_struct_get(obj, "args");
+		return new PingPongMovement(obj.horizontal, args);
+	} else if (obj.type == "parallel") {
+		var movs = array_map(obj.movements, function(mov) {
+			return createMovement(mov);
+		});
+		return new ParallelMovement(movs);
+	} else if (obj.type == "sequential") {
+		var movs = array_map(obj.movements, function(mov) {
+			return createMovement(mov);
+		});
+		return new SequentialMovement(movs);
 	}
 }
 
