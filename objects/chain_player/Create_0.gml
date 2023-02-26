@@ -19,8 +19,6 @@ enum DISPLAY_MODES {
 }
 display_mode = DISPLAY_MODES.DIALOG;
 
-
-
 function set_mode(_mode) {
 	display_mode = _mode;
 	switch _mode {
@@ -36,7 +34,7 @@ function set_mode(_mode) {
 			mind.hide();
 			break;
 		case DISPLAY_MODES.MIND:
-			image_painter.clear();
+			//image_painter.clear();
 			textbar.mind_mode = true;
 			
 			break;
@@ -120,16 +118,18 @@ function display_current_item() {
 		next_item();
 	}
 	if (current_item.type == ITEM_TYPE.IMAGE) {
-		for (var i = 0; i < array_length(current_item.remove); i++) { 
-			image_painter.remove_image_group(current_item.remove[i]);
-		}
-		for (var i = 0; i < array_length(current_item.add); i++) { 
-			image_painter.add_image_group(current_item.add[i]);
-		}
+		
+		array_foreach(current_item.add, function(img) {
+			image_painter.add_image(img);
+		});
+		
+		array_foreach(current_item.remove, function(class) {
+			image_painter.remove_image(class);
+		});
+		
 		next_item();
 	}
 	if (current_item.type == ITEM_TYPE.TASK) {
-		// todo: fail/complete a task
 		if not (task_manager.task_exists(current_item.name)) {//create
 			task_manager.create_new_task(current_item.name, current_item.desc);
 		} else { //update
@@ -151,7 +151,7 @@ function set_chain(chain_name) {
 	display_current_item();
 }
 
-set_chain("chain3");
+set_chain("chain1");
 
 function next() {
 	if (!is_fully_displayed()) {
@@ -159,7 +159,12 @@ function next() {
 		return;
 	}
 	
-	set_chain(chain.next());
+	var successors = variable_struct_get_names(chain.next);
+	var successor_idx = array_find_index(successors, function(name) {
+		return data_recorder.meets_requirement(variable_struct_get(chain.next, name));
+	});
+	
+	set_chain(successors[successor_idx]);
 }
 
 function next_item() {
