@@ -17,9 +17,9 @@
     {"name":"mapsprs","order":23,"path":"folders/Sprites/mapsprs.yy",},
     {"name":"Exp","order":5,"path":"folders/Sprites/mapsprs/Exp.yy",},
     {"name":"Mind Symbols","order":24,"path":"folders/Sprites/Mind Symbols.yy",},
+    {"name":"Rhythm","order":25,"path":"folders/Sprites/Rhythm.yy",},
     {"name":"Tile Sets","order":1,"path":"folders/Tile Sets.yy",},
     {"name":"Timelines","order":7,"path":"folders/Timelines.yy",},
-    {"name":"Rhythm","order":25,"path":"folders/Sprites/Rhythm.yy",},
   ],
   "ResourceOrderSettings": [
     {"name":"spr_casio","order":16,"path":"sprites/spr_casio/spr_casio.yy",},
