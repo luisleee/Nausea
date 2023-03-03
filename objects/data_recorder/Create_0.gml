@@ -59,7 +59,7 @@ ms_marks = ["no", "un", "re", "val"];
 mind_symbols_unlocked = [];
 
 for (var i = 0; i < array_length(global.mind_symbols); i++) {
-	mind_symbols_unlocked[i] = false;
+	mind_symbols_unlocked[i] = true;
 }
 
 function ms_spr2ms(_spr) {

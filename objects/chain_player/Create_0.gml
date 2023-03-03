@@ -57,6 +57,34 @@ function is_fully_displayed() {
 	return textbar.is_fully_displayed() && current_item_index >= array_length(chain.items) - 1;
 }
 
+
+
+function next_item() {
+	if (is_fully_displayed()) {
+		return;
+	}
+	if (!textbar.is_fully_displayed()) {
+		textbar.display_to_end();
+		return;
+	}
+	var current_item = get_current_item();
+	if (current_item.type == ITEM_TYPE.OPTION) {
+		options.select();
+		next();
+		return;
+	}
+	var next_chain_item = chain.items[current_item_index + 1];
+	
+	if (next_chain_item.type == ITEM_TYPE.IMAGE and !image_painter.animation_finished()) {
+		return;
+	}
+	current_item_index++;
+	display_current_item();
+}
+
+
+
+
 function display_current_item() {
 	var current_item = get_current_item();
 	
@@ -151,7 +179,7 @@ function set_chain(chain_name) {
 	display_current_item();
 }
 
-set_chain("chain1");
+set_chain("chain3");
 
 function next() {
 	if (!is_fully_displayed()) {
@@ -166,29 +194,5 @@ function next() {
 	
 	set_chain(successors[successor_idx]);
 }
-
-function next_item() {
-	if (is_fully_displayed()) {
-		return;
-	}
-	if (!textbar.is_fully_displayed()) {
-		textbar.display_to_end();
-		return;
-	}
-	var current_item = get_current_item();
-	if (current_item.type == ITEM_TYPE.OPTION) {
-		options.select();
-		next();
-		return;
-	}
-	var next_item = chain.items[current_item_index + 1];
-	
-	if (next_item.type == ITEM_TYPE.IMAGE and !image_painter.animation_finished()) {
-		return;
-	}
-	current_item_index++;
-	display_current_item();
-}
-
 
 

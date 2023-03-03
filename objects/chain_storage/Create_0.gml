@@ -189,15 +189,82 @@ var br2_items = [{
 }];
 
 var chain3_items = [{
-	type: ITEM_TYPE.DIALOG,
-	speaker: "Me",
-	line: "第二条：「我国要构建集政治安全、国土安全、军事安全、经济安全、文化安全、社会安全、科技安全、网络安全、生态安全、资源安全、",
-	emotion: 2
+	type: ITEM_TYPE.IMAGE,
+	add: [{
+		class: "bus",
+		spr: spr_frame_bus,
+		comic: true,
+		posx: 0,
+		posy: 0,
+		args: {
+			scale_x: 4,
+			scale_y: 4,
+		},
+		movements: [{
+			type: "parallel",
+			movements: [{
+				type: "zoom",
+				in: true,
+			}, {
+				type: "pingpong",
+				horizontal: false,
+				args: {
+					amplitude: 50,
+					period: 60/108,
+					init_phase: get_remainder(audio_sound_get_track_position(music_player.cur_track), 60/108),
+				},
+			}],
+		}, {
+			type: "pingpong",
+			horizontal: false,
+			args: {
+				amplitude: 50,
+				period: 60/108,
+				init_phase: get_remainder(audio_sound_get_track_position(music_player.cur_track), 60/108),
+			},
+		}, {
+			type: "parallel",
+			movements: [{
+				type: "zoom",
+				in: false,
+			}, {
+				type: "pingpong",
+				horizontal: false,
+				args: {
+					amplitude: 50,
+					period: 60/108,
+					init_phase: get_remainder(audio_sound_get_track_position(music_player.cur_track), 60/108),
+				},
+			}],
+		}],
+	}],
+	remove: []
 },{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Me",
-	line: "核安全等于一体的国家安全体系。」",
-	emotion: 2
+	line: "（又能做点啥，我）",
+	emotion: 0
+},{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Me",
+	line: "（呃不如闭眼睡会）",
+	emotion: 0
+},{
+	type: ITEM_TYPE.DIALOG,
+	speaker: "Me",
+	line: "（晃得我晕得慌）",
+	emotion: 0
+},{
+	type: ITEM_TYPE.MIND,
+	question: "这个游戏的核心内容是什么？",
+	answers: [
+		new Answer(["我"], "我们"),
+		new Answer(["我", "生命"], "我们对自己的生活的"),
+		new Answer(["我", "生命", "痕迹"], "我们对自己的生活的经历和感受和体验"),
+		new Answer(["我", "生命", "痕迹", "思维"], "我们对自己的生活的经历和感受和体验和想法和思考和____"),
+	],
+	default_answer: "我不知道",
+	conclusion: true,
 },{
 	type: ITEM_TYPE.TRANSITION,
 	pattern: "color_fade",
