@@ -51,7 +51,7 @@ function get_current_type() {
 }
 
 function is_fully_displayed() {
-	if (get_current_type() == ITEM_TYPE.OPTION && !options.is_selected()) {
+	if (get_current_type() == "option" && !options.is_selected()) {
 		return false;
 	}
 	return textbar.is_fully_displayed() && current_item_index >= array_length(chain.items) - 1;
@@ -62,7 +62,7 @@ function display_current_item() {
 	
 	textbar.symbol_mode = false;
 	
-	if (current_item.type == ITEM_TYPE.DIALOG) {
+	if (current_item.type == "dialog") {
 		textbar.set_text(current_item.line);
 		textbar.set_name(get_person_name(current_item.speaker));
 		textbar.set_portrait(get_person_portrait(current_item.speaker, current_item.emotion));
@@ -73,13 +73,13 @@ function display_current_item() {
 			mind.answer_mode = false;
 		}
 	}
-	if (current_item.type == ITEM_TYPE.SYMBOL) {
+	if (current_item.type == "symbol") {
 		textbar.set_text(current_item.desc);
 		textbar.symbol_mode = true;
 		textbar.set_symbol(current_item.symbol);
 		data_recorder.unlock_symbol(current_item.symbol);
 	}
-	if (current_item.type == ITEM_TYPE.OPTION) {
+	if (current_item.type == "option") {
 		textbar.set_text(current_item.question);
 		textbar.set_name("");
 		textbar.set_portrait(spr_option_black);
@@ -87,16 +87,16 @@ function display_current_item() {
 		options.set_name(current_item.name);
 		options.show();
 	}
-	if (current_item.type == ITEM_TYPE.MAP) {
+	if (current_item.type == "map") {
 		set_mode(DISPLAY_MODES.MAP);
 		
-		if (!is_undefined(current_item.map_name)) {
+		if (variable_struct_exists(current_item, "map_name")) {
 			map.set_map(current_item.map_name, current_item.pos);
 			map.full_mobility();
 		}
 	}
 	
-	if (current_item.type == ITEM_TYPE.MIND) {
+	if (current_item.type == "mind") {
 		textbar.set_text(current_item.question);
 		mind.set_answers(current_item.default_answer, current_item.answers);
 		mind.answer_mode = true;
@@ -109,15 +109,15 @@ function display_current_item() {
 		
 	}
 	
-	if (current_item.type == ITEM_TYPE.TRANSITION) {
+	if (current_item.type == "transition") {
 		textbar.perform_transition(current_item.pattern, current_item.time, current_item.infos);
 	}
 	/// quick step forward
-	if (current_item.type == ITEM_TYPE.MUSIC) {
+	if (current_item.type == "music") {
 		music_player.set_music(current_item.piece);
 		next_item();
 	}
-	if (current_item.type == ITEM_TYPE.IMAGE) {
+	if (current_item.type == "image") {
 		
 		array_foreach(current_item.add, function(img) {
 			image_painter.add_image(img);
@@ -129,7 +129,7 @@ function display_current_item() {
 		
 		next_item();
 	}
-	if (current_item.type == ITEM_TYPE.TASK) {
+	if (current_item.type == "task") {
 		if not (task_manager.task_exists(current_item.name)) {//create
 			task_manager.create_new_task(current_item.name, current_item.desc);
 		} else { //update
@@ -160,11 +160,11 @@ function next() {
 	}
 	
 	var successors = variable_struct_get_names(chain.next);
-	var successor_idx = array_find_index(successors, function(name) {
+	var successor = array_filter(successors, function(name) {
 		return data_recorder.meets_requirement(variable_struct_get(chain.next, name));
-	});
+	})[0];
 	
-	set_chain(successors[successor_idx]);
+	set_chain(successor);
 }
 
 function next_item() {
@@ -176,14 +176,14 @@ function next_item() {
 		return;
 	}
 	var current_item = get_current_item();
-	if (current_item.type == ITEM_TYPE.OPTION) {
+	if (current_item.type == "option") {
 		options.select();
 		next();
 		return;
 	}
 	var next_item = chain.items[current_item_index + 1];
 	
-	if (next_item.type == ITEM_TYPE.IMAGE and !image_painter.animation_finished()) {
+	if (next_item.type == "image" and !image_painter.animation_finished()) {
 		return;
 	}
 	current_item_index++;

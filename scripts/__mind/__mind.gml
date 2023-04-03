@@ -46,6 +46,9 @@ function AnswerSymbol(_symbol, _mark) constructor {
 }
 
 function Answer(_concepts, _sentence) constructor {
+	if (typeof(_concepts) == "string") {
+		_concepts = string_split(_concepts, "/");
+	}
 	concepts = _concepts;
 	sentence = _sentence;
 }

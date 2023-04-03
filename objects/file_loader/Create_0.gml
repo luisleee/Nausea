@@ -1,1 +1,0 @@
-show_debug_message(read_json_file(working_directory + "/test.json"));

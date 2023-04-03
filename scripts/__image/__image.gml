@@ -221,5 +221,5 @@ function createImage(obj) {
 	var movs = array_map(obj.movements, function(mov) {
 		return createMovement(mov);
 	});
-	return new Image(obj.spr, obj.class, obj.posx, obj.posy, obj.comic, movs, obj.args);
+	return new Image(asset_get_index(obj.spr), obj.class, obj.posx, obj.posy, obj.comic, movs, obj.args);
 }

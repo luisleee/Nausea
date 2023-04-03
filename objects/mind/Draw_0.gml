@@ -98,14 +98,14 @@ if (now_hover_num != undefined and apa == 1 and data_recorder.mind_symbols_unloc
 			val: "val_desc"
 		};
 		if (this_mark == "no") {
-			var descs = split(hover_symbol.desc, "、");
+			var descs = string_split(hover_symbol.desc, "、");
 			for (var j = 0; j < array_length(descs); j++) {
 				draw_text_transformed(mouse_x + j * 60, mouse_y, descs[j], text_scale, text_scale, 0);
 			}
 		} else {
 			var col = get_ms_color(spr_ms_marks, i - 1);
 			draw_set_color(col);
-			var descs = split(variable_struct_get(hover_symbol, variable_struct_get(mark2desc, this_mark)), "、");
+			var descs = string_split(variable_struct_get(hover_symbol, variable_struct_get(mark2desc, this_mark)), "、");
 			for (var j = 0; j < array_length(descs); j++) {
 				if (descs[j] != "undefined") {
 					draw_text_transformed(mouse_x + j * 60, mouse_y + i * 60, descs[j], text_scale, text_scale, 0);

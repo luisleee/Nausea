@@ -36,6 +36,7 @@
   "IncludedFiles": [
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"test","CopyToMask":-1,"filePath":"datafiles",},
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"test.json","CopyToMask":3035426170322551022,"filePath":"datafiles",},
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"chains.json","CopyToMask":-1,"filePath":"datafiles",},
   ],
   "isEcma": false,
   "MetaData": {
@@ -59,7 +60,6 @@
     {"id":{"name":"spr_showcase_mask","path":"sprites/spr_showcase_mask/spr_showcase_mask.yy",},"order":21,},
     {"id":{"name":"get_person_portrait","path":"scripts/get_person_portrait/get_person_portrait.yy",},"order":7,},
     {"id":{"name":"spr_eyes_zzm_crazy","path":"sprites/spr_eyes_zzm_crazy/spr_eyes_zzm_crazy.yy",},"order":5,},
-    {"id":{"name":"split","path":"scripts/split/split.yy",},"order":11,},
     {"id":{"name":"snd_ost_birthday","path":"sounds/snd_ost_birthday/snd_ost_birthday.yy",},"order":12,},
     {"id":{"name":"fnt_default","path":"fonts/fnt_default/fnt_default.yy",},"order":0,},
     {"id":{"name":"spr_casio_list_up","path":"sprites/spr_casio_list_up/spr_casio_list_up.yy",},"order":19,},
@@ -141,7 +141,6 @@
     {"id":{"name":"spr_ms_void_placing","path":"sprites/spr_ms_void_placing/spr_ms_void_placing.yy",},"order":19,},
     {"id":{"name":"spr_option_black","path":"sprites/spr_option_black/spr_option_black.yy",},"order":6,},
     {"id":{"name":"snd_ost_mind","path":"sounds/snd_ost_mind/snd_ost_mind.yy",},"order":9,},
-    {"id":{"name":"file_loader","path":"objects/file_loader/file_loader.yy",},"order":11,},
     {"id":{"name":"snd_sfx_text","path":"sounds/snd_sfx_text/snd_sfx_text.yy",},"order":3,},
     {"id":{"name":"spr_rh_arrow_left","path":"sprites/spr_rh_arrow_left/spr_rh_arrow_left.yy",},"order":1,},
     {"id":{"name":"spr_frame_bed","path":"sprites/spr_frame_bed/spr_frame_bed.yy",},"order":12,},

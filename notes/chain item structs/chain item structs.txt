@@ -1,31 +1,31 @@
 DIALOG:
-	type: ITEM_TYPE.DIALOG,
+	type: "dialog",
 	speaker: "Me",
 	line: "blablabla",
 	emotion: 1, (index of emotion)
-	*mode_switch: ITEM_TYPE.MIND
+	*mode_switch: "mind"
 	
 	By inputing mode_switch, DIALOG item can switch the current mode of chain_player to other modes(now only MIND).
 
 IMAGE:
-	type: ITEM_TYPE.IMAGE,
+	type: "image",
 	add: ["g4"], (array of image_group names)
 	remove: ["bus"] (array of image_group names)
 	
 	For some reason, IMAGE item cannot be put in the first one of a chain by now.
 	
 MUSIC:
-	type: ITEM_TYPE.MUSIC,
+	type: "music",
 	piece: "birthday" (piece's name)
 
 OPTION:
-	type: ITEM_TYPE.OPTION,
+	type: "option",
 	question: "啊啊啊啊拿一张？", 
 	name: "opt_tissue", 
 	options: ["Yes", "No"] (array of option names)
 	
 TASK:
-	type: ITEM_TYPE.TASK,
+	type: "task",
 	name: "暴打年级主任",
 	*state: TASK_STATE.ACCOMPLISHED,
 	desc: "爽拉"
@@ -36,12 +36,12 @@ TASK:
 	
 
 MAP:
-	type: ITEM_TYPE.MAP,
+	type: "map",
 	map_name: "classroom_1",
 	pos: [10, 1]
 
 MIND:
-	type: ITEM_TYPE.MIND,
+	type: "mind",
 	question: "我该……怎么做？", 
 	answers: [
 		new Answer(["我", "无穷"], "我牛逼"),
@@ -53,7 +53,7 @@ MIND:
 	If <conclusion> is inputed, the mode switched back to DIALOG when the answer is judged.
 
 TRANSITION:
-	type: ITEM_TYPE.TRANSITION,
+	type: "transition",
 	pattern: "color_fade",
 	time: 60,
 	infos: {

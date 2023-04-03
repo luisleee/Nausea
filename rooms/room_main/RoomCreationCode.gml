@@ -1,5 +1,4 @@
 //Whatever how deep
-instance_create_depth(0, 0, 0, file_loader);
 instance_create_depth(0, 0, 0, music_player);
 instance_create_depth(0, 0, 0, data_recorder);
 instance_create_depth(0, 0, 0, chain_storage);

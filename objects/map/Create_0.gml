@@ -79,7 +79,7 @@ function get_distance(pos1, pos2) {
 }
 
 function str2map (str, sep_char) {	
-	var strs = split(str, sep_char);
+	var strs = string_split(str, sep_char);
 	var map_w = string_length(strs[0]);
 	var map_h = array_length(strs);
 

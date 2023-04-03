@@ -48,21 +48,11 @@ now_hover_num = undefined;
 show_self = false;
 apa = 0;
 
-question = "啊啊啊啊随便说点什么？";
+question = "";
 
-default_answer = "我不知道";
-answers = [
-	new Answer(["思维", "存在"], "思维与存在的关系问题"),
-	new Answer(["我", "存在", "生命"], "我以生命的形式存在"),
-	new Answer(["我", "观测", "物质"], "我观测世间存在的一切"),
-	new Answer(["思维", "存在", "辩证"], "唯物与唯心的辩证统一！"),
-	new Answer(["思维", "存在", "我"], "我思故我在"),
-	new Answer(["历史", "成长", "观测"], "以古鉴今"),
-	new Answer(["简单", "推理", "无穷"], "见微知著地了解世界运行的规律"),
-	new Answer(["有穷", "生命", "无穷"], "在有限的生命里创造无限的价值！"),
-	new Answer(["我", "推理", "无穷"], "我无所不知"),
-	new Answer(["", "", "", "", "", "", ""], "你是不是闲啊"),
-];
+default_answer = "";
+answers = [];
+
 function placement_initialize() {
 	max_concept_num = 0;
 	for (var i = 0; i < array_length(answers); i ++) {
@@ -215,7 +205,9 @@ function flash() {
 
 function set_answers(_default, _answers) {
 	default_answer = _default;
-	answers = _answers;
+	answers = array_map(_answers, function(ans){
+		return new Answer(ans.keywords, ans.answer);
+	});
 	judge_process = 0;
 	placement_initialize();
 }

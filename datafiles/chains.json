@@ -1,0 +1,246 @@
+{
+    "chains": [{
+        "id": "chain1",
+        "items": [{
+            "type": "dialog",
+            "speaker": "Brain",
+            "line": "（话说熵是……）",
+            "emotion": 0
+        },{
+            "type": "image",
+            
+            "add": [{
+                "class": "bedroom",
+                "spr": "spr_frame_shelf",
+                "comic": true,
+                "posx": 0,
+                "posy": 0,
+                "args": {
+                    "scale_x": 8,
+                    "scale_y": 8
+                },
+                "movements": [{
+                    "type": "zoom",
+                    "in": true
+                }, {
+                    "type": "no"
+                }, {
+                    "type": "zoom",
+                    "in": false
+                }]
+            }, {
+                "class": "bedroom",
+                "spr": "spr_frame_bed",
+                "comic": true,
+                "posx": 0,
+                "posy": 0,
+                "args": {
+                    "scale_x": 8,
+                    "scale_y": 8
+                },
+                "movements": [{
+                    "type": "zoom",
+                    "in": true
+                }, {
+                    "type": "no"
+                }, {
+                    "type": "zoom",
+                    "in": false
+                }]
+            }],
+            "remove": []
+        },{
+            "type": "dialog",
+            "speaker": "Brain",
+            "line": "（话说熵是……）",
+            "emotion": 0
+        },{
+            "type": "image",
+            "add": [{
+                "class": "bus",
+                "spr": "spr_frame_bus",
+                "comic": true,
+                "posx": 0,
+                "posy": 0,
+                "args": {
+                    "scale_x": 4,
+                    "scale_y": 4
+                },
+                "movements": [{
+                    "type": "parallel",
+                    "movements": [{
+                        "type": "zoom",
+                        "in": true
+                    }, {
+                        "type": "pingpong",
+                        "horizontal": false,
+                        "args": {
+                            "amplitude": 50,
+                            "period": 0.5,
+                            "init_phase": 0
+                        }
+                    }]
+                }, {
+                    "type": "pingpong",
+                    "horizontal": false,
+                    "args": {
+                        "amplitude": 50,
+                        "period": 0.5,
+                        "init_phase": 0
+                    }
+                }, {
+                    "type": "parallel",
+                    "movements": [{
+                        "type": "zoom",
+                        "in": false
+                    }, {
+                        "type": "pingpong",
+                        "horizontal": false,
+                        "args": {
+                            "amplitude": 50,
+                            "period": 0.5,
+                            "init_phase": 0
+                        }
+                    }]
+                }]
+            }],
+            "remove": ["bedroom"]
+        },{
+            "type": "dialog",
+            "speaker": "Brain",
+            "line": "（话说熵是……）",
+            "emotion": 0
+        },{
+            "type": "mind",
+            "question": "我^^是^^什^^么^^东^^西^^？",
+            "answers": [
+                {"keywords":"我/无穷", "answer":"我牛逼"},
+                {"keywords":"我/否定", "answer":"我是傻逼"}
+            ],
+            "default_answer": "我不知道"
+        },{
+            "type": "dialog",
+            "speaker": "Me",
+            "line": "你再想想",
+            "emotion": 0
+        },{
+            "type": "mind",
+            "question": "我该……怎么做？",
+            "answers": [
+                {"keywords":"我/无穷", "answer":"我牛逼"},
+                {"keywords":"我/否定", "answer":"我是傻逼"},
+                {"keywords":"我/生命/不可逆", "answer":"我的人生不能重来"}
+            ],
+            "default_answer": "我不知道",
+            "conclusion": true
+        }, {
+            "type": "dialog",
+            "speaker": "Zww",
+            "line":"谬矣！最近我在研究《易经》呢。来，我给你起一卦！",
+            "emotion": 0
+        }],
+        "next": {
+            "chain2" : {}
+        }
+    }, {
+        "id": "chain2",
+        "items": [{
+            "type": "dialog",
+            "speaker": "Me",
+            "line": "人活着哪有不疯的？硬撑罢了！人活着哪有不疯的？硬撑罢了！人活着哪有不疯的？硬撑罢了！彻底疯狂！彻底疯狂！彻底疯狂！彻底疯狂！彻底疯狂！",
+            "emotion": 0
+        },{
+            "type": "option",
+            "question": "彻底疯狂?",
+            "name": "opt1",
+            "options": ["Yes", "No"]
+        }],
+        "next": {
+            "br1": {"options": {"opt1": 0}},
+            "br2": {"options": {"opt1": 1}}
+        }
+    }, {
+        "id": "br1",
+        "items": [{
+            "type": "dialog",
+            "speaker": "Me",
+            "line": "对对对",
+            "emotion": 1
+        }],
+        "next": {
+            "chain3" : {}
+        }
+    }, {
+        "id": "br2",
+        "items": [{
+            "type": "dialog",
+            "speaker": "Me",
+            "line": "算了",
+            "emotion": 1
+        }],
+        "next": {
+            "chain3" : {}
+        }
+    }, {
+        "id": "chain3",
+        "items": [{
+            "type": "dialog",
+            "speaker": "Me",
+            "line": "第二条：「我国要构建集政治安全、国土安全、军事安全、经济安全、文化安全、社会安全、科技安全、网络安全、生态安全、资源安全、",
+            "emotion": 2
+        },{
+            "type": "transition",
+            "pattern": "color_fade",
+            "time": 60,
+            "infos": {
+                "color": [0, 0, 0]
+            }
+        },{
+            "type": "task",
+            "name": "暴打年级主任",
+            "desc": "我忍不了了哦哦哦哦哦"
+        }],
+        "next": {
+            "map_classroom1" : {}
+        }
+    }, {
+        "id": "map_classroom1",
+        "items": [{
+            "type": "map",
+            "map_name": "classroom_1",
+            "pos": [10, 1]
+        }],
+        "next": {
+            "chain1" : {}
+        }
+    }, {
+        "id": "keep_map",
+        "items": [{
+            "type": "map"
+        }],
+        "next": {
+            "chain1" : {}
+        }
+    }, {
+        "id": "paper",
+        "items": [{
+            "type": "dialog",
+            "speaker": "Me",
+            "line": "旁白酱的纸巾，上面有旁白酱的味道……嘿嘿",
+            "emotion": 0
+        },{
+            "type": "dialog",
+            "speaker": "Me",
+            "line": "想，想拿一张",
+            "emotion": 1
+        },{
+            "type": "option",
+            "question": "啊啊啊啊拿一张？",
+            "name": "opt_tissue",
+            "options": ["Yes", "No"]
+        }],
+        "next": {
+            "keep_map" : {}
+        }
+    }]
+}
