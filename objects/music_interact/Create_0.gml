@@ -1,3 +1,4 @@
+// todo: beautify and review and reconstruct something..
 enum RHYTHM_TRACK_MODES {
 	NOTE,
 	SHOW

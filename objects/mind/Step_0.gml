@@ -26,26 +26,24 @@ if not show_self {
 
 if (answer_mode) {
 	//scroll
-	var mouse_dir = mouse_wheel_up() - mouse_wheel_down();
-	var key_dir = keyboard_check(vk_up) - keyboard_check(vk_down);
-	var offset_max_h = showcase_height - surface_height;
-	var offset_min_h = -showcase_shadow_h;
-	var mouse_next_offset = showcase_scroll_offset - mouse_dir * mouse_scroll_spd;
-	var key_next_offset = showcase_scroll_offset - key_dir * keyboard_scroll_spd;
+	var next_offset = undefined;
 	if (mouse_in_surface()) {
-		if (is_in_interval(mouse_next_offset, offset_min_h, offset_max_h, false)) {
-			showcase_scroll_offset = mouse_next_offset;
-		} else {
-			showcase_scroll_offset = mouse_next_offset >= offset_max_h ? offset_max_h : offset_min_h;
-		}
+		var mouse_dir = mouse_wheel_up() - mouse_wheel_down();
+		next_offset = showcase_scroll_offset - mouse_dir * mouse_scroll_spd;
 	}
 	
 	if (keyboard_check(vk_up) or keyboard_check(vk_down)) {
-		if (is_in_interval(key_next_offset, offset_min_h, offset_max_h, false)) {
-			showcase_scroll_offset = key_next_offset;
-		} else {
-			showcase_scroll_offset = key_next_offset >= offset_max_h ? offset_max_h : offset_min_h;
-		}
+		var key_dir = keyboard_check(vk_up) - keyboard_check(vk_down);
+		next_offset = showcase_scroll_offset - key_dir * keyboard_scroll_spd;
+	}
+	
+	var offset_max_h = showcase_height - surface_height;
+	var offset_min_h = -showcase_shadow_h;
+	
+	if (!is_undefined(next_offset)) {
+		showcase_scroll_offset = next_offset;
+		showcase_scroll_offset = min(offset_max_h, showcase_scroll_offset);
+		showcase_scroll_offset = max(offset_min_h, showcase_scroll_offset);
 	}
 	
 	//placement position change
@@ -66,7 +64,9 @@ if (answer_mode) {
 			audio_play_sound(snd_sfx_ms_remove, 0, 0);
 		}
 	}
-	//determine if the answer is available
+	// todo: move into Answer#match
+	// todo: beautify
+	// determine if the answer is available
 	judge_display = default_answer;
 	for (var k = 0; k < array_length(answers); k++) {
 		var now_answer = "";
@@ -77,9 +77,9 @@ if (answer_mode) {
 				now_answer += "、" + add_desc;
 			}
 		}
-		var is_contained = true;
+		var contains_all = true;
 		for (var i = 0; i < array_length(answers[k].concepts); i++) {
-			is_contained *= string_pos("、" + string(answers[k].concepts[i]), now_answer);
+			contains_all *= string_pos("、" + string(answers[k].concepts[i]), now_answer);
 		}
 		
 		//get the number of used placements
@@ -94,13 +94,13 @@ if (answer_mode) {
 			not_abused = false;
 		}
 		//determining what will show as the final option
-		if (is_contained and not_abused) {
+		if (contains_all and not_abused) {
 			judge_display = answers[k].sentence;
 		} 
 	}
 	
-	//final judge
-	if(keyboard_check_pressed(ord("D")) and not judge_rising) {
+	// final judge
+	if (keyboard_check_pressed(ord("D")) and not judge_rising) {
 		judge_rising = true;
 		textbar.set_text("");
 		
@@ -108,14 +108,11 @@ if (answer_mode) {
 		
 }
 
-
-
-
-
+// todo: extract function
 if (judge_rising) {
 	if (judge_process < 1) {
 		judge_process += 0.025;
-		if(judge_process >= 1) { //once this rising reached its end
+		if (judge_process >= 1) { //once this rising reached its end
 			judge_rising = false;
 			judge_process = 0;
 			textbar.set_text(judge_display);

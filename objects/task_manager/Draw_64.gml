@@ -25,25 +25,18 @@ var scr_col = make_color_rgb(216, 228, 223);
 var uiscale = 0.0025 * gui_w;
 
 // move in or out
-var process = pos_y/gui_h;
+var process = pos_y / gui_h;
+var zoom_channel = animcurve_get_channel(ac_task_manager, 0);
+
 if (show_self) {
-	if (pos_y > 0) {
-		var zoom_channel = animcurve_get_channel(ac_task_manager, 0);
-		pos_y -= animcurve_channel_evaluate(zoom_channel, 1 - process);
-	} else if (pos_y < 0) {
-		pos_y = 0;
-	}
-}
-if (!show_self) {
-	if (pos_y < gui_h) {
-		var zoom_channel = animcurve_get_channel(ac_task_manager, 0);
-		pos_y += animcurve_channel_evaluate(zoom_channel, process);
-	} else if (pos_y > gui_h) {
-		pos_y = gui_h;
-	}
+	pos_y = max(0, pos_y - animcurve_channel_evaluate(zoom_channel, 1 - process));
+} else {
+	pos_y = min(gui_h, pos_y + animcurve_channel_evaluate(zoom_channel, process));
 }
 
 yoffset += pos_y;
+
+// todo: beautify, extract functions
 
 // cover whatever is behind me
 draw_init(fnt_default, c_black, "mc", (1 - process)/ 2);
@@ -84,14 +77,15 @@ draw_text_transformed(
 
 // draw task bar
 draw_set_font(fnt_default);
+
 for(var i = start_number; i < min(task_show_max + start_number, array_length(tasks)); i++) {
-	var text_scale_compressed = text_scale;
-	if (taskbar_w / string_width(tasks[i].name) < text_scale) {
-		text_scale_compressed = taskbar_w / string_width(tasks[i].name);
-	}
+	var task_name = tasks[i].name;
+
+	var text_scale_compressed = get_compressed_width(task_name, text_scale, taskbar_w);
+
 	var back_color = scr_col;
 	var front_color = text_col;
-	if(selected == i){
+	if (selected == i) {
 		back_color = text_col;
 		front_color = scr_col;
 	}
@@ -139,12 +133,11 @@ draw_sprite_stretched_ext(
 // draw the description bar
 draw_init(fnt_task_title, text_col, "tl", 1);
 var text_area_w = scr_w - taskbar_w - buffer - pixel_w;
-var text_scale_compressed = text_title_scale;
-var title_h = string_height("M") * text_title_scale;
 var selected_task = tasks[selected];
-if (text_area_w / string_width(selected_task.name) < text_title_scale) {
-	text_scale_compressed = text_area_w / string_width(selected_task.name);
-}
+
+var text_scale_compressed = get_compressed_width(selected_task.name, text_title_scale, text_area_w);
+var title_h = string_height("M") * text_title_scale;
+
 draw_text_transformed(
 	xoffset + taskbar_w + buffer,
 	yoffset + buffer,

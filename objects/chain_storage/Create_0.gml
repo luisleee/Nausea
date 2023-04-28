@@ -447,6 +447,7 @@ chains = [{
 	}
 }];
 
+// todo: validate json...
 function get_chain(name) {
 	var len = array_length(chains);
 	for (var i = 0; i < len; i++) {

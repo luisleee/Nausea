@@ -17,8 +17,6 @@ max_number_w = 6;
 max_number_h = ceil(symbol_number/max_number_w);
 
 
-
-
 //surface
 showcase_shadow_h = 80;
 surface_width = max_number_w * (symbol_w + sep_w) - sep_w;
@@ -102,67 +100,47 @@ part_type_speed(ms_particle, 2, 5, 0.1, 0);
 part_type_alpha3(ms_particle, 1, 1, 0);
 part_system_depth(ms_part_system, -999);
 
+function particle_on_direction(_x, _y, _direction) {
+	// _direction = "left" | "right" | "up" | "down"
+	var angles = {
+		right: 0,
+		up: 90,
+		left: 180,
+		down: 270,
+	};
+	var angle = variable_struct_get(angles, _direction);
+	var coefs = {
+		right: [1, 1, 0, 1],
+		up: [0, 1, 0, 0],
+		left: [0, 0, 0, 1],
+		down: [0, 1, 1, 1],
+	};
+	var c = variable_struct_get(coefs, _direction);
+	
+	part_type_direction(ms_particle, angle, angle, 0, 0);
+	part_emitter_region(
+		ms_part_system,
+		ms_part_emitter,
+		_x + now_placing_num * (symbol_w + answer_sep_w) + symbol_w * c[0],
+		_x + now_placing_num * (symbol_w + answer_sep_w) + symbol_w * c[1],
+		_y + symbol_h * c[2],
+		_y + symbol_h * c[3],
+		ps_shape_rectangle,
+		ps_distr_linear
+	);
+	part_emitter_burst(ms_part_system, ms_part_emitter, ms_particle, 10);
+}
+
 function display_particle(col) {
 	part_type_color1(ms_particle, col);
 	var xori = (room_width - max_concept_num * (symbol_w + answer_sep_w) + answer_sep_w)/2;
 	var yori = answer_place_y;
 	
-	// todo: extract function
-	//up
-	part_type_direction(ms_particle, 90, 90, 0, 0);
-	part_emitter_region(
-		ms_part_system,
-		ms_part_emitter,
-		xori + now_placing_num * (symbol_w + answer_sep_w),
-		xori + now_placing_num * (symbol_w + answer_sep_w) + symbol_w,
-		yori,
-		yori,
-		ps_shape_rectangle,
-		ps_distr_linear
-	);
-	part_emitter_burst(ms_part_system, ms_part_emitter, ms_particle, 10);
-	
-	//down
-	part_type_direction(ms_particle, 270, 270, 0, 0);
-	part_emitter_region(
-		ms_part_system,
-		ms_part_emitter,
-		xori + now_placing_num * (symbol_w + answer_sep_w),
-		xori + now_placing_num * (symbol_w + answer_sep_w) + symbol_w,
-		yori + symbol_h,
-		yori + symbol_h,
-		ps_shape_rectangle,
-		ps_distr_linear
-	);
-	part_emitter_burst(ms_part_system, ms_part_emitter, ms_particle, 10);
-	
-	//left
-	part_type_direction(ms_particle, 180, 180, 0, 0);
-	part_emitter_region(
-		ms_part_system,
-		ms_part_emitter,
-		xori + now_placing_num * (symbol_w + answer_sep_w),
-		xori + now_placing_num * (symbol_w + answer_sep_w),
-		yori,
-		yori + symbol_h,
-		ps_shape_rectangle,
-		ps_distr_linear
-	);
-	part_emitter_burst(ms_part_system, ms_part_emitter, ms_particle, 10);
-	
-	//right
-	part_type_direction(ms_particle, 0, 0, 0, 0);
-	part_emitter_region(
-		ms_part_system,
-		ms_part_emitter,
-		xori + now_placing_num * (symbol_w + answer_sep_w) + symbol_w,
-		xori + now_placing_num * (symbol_w + answer_sep_w) + symbol_w,
-		yori,
-		yori + symbol_h,
-		ps_shape_rectangle,
-		ps_distr_linear
-	);
-	part_emitter_burst(ms_part_system, ms_part_emitter, ms_particle, 10);
+	particle_on_direction(xori, yori, "right");
+	particle_on_direction(xori, yori, "up");
+	particle_on_direction(xori, yori, "left");
+	particle_on_direction(xori, yori, "down");
+
 }
 
 function get_ms_color(spr, index) {
@@ -226,3 +204,30 @@ function exit_answer_mode() {
 }
 
 mind_flash_apa = 0;
+
+function is_hovering_on() {
+	return now_hover_num != undefined and apa == 1 and data_recorder.symbol_unlocked(now_hover_num);
+}
+
+function play_sound_of_mark(mark) {
+	var sounds = {
+		no: snd_sfx_ms_remove,
+		un: snd_sfx_ms_un,
+		re: snd_sfx_ms_re,
+		val: snd_sfx_ms_val,
+	}
+	var snd = variable_struct_get(sounds, mark);
+	audio_play_sound(snd, 0, 0);
+}
+
+function draw_ith_mask(i) {
+	var mark2index = {
+		no: 0,
+		un: 1,
+		re: 2,
+		val: 3,
+	}
+	var ms_mask_index = variable_struct_get(mark2index, placement[i].mark);
+			
+	draw_answer_symbol(spr_ms_masks, ms_mask_index, i);
+}

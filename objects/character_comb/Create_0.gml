@@ -5,7 +5,7 @@ text_scale = 3;
 time = 0;
 
 
-optional_char = split("但,感,别,经,时,隔,江,犹,唱,后,庭,花",",");
+optional_char = string_split("但,感,别,经,时,隔,江,犹,唱,后,庭,花",",");
 correct_str = "隔江犹唱后庭花";
 opt_char_pos = array_create(array_length(optional_char));
 opt_char_info = array_create(array_length(optional_char));

@@ -18,10 +18,11 @@ function get_selection(option_name) {
 }
 
 function meets_requirement(requirement) {
-	assert("requirement is struct",typeof(requirement) == "struct");
+	assert("requirement is struct", typeof(requirement) == "struct");
 	if (requirement == {}) {
 		return true;	
 	}
+
 	if (variable_struct_exists(requirement, "options")) {
 		var opts = requirement.options;
 		var keys = variable_struct_get_names(opts);
@@ -56,13 +57,16 @@ global.mind_symbols = [
 ];
 
 ms_marks = ["no", "un", "re", "val"];
-mind_symbols_unlocked = [];
+mind_symbols_unlocked = array_create(array_length(global.mind_symbols), false);
+mind_symbols_unlocked[0]=true;
+mind_symbols_unlocked[1]=true;
+mind_symbols_unlocked[2]=true;
 
-for (var i = 0; i < array_length(global.mind_symbols); i++) {
-	mind_symbols_unlocked[i] = true;
-}
 
-function ms_spr2ms(_spr) {
+function get_symbol(_spr) {
+	if (typeof(_spr) == "number") {
+		return global.mind_symbols[_spr];
+	}
 	for (var i = 0; i < array_length(global.mind_symbols); i++) {
 		if (global.mind_symbols[i].spr == _spr) {
 			return global.mind_symbols[i];
@@ -77,4 +81,8 @@ function unlock_symbol(_spr) {
 			mind_symbols_unlocked[i] = true;
 		}
 	}
+}
+
+function symbol_unlocked(_num) {
+	return mind_symbols_unlocked[_num];	
 }
