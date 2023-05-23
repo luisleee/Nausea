@@ -37,8 +37,6 @@
   ],
   "IncludedFiles": [
     {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"chains.json","CopyToMask":-1,"filePath":"datafiles",},
-    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"test","CopyToMask":3035426170322551022,"filePath":"datafiles",},
-    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"test.json","CopyToMask":-1,"filePath":"datafiles",},
   ],
   "isEcma": false,
   "LibraryEmitters": [],

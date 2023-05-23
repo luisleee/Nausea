@@ -29,12 +29,12 @@ movement_lyrics = function(_name, _details) {
 		lyric_sound = _details.sound;
 		
 		for (var i = 0; i < array_length(lyrics); i++) {
-			lyrics[i] = split(lyrics[i], " ");
+			lyrics[i] = string_split(lyrics[i], " ");
 			for (var j = 0; j < array_length(lyrics[i]); j++) {
 				lyrics[i][j] += " ";
 			}
 			for (var j = 0; j < array_length(lyrics[i]); j++) {
-				var sep_words = split(lyrics[i][j], "+");
+				var sep_words = string_split(lyrics[i][j], "+");
 				if (array_length(sep_words) > 1) {
 					lyrics[i][j] = sep_words[0];
 					for (var n = 1; n < array_length(sep_words); n++) {

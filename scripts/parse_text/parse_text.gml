@@ -12,10 +12,10 @@ function parse_tag(tag) {
 		black: c_black,
 	}
 	
-	var params = split(tag, ",");
+	var params = string_split(tag, ",");
 	var obj = {};
 	for(var i = 0; i < array_length(params); i++) {
-		var vals = split(params[i], "=");
+		var vals = string_split(params[i], "=");
 		var key = vals[0];
 		var val = vals[1];
 		if (key == "color") {
