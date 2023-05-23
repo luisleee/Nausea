@@ -82,6 +82,7 @@
     {"name":"spr_ms_hexagram","order":20,"path":"sprites/spr_ms_hexagram/spr_ms_hexagram.yy",},
     {"name":"fnt_task_title","order":2,"path":"fonts/fnt_task_title/fnt_task_title.yy",},
     {"name":"get_remainder","order":12,"path":"scripts/get_remainder/get_remainder.yy",},
+    {"name":"text_fill_screen","order":27,"path":"scripts/text_fill_screen/text_fill_screen.yy",},
     {"name":"clone","order":9,"path":"scripts/clone/clone.yy",},
     {"name":"get_halt_time","order":4,"path":"scripts/get_halt_time/get_halt_time.yy",},
     {"name":"spr_ms_dot","order":2,"path":"sprites/spr_ms_dot/spr_ms_dot.yy",},

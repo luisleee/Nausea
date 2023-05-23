@@ -26,3 +26,9 @@ function FloatTextInfo(_range, _spd, _init_phase) constructor {
 	spd = _spd;
 	init_phase = _init_phase;
 }
+
+function ScheduleBlock(_name, _duration, _details) constructor {
+	name = _name;
+	duration = _duration;
+	details = _details;
+}

@@ -16,6 +16,18 @@ symbol_number = array_length(global.mind_symbols);
 max_number_w = 6;
 max_number_h = ceil(symbol_number/max_number_w);
 
+des_spd = array_create(6, 1);
+des_y = array_create(6, 0);
+
+function des_reset() {
+	for (var i = 0; i < 6; i++) {
+		des_spd[i] = random_range_multi([[-10, -2], [2, 10]]);
+		des_y[i] = random_range(-1000, 10000);
+	}
+	
+}
+
+des_reset();
 
 //surface
 showcase_shadow_h = 80;

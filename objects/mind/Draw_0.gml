@@ -34,6 +34,10 @@ for (var i = 0; i < symbol_number; i++) {
 		}
 	
 	}
+	
+
+
+
 	//draw the symbols
 	draw_set_alpha(apa);
 	
@@ -147,3 +151,24 @@ if (answer_mode) {
 	);
 }
 
+//Draw the Descriptions
+if (now_hover_num != undefined and apa == 1 and data_recorder.mind_symbols_unlocked[now_hover_num]) {
+	draw_init(fnt_task_title, c_white, "tl", 1);
+	var hover_symbol = global.mind_symbols[now_hover_num];
+
+	var raw_text = hover_symbol.full_desc();
+	raw_text = string_wrap(raw_text, 0, 4, "\n");
+	var show_text = text_fill_screen(raw_text, text_scale, display_h, "v");
+	for (var i = 0; i < 6; i ++) {
+		draw_text_transformed(display_w/7 * (i + 1) - 50, des_y[i], show_text, text_scale * 2, text_scale * 2, 0);
+		des_y[i] += des_spd[i];
+		if (des_y[i] > 0) {
+			des_y[i] -= string_height(raw_text) * text_scale * 2;
+		}
+		if (des_y[i] + string_height(show_text) * text_scale*2 < display_h) {
+			des_y[i] += string_height(raw_text) * text_scale * 2;
+		}
+		//description_info[i].yy += description_info[i].spd;
+	}
+	
+}

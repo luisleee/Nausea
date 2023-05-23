@@ -110,6 +110,7 @@
     {"id":{"name":"spr_ms_hexagram","path":"sprites/spr_ms_hexagram/spr_ms_hexagram.yy",},},
     {"id":{"name":"fnt_task_title","path":"fonts/fnt_task_title/fnt_task_title.yy",},},
     {"id":{"name":"get_remainder","path":"scripts/get_remainder/get_remainder.yy",},},
+    {"id":{"name":"text_fill_screen","path":"scripts/text_fill_screen/text_fill_screen.yy",},},
     {"id":{"name":"spr_map_exp_F1_physics","path":"sprites/spr_map_exp_F1_physics/spr_map_exp_F1_physics.yy",},},
     {"id":{"name":"clone","path":"scripts/clone/clone.yy",},},
     {"id":{"name":"get_halt_time","path":"scripts/get_halt_time/get_halt_time.yy",},},
@@ -186,8 +187,8 @@
     {"id":{"name":"room_main","path":"rooms/room_main/room_main.yy",},},
   ],
   "RoomOrderNodes": [
-    {"roomId":{"name":"rm_test","path":"rooms/rm_test/rm_test.yy",},},
     {"roomId":{"name":"room_main","path":"rooms/room_main/room_main.yy",},},
+    {"roomId":{"name":"rm_test","path":"rooms/rm_test/rm_test.yy",},},
   ],
   "TextureGroups": [
     {"resourceType":"GMTextureGroup","resourceVersion":"1.3","name":"Default","autocrop":true,"border":2,"compressFormat":"bz2","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"targets":-1,},
