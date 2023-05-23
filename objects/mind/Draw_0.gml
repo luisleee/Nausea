@@ -4,6 +4,7 @@ var text_scale = 3.5/1600 * display_w;
 
 draw_init(fnt_default, c_white, "mc", 1);
 
+var last_hover_num = now_hover_num;
 now_hover_num = undefined;
 
 if (!surface_exists(showcase_surface)) {
@@ -31,11 +32,14 @@ for (var i = 0; i < symbol_number; i++) {
 			y + yoffset + symbol_h
 		)) {
 			now_hover_num = i;
+			if (now_hover_num != last_hover_num) {
+				des_reset();
+			}
 		}
 	
 	}
 	
-
+	
 
 
 	//draw the symbols
@@ -156,11 +160,43 @@ if (now_hover_num != undefined and apa == 1 and data_recorder.mind_symbols_unloc
 	draw_init(fnt_task_title, c_white, "tl", 1);
 	var hover_symbol = global.mind_symbols[now_hover_num];
 
-	var raw_text = hover_symbol.full_desc();
+	var raw_text = hover_symbol.wordsonly_desc();
+	
+	
 	raw_text = string_wrap(raw_text, 0, 4, "\n");
+	raw_text = string_delete(raw_text, 1, 1);
+	raw_text = string_replace_all(raw_text, " ", "\n");
+	
+	var raw_desc_words = string_split(raw_text, "\n\n");
+	var desc_words = string_split(raw_text, "\n\n");
+	
 	var show_text = text_fill_screen(raw_text, text_scale, display_h, "v");
-	for (var i = 0; i < 6; i ++) {
-		draw_text_transformed(display_w/7 * (i + 1) - 50, des_y[i], show_text, text_scale * 2, text_scale * 2, 0);
+	for (var i = 0; i < text_fill_screen_num(raw_text, text_scale, display_h, "v"); i ++) {
+		desc_words = array_concat(desc_words, raw_desc_words);
+	}
+	
+	show_debug_message(desc_words)
+	
+	for (var i = 0; i < des_column; i ++) {
+		draw_set_color(c_lime)
+		draw_text_transformed(display_w/(des_column) * (i), des_y[i], show_text, text_scale * 2, text_scale * 2, 0);
+		draw_set_color(c_red)
+		var y_drawn = 0;
+		
+		
+		for (var j = 0; j < array_length(desc_words); j++) {
+			draw_text_transformed(
+				display_w/(des_column) * (i),
+				des_y[i] + y_drawn,
+				desc_words[j],
+				text_scale * 2,
+				text_scale * 2,
+				0
+			);
+			y_drawn += string_height(desc_words[j] + "\n ") * text_scale * 2;
+		}
+			
+		
 		des_y[i] += des_spd[i];
 		if (des_y[i] > 0) {
 			des_y[i] -= string_height(raw_text) * text_scale * 2;

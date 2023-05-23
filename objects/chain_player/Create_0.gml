@@ -90,7 +90,7 @@ function display_current_item() {
 	
 	textbar.symbol_mode = false;
 	// todo: use classes
-	if (current_item.type == "dialog") {
+	if (current_item.type == ITEM_TYPE.DIALOG) {
 		textbar.set_text(current_item.line);
 		textbar.set_name(get_person_name(current_item.speaker));
 		textbar.set_portrait(get_person_portrait(current_item.speaker, current_item.emotion));

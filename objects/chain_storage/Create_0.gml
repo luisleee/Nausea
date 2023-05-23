@@ -239,7 +239,7 @@ var chain3_items = [{
 		}],
 	}],
 	remove: []
-},{
+},/*{
 	type: ITEM_TYPE.DIALOG,
 	speaker: "Me",
 	line: "（又能做点啥，我）",
@@ -254,7 +254,7 @@ var chain3_items = [{
 	speaker: "Me",
 	line: "（晃得我晕得慌）",
 	emotion: 0
-},{
+},*/{
 	type: ITEM_TYPE.MIND,
 	question: "这个游戏的核心内容是什么？",
 	answers: [

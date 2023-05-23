@@ -18,10 +18,11 @@ max_number_h = ceil(symbol_number/max_number_w);
 
 des_spd = array_create(6, 1);
 des_y = array_create(6, 0);
+des_column = 8;
 
 function des_reset() {
-	for (var i = 0; i < 6; i++) {
-		des_spd[i] = random_range_multi([[-10, -2], [2, 10]]);
+	for (var i = 0; i < des_column; i++) {
+		des_spd[i] = random_range_multi([[-7, -2], [2, 7]]);
 		des_y[i] = random_range(-1000, 10000);
 	}
 	

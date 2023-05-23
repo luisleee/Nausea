@@ -12,3 +12,23 @@ function text_fill_screen(str, str_scale, scr_l, mode){
 	}
 	return filled_str;
 }
+
+
+function text_fill_screen_num(str, str_scale, scr_l, mode){
+	filled_str = str;
+	var n = 1;
+	if mode == "v" {
+		while(string_height(filled_str) * str_scale < scr_l * 2) {
+			filled_str += "\n" + str;
+			n ++;
+		}
+	}
+	if mode == "h" {
+		while(string_width(filled_str) * str_scale < scr_l * 2) {
+			filled_str += " " + str;
+			n++;
+		}
+	}
+	return n;
+}
+
