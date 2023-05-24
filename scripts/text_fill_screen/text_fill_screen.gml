@@ -1,8 +1,8 @@
 function text_fill_screen(str, str_scale, scr_l, mode){
-	filled_str = str;
+	var filled_str = str;
 	if mode == "v" {
 		while(string_height(filled_str) * str_scale < scr_l * 2) {
-			filled_str += "\n" + str;
+			filled_str += "\n\n" + str;
 		}
 	}
 	if mode == "h" {
@@ -15,11 +15,11 @@ function text_fill_screen(str, str_scale, scr_l, mode){
 
 
 function text_fill_screen_num(str, str_scale, scr_l, mode){
-	filled_str = str;
+	var filled_str = str;
 	var n = 1;
 	if mode == "v" {
 		while(string_height(filled_str) * str_scale < scr_l * 2) {
-			filled_str += "\n" + str;
+			filled_str += "\n\n" + str;
 			n ++;
 		}
 	}

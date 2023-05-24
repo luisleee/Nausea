@@ -127,3 +127,5 @@ if (judge_rising) {
 		}
 	}
 }
+
+des_t ++;

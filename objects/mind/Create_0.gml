@@ -16,14 +16,23 @@ symbol_number = array_length(global.mind_symbols);
 max_number_w = 6;
 max_number_h = ceil(symbol_number/max_number_w);
 
-des_spd = array_create(6, 1);
-des_y = array_create(6, 0);
+
 des_column = 8;
+des_spd = array_create(des_column, 1);
+des_y = array_create(des_column, 0);
+des_apa_offset = array_create(des_column, 0);
+des_t = 0;
 
 function des_reset() {
+	var a = choose(0, 1);
 	for (var i = 0; i < des_column; i++) {
-		des_spd[i] = random_range_multi([[-7, -2], [2, 7]]);
+		des_spd[i] = random_range(1, 6);
+		if (i %2 == a) {
+			des_spd[i] = -des_spd[i];
+		} 
+		// random_range_multi([[-7, -2], [2, 7]]);
 		des_y[i] = random_range(-1000, 10000);
+		des_apa_offset[i] = random_range(-pi, pi);
 	}
 	
 }
