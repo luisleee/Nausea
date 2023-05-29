@@ -27,3 +27,15 @@ function RhythmShowInfo (_movement, _keyframes, _details) constructor {
 	keyframes = _keyframes;
 	details = _details;
 }
+
+function SnowflakeInfo (_keyframes, _start_pos, _end_pos) constructor {
+	kfs = _keyframes;
+	last_frame = array_last(kfs);
+	start_pos = _start_pos;
+	end_pos = _end_pos;
+	petal_num = array_length(_keyframes);
+	now_petal_num = petal_num;
+	randomize();
+	init_rot = random_range(0, 360);
+	rot_spd = random_range_multi([[-2, 0], [0, 2]]);
+}

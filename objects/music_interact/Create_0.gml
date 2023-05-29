@@ -1,3 +1,4 @@
+// todo: beautify and review and reconstruct something..
 enum RHYTHM_TRACK_MODES {
 	NOTE,
 	SHOW
@@ -28,12 +29,12 @@ movement_lyrics = function(_name, _details) {
 		lyric_sound = _details.sound;
 		
 		for (var i = 0; i < array_length(lyrics); i++) {
-			lyrics[i] = string_split(lyrics[i], " ");
+			lyrics[i] = split(lyrics[i], " ");
 			for (var j = 0; j < array_length(lyrics[i]); j++) {
 				lyrics[i][j] += " ";
 			}
 			for (var j = 0; j < array_length(lyrics[i]); j++) {
-				var sep_words = string_split(lyrics[i][j], "+");
+				var sep_words = split(lyrics[i][j], "+");
 				if (array_length(sep_words) > 1) {
 					lyrics[i][j] = sep_words[0];
 					for (var n = 1; n < array_length(sep_words); n++) {
@@ -79,6 +80,68 @@ movement_lyrics = function(_name, _details) {
 		w += string_width(lyrics[lyric_page][i]) * text_scale;
 	}
 }
+movement_snowflakes = function(_name, _details) {
+	//Create
+	if (event_type == ev_create) {
+		snowflakes = _details.snowflakes;
+		snowflake_kf_num = array_create(array_length(snowflakes), 0);
+		petal_num = 6;
+		now_petal_num = petal_num;
+		snowflake_rot_off = 0;
+		
+	}
+	
+	//Step
+	var now_time = current_time - start_time;
+	var track_num = name2track(_name);
+	var note_time = tracks[track_num].keyframes[keyframe_num[track_num]] - relative_start;
+
+	
+	var kn = keyframe_num[track_num];
+	var keyf = tracks[track_num].keyframes[kn];
+	
+	snowflake_rot_off ++;
+	
+	/*if (keyboard_check_pressed(vk_space)) {
+		if (now_petal_num > 0) {
+			now_petal_num --;
+		}
+	}*/
+	if (now_time >= note_time) {
+		if (keyframe_num[track_num] < array_length(tracks[track_num].keyframes) - 1) {
+			keyframe_num[track_num] ++;
+		}
+	}
+	for (var a = 0; a < array_length(tracks[track_num].keyframes); a ++) {
+		if (now_time >= snowflakes[a].kfs[a] - relative_start) {
+			snowflake_kf_num[a] ++;
+			snowflakes[a].now_petal_num --;
+		}
+	}
+	
+	
+	//draw
+	draw_init(fnt_default, c_white, "tl", 1);
+	
+	for (var a = 0; a < kn; a ++) {
+		//if (snowflakes[a].last_frame < keyf) {
+			for (var i = 0; i < snowflakes[a].petal_num; i ++) {
+				draw_sprite_ext(
+					spr_snowflake_part,
+					0,
+					snowflakes[a].start_pos[0],
+					snowflakes[a].start_pos[1],
+					1,
+					1,
+					360/petal_num * i + snowflake_rot_off + snowflakes[a].init_rot,
+					c_white,
+					i + 1 <= snowflakes[a].now_petal_num
+				)
+			}
+		//}
+	}
+	
+}
 movement_bike = function(_name, _details) {
 	//Create
 	if (event_type == ev_create) {
@@ -121,7 +184,9 @@ movement_bike = function(_name, _details) {
 		if (delta_rot == 0) {
 			bike_rot += bike_rot_spd/2 * rot_dir;
 			if (is_in_interval(back_xoff - back_spd/2 * rot_dir, xoff_max[0], xoff_max[1], true)) {
-				back_xoff -= back_spd/2 * rot_dir;
+				if (!is_in_interval(back_xoff, xoff_max[1]/2 - 10, xoff_max[1]/2 + 10, true)) {
+					back_xoff -= back_spd/2 * rot_dir;
+				}
 			}
 		}
 		
@@ -232,6 +297,20 @@ tracks = [
 					"朝+阳+北+路+怎+么+走？"
 				],
 				sound: snd_sfx_text
+			}
+		)
+	),
+	new RhythmTrack(
+		RHYTHM_TRACK_MODES.SHOW,
+		"snowflakes",
+		new RhythmShowInfo(
+			movement_snowflakes,
+			[4000,  //2897,
+			],
+			{
+				snowflakes: [
+					new SnowflakeInfo([5000, 6000, 7000, 8000, 9000, 10000], [100, 100], [100, 700]),
+				]
 			}
 		)
 	)

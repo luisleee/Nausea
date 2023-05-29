@@ -33,6 +33,13 @@ function MindSymbol(_spr, _desc, _other_desc) constructor {
 			return marked_desc(mk) != undefined;
 		});
 	}
+	
+	static function next_available_mark(this_mark) {
+		var marks = available_marks();		
+		var idx = array_find_item(marks, this_mark);
+		var _len = array_length(marks);
+		return marks[(idx + 1) % _len];
+	}
 }
 
 function AnswerSymbol(_symbol, _mark) constructor {
@@ -46,9 +53,7 @@ function AnswerSymbol(_symbol, _mark) constructor {
 }
 
 function Answer(_concepts, _sentence) constructor {
-	if (typeof(_concepts) == "string") {
-		_concepts = string_split(_concepts, "/");
-	}
 	concepts = _concepts;
 	sentence = _sentence;
 }
+// todo: answer.match

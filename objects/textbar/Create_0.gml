@@ -72,7 +72,7 @@ function set_portrait(_portrait) {
 }
 
 function set_symbol(_spr) {
-	symbol_unlock = data_recorder.ms_spr2ms(_spr);
+	symbol_unlock = data_recorder.get_symbol(_spr);
 	symbol_show_process = 0;
 	audio_play_sound(snd_sfx_ms_gain, 0, 0);
 }

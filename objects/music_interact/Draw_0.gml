@@ -14,6 +14,9 @@ draw_rectangle(0, dis_h/2 - 0.75 * judgement_area[1], dis_w, dis_h/2 + 0.75 * ju
 draw_set_color(c_lime);
 draw_rectangle(0, dis_h/2 - 0.75 * judgement_area[0], dis_w, dis_h/2 + 0.75 * judgement_area[0], 0);
 
+draw_set_alpha(1);
+draw_set_color(c_lime);
+draw_line(0, dis_h/2, dis_w, dis_h/2);
 
 for (var track_num = 0; track_num < array_length(tracks); track_num++) {
 	if (tracks[track_num].track_mode == RHYTHM_TRACK_MODES.NOTE) {

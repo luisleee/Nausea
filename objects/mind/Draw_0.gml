@@ -37,7 +37,7 @@ for (var i = 0; i < symbol_number; i++) {
 	//draw the symbols
 	draw_set_alpha(apa);
 	
-	if (data_recorder.mind_symbols_unlocked[i]) {
+	if (data_recorder.symbol_unlocked(i)) {
 		draw_symbol(spr_ms_background, 0, xoffset, yoffset);
 		draw_symbol(this_symbol.spr, 0, xoffset, yoffset);
 		draw_symbol(spr_ms_frame, 0, xoffset, yoffset);
@@ -80,61 +80,25 @@ if not show_self {
 
 
 // draw the hovering one's description
-// todo: extract functions
 
-
-if (now_hover_num != undefined and apa == 1 and data_recorder.mind_symbols_unlocked[now_hover_num]) {
+if (is_hovering_on()) {
 	draw_init(fnt_default, c_white, "mc", 1);
-	var hover_symbol = global.mind_symbols[now_hover_num];
+	var hover_symbol = data_recorder.get_symbol(now_hover_num);
 
 	var show_text = hover_symbol.full_desc();
 	draw_text_transformed(mouse_x, mouse_y, show_text, text_scale, text_scale, 0);
-/*	for (var i = 0; i < array_length(data_recorder.ms_marks); i++) {
-		var this_mark = data_recorder.ms_marks[i];
-		var mark2desc = {
-			no: "desc",
-			un: "un_desc",
-			re: "re_desc",
-			val: "val_desc"
-		};
-		if (this_mark == "no") {
-			var descs = string_split(hover_symbol.desc, "、");
-			for (var j = 0; j < array_length(descs); j++) {
-				draw_text_transformed(mouse_x + j * 60, mouse_y, descs[j], text_scale, text_scale, 0);
-			}
-		} else {
-			var col = get_ms_color(spr_ms_marks, i - 1);
-			draw_set_color(col);
-			var descs = string_split(variable_struct_get(hover_symbol, variable_struct_get(mark2desc, this_mark)), "、");
-			for (var j = 0; j < array_length(descs); j++) {
-				if (descs[j] != "undefined") {
-					draw_text_transformed(mouse_x + j * 60, mouse_y + i * 60, descs[j], text_scale, text_scale, 0);
-				}
-			}
-			
-		}
-	}
-	*/
 	
-	//add the hovering one if pressed
+	// add the hovering one if pressed
 	if (mouse_check_button_pressed(mb_left)) {
 		var now_placement = placement[now_placing_num];
 		if (!is_undefined(now_placement) && now_placement.spr == hover_symbol.spr) {
+
 			var available_marks = now_placement.symbol.available_marks();
-			var _len = array_length(available_marks);
 			if (array_length(available_marks) != 1) {
-				var idx = array_find_item(available_marks, now_placement.mark);
-				var next_mark = available_marks[(idx + 1) % _len];
+				var next_mark = now_placement.symbol.next_available_mark(now_placement.mark);
 				now_placement.mark = next_mark;
 				
-				var sounds = {
-					no: snd_sfx_ms_remove,
-					un: snd_sfx_ms_un,
-					re: snd_sfx_ms_re,
-					val: snd_sfx_ms_val,
-				}
-				var snd = variable_struct_get(sounds, next_mark);
-				audio_play_sound(snd, 0, 0);
+				play_sound_of_mark(next_mark);
 			}
 		} else {
 			placement[now_placing_num] = new AnswerSymbol(hover_symbol, "no");
@@ -158,15 +122,7 @@ if (answer_mode) {
 			draw_answer_symbol(spr_ms_background, 0, i);
 			draw_answer_symbol(placement[i].spr, 0, i);
 			
-			var mark2index = {
-				no: 0,
-				un: 1,
-				re: 2,
-				val: 3,
-			}
-			var ms_mask_index = variable_struct_get(mark2index, placement[i].mark);
-			
-			draw_answer_symbol(spr_ms_masks, ms_mask_index, i);
+			draw_ith_mask(i);
 			draw_answer_symbol(spr_ms_frame, 0, i);
 		}
 		
