@@ -29,7 +29,6 @@ function meets_requirement(requirement) {
 
 		for (var i = 0; i < array_length(keys); i++) {
 			var key = keys[i];
-			show_debug_message(variable_struct_get(opts, key))
 			if (get_selection(key) != variable_struct_get(opts, key)) {
 				return false;	
 			}

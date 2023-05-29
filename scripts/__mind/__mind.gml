@@ -20,6 +20,17 @@ function MindSymbol(_spr, _desc, _other_desc) constructor {
 		return array_join(descs, "\n");
 	}
 	
+	static function wordsonly_desc() {
+		var marks = available_marks();
+		var descs = array_map(marks, function(mk) {
+			return marked_desc(mk);
+		});
+		var re_d = array_join(descs, " ");
+		re_d = string_replace_all(re_d, "、", " ");
+		return re_d;
+		
+	}
+	
 	static function marked_desc(mark) {
 		if (mark == "no") {
 			return desc;	

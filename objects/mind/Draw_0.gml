@@ -4,6 +4,7 @@ var text_scale = 3.5/1600 * display_w;
 
 draw_init(fnt_default, c_white, "mc", 1);
 
+var last_hover_num = now_hover_num;
 now_hover_num = undefined;
 
 if (!surface_exists(showcase_surface)) {
@@ -31,9 +32,16 @@ for (var i = 0; i < symbol_number; i++) {
 			y + yoffset + symbol_h
 		)) {
 			now_hover_num = i;
+			if (now_hover_num != last_hover_num) {
+				des_reset();
+			}
 		}
 	
 	}
+	
+	
+
+
 	//draw the symbols
 	draw_set_alpha(apa);
 	
@@ -70,7 +78,7 @@ draw_sprite_stretched(spr_showcase_mask, 0, 0, surface_height, surface_width, sh
 
 gpu_set_blendmode(bm_normal);
 surface_reset_target();
-draw_surface(showcase_surface, x, y);
+
 
 
 
@@ -79,15 +87,78 @@ if not show_self {
 }
 
 
-// draw the hovering one's description
+//Draw the Descriptions
+var desc_scale = text_scale;
+
+if (is_hovering_on()) {
+	draw_init(fnt_mind_desc, c_white, "tl", 1);
+	var hover_symbol = global.mind_symbols[now_hover_num];
+
+	var raw_text = hover_symbol.wordsonly_desc();
+	var desc_words_hor = string_split(raw_text, " ");
+	raw_text = string_gap_insert(raw_text, "\n"); 
+	var raw_desc_words = string_split(raw_text, "\n \n");
+	var desc_words = string_split(raw_text, "\n \n");
+	//show_debug_message(raw_desc_words)
+	
+	var show_text = text_fill_screen(raw_text, desc_scale/2, display_h, "v");
+	for (var i = 0; i < text_fill_screen_num(raw_text, desc_scale/2, display_h, "v"); i ++) {
+		desc_words = array_concat(desc_words, raw_desc_words);
+	}
+	//show_debug_message(": " + show_text)
+	//show_debug_message(desc_words)
+	
+	for (var i = 0; i < des_column; i ++) {
+		draw_set_color(c_lime)
+		
+		var y_drawn = 0;
+	
+		draw_set_alpha(1);
+		for (var j = 0; j < array_length(desc_words); j++) {
+			var word_num = array_length(raw_desc_words);
+			var now_word_num = j % word_num;
+			draw_set_color(c_white);
+			
+			if (string_pos(desc_words_hor[now_word_num], hover_symbol.re_desc)) {
+				draw_set_color(c_blue);
+			}
+			if (string_pos(desc_words_hor[now_word_num], hover_symbol.un_desc)) {
+				draw_set_color(c_red);
+			}
+			if (string_pos(desc_words_hor[now_word_num], hover_symbol.val_desc)) {
+				draw_set_color(c_yellow);
+			}
+			var a = sin(0.02 * des_t + des_apa_offset[i] + now_word_num * 2 * pi/3); //-1<=a<=1
+	
+			draw_set_alpha((a + 1)/3);
+			draw_text_transformed(
+				display_w/(des_column) * (i) + (display_w/(des_column) - string_width("我") * desc_scale)/2,
+				des_y[i] + y_drawn,
+				desc_words[j],
+				desc_scale,
+				desc_scale,
+				0
+			);
+			y_drawn += string_height(desc_words[j] + "\n ") * desc_scale;
+		}
+		draw_set_alpha(1)
+			
+		
+		des_y[i] += des_spd[i];
+		if (des_y[i] > 0) {
+			des_y[i] -= string_height(raw_text + "\n\n") * desc_scale;
+		}
+		if (des_y[i] + string_height(show_text + "\n\n") * desc_scale < display_h) {
+			des_y[i] += string_height(raw_text + "\n\n") * desc_scale;
+		}
+	}
+	
+}
 
 if (is_hovering_on()) {
 	draw_init(fnt_default, c_white, "mc", 1);
 	var hover_symbol = data_recorder.get_symbol(now_hover_num);
 
-	var show_text = hover_symbol.full_desc();
-	draw_text_transformed(mouse_x, mouse_y, show_text, text_scale, text_scale, 0);
-	
 	// add the hovering one if pressed
 	if (mouse_check_button_pressed(mb_left)) {
 		var now_placement = placement[now_placing_num];
@@ -107,6 +178,9 @@ if (is_hovering_on()) {
 		}
 	}
 }
+
+//Draw the showcase surface
+draw_surface(showcase_surface, x, y);
 
 if (answer_mode) {
 	//draw the answering place

@@ -198,7 +198,8 @@ function set_map(name, start_pos) {
 	y = room_height / 2 - map_height * cell_h / 2 + cell_h / 2;
 }
 
-function find_path(src, dest) {// src meaning source, dest meaning destination (shitty comment)
+// todo: use some optional arguments to provide different value
+function find_path(src, dest) {// find shortest path from one source using A*
 	var q = new Heap(function(a, b){return b.dis - a.dis;});
 	q.push({
 		v: src,
@@ -214,13 +215,13 @@ function find_path(src, dest) {// src meaning source, dest meaning destination (
 	while (!q.empty()) {
 		var node = q.pop().v;
 		var es = edges[node];
-		for (var i = 0; i < array_length(es); i++) {//get the edges connected with this node
+		for (var i = 0; i < array_length(es); i++) {// enumerate edges starting from this node
 			var to = es[i].to;
 			var w = es[i].w;
 			var new_dis = dis[node] + w;
 			if (dis[to] == -1 or dis[to] > new_dis) {
-				dis[to] = new_dis;//update the distance
-				from[to] = node;//update the path basing on the new minimum distance
+				dis[to] = new_dis;// update distance
+				from[to] = node;// trace the shortest path
 				cost[to] = w;
 				q.push({
 					v: to,
@@ -238,7 +239,7 @@ function find_path(src, dest) {// src meaning source, dest meaning destination (
 		};
 	}
 	
-	// track back the path
+	// track back
 	var p = dest;
 	var path = [];
 	var costs = [];
@@ -254,10 +255,21 @@ function find_path(src, dest) {// src meaning source, dest meaning destination (
 	};
 }
 
+function num_is_reachable(dest_num, _p) {
+	var p = _p != undefined ? _p : find_path(now_num, dest_num);
+	var d = p.dis[dest_num];
+	return d != -1 && d <= now_mobility;
+}
+
+function pos_is_reachable(dest_x, dest_y, p) {
+	return num_is_reachable(pos2num(dest_x, dest_y), p);
+}
+
 function goto_num(dest) {
-	var p = find_path(now_num, hover_num);
-	var d = p.dis[hover_num]
-	if (d != -1 && d <= now_mobility) {
+	var p = find_path(now_num, dest);
+	if (num_is_reachable(dest, p)) {
+		var d = p.dis[dest];
+
 		move_time_left = move_time;
 		this_path = p.path;
 		this_costs = p.costs;
@@ -268,7 +280,6 @@ function goto_num(dest) {
 function animation_finished() {
 	return array_length(this_path) == 0;
 }
-
 
 function linear_animation(from, to, process) {
 	var pos = array_create(2, undefined);

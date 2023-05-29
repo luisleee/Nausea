@@ -133,6 +133,7 @@ if (not symbol_mode) {
 }
 
 
+
 var wrap_count = 0;
 var cur_line_width = 0;
 var j = 1; // index not including the wrapping "^"
@@ -165,6 +166,7 @@ for (var i = 1; i <= string_length(wrapped_text); i++) {
 	
 	display_text_x = border_w * 2 + portrait_w + border_w;
 	display_text_y = display_h - frame_h + border_w + text_sep;
+	
 	
 	draw_text_transformed(
 		display_text_x + cur_line_width + xoffset,
