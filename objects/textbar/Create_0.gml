@@ -71,12 +71,6 @@ function set_portrait(_portrait) {
 	person_portrait = _portrait;
 }
 
-function set_symbol(_spr) {
-	symbol_unlock = data_recorder.get_symbol(_spr);
-	symbol_show_process = 0;
-	audio_play_sound(snd_sfx_ms_gain, 0, 0);
-}
-
 subimg = 0;
 time = 0;
 
@@ -86,40 +80,3 @@ mind_xoffset = 0;
 mind_yoffset = 0;
 
 default_text_col = make_color_hsv(0, 0, 0);
-
-
-
-symbol_mode = false;
-symbol_unlock = undefined;
-var border_w = 0.02 * display_w;
-draw_set_font(fnt_default);
-var desc_w = string_width("") * text_scale;
-
-symbol_x = display_w/2 - desc_w/2 - display_text_x;
-symbol_y = display_h - 250 - display_text_y;
-symbol_background_apa = 0;
-symbol_spr_x_goal = 8/80 * display_w;
-symbol_spr_path_l = 200;
-symbol_show_process = 0;
-
-trans_mode = false;
-trans_pattern = "";
-trans_spd = 0;
-trans_apa = 0;
-trans_phase = 0;
-trans_infos = undefined;
-
-function perform_transition(pattern, time, infos) {
-	trans_mode = true;
-	alarm[1] = time;
-	trans_pattern = pattern;
-	trans_spd = 1/time * 2;
-	trans_phase = 1;
-	trans_infos = infos;
-}
-
-function transition_init() {
-	trans_mode = false;
-	trans_phase = 0;
-	trans_apa = 0;
-}

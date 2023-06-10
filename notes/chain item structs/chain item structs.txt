@@ -52,11 +52,3 @@ MIND:
 	A MIND item switches chain_player's mode to MIND if it is not.
 	If <conclusion> is inputed, the mode switched back to DIALOG when the answer is judged.
 
-TRANSITION:
-	type: ITEM_TYPE.TRANSITION,
-	pattern: "color_fade",
-	time: 60,
-	infos: {
-		color: c_black
-	}
-	Note that the above Transition Item lasts for 90 ms. "60" is equally divided into the starting and the lasting of the transition, while the outing of it, who has the same time with the starting is not counted.

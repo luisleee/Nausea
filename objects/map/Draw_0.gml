@@ -18,13 +18,13 @@ for (var _x = 0; _x < map_width; _x++) {
 	for (var _y = 0; _y < map_height; _y++) {
 		draw_set_color(c_white);
 		draw_set_alpha(0);
-		// Reachable cells
-		if (pos_is_reachable(_x, _y, p)) {
+		// Reachable cellsS
+		// todo: extract function num_is_reachable
+		if (p.dis[pos2num(_x, _y)] != -1 && p.dis[pos2num(_x, _y)] <= now_mobility) {
 			draw_set_color(col_reachable);
 			draw_set_alpha(0.25);
 		}
 		// Obstacles
-		// todo: extract a function for cells
 		if (cells[_x][_y] == "x") {
 			draw_set_color(c_red);
 		}
@@ -51,3 +51,7 @@ draw_sprite_ext(spr_character_on_map, 0, abs_posx(draw_pos[0]), abs_posy(draw_po
 	
 draw_set_color(c_white);
 draw_set_alpha(1);
+//draw_text_transformed(room_width/2, room_height - 100, "Turn " + string(now_turn), 10, 10, 0);
+if (hover_num != undefined) {
+	//draw_text_transformed(room_width/2, room_height - 300, string(num2pos(hover_num)[0]) + "," + string(num2pos(hover_num)[1]), 10, 10, 0);
+}

@@ -20,17 +20,6 @@ function MindSymbol(_spr, _desc, _other_desc) constructor {
 		return array_join(descs, "\n");
 	}
 	
-	static function wordsonly_desc() {
-		var marks = available_marks();
-		var descs = array_map(marks, function(mk) {
-			return marked_desc(mk);
-		});
-		var re_d = array_join(descs, " ");
-		re_d = string_replace_all(re_d, "、", " ");
-		return re_d;
-		
-	}
-	
 	static function marked_desc(mark) {
 		if (mark == "no") {
 			return desc;	
@@ -43,13 +32,6 @@ function MindSymbol(_spr, _desc, _other_desc) constructor {
 		return array_filter(all_marks, function(mk) {
 			return marked_desc(mk) != undefined;
 		});
-	}
-	
-	static function next_available_mark(this_mark) {
-		var marks = available_marks();		
-		var idx = array_find_item(marks, this_mark);
-		var _len = array_length(marks);
-		return marks[(idx + 1) % _len];
 	}
 }
 
@@ -67,4 +49,3 @@ function Answer(_concepts, _sentence) constructor {
 	concepts = _concepts;
 	sentence = _sentence;
 }
-// todo: answer.match

@@ -98,7 +98,7 @@ if (person_name != undefined) {
 	);
 }
 //draw mind background
-draw_set_alpha(mind_background_apa + symbol_background_apa);
+draw_set_alpha(mind_background_apa);
 draw_set_color(c_black);
 draw_rectangle(0, 0, display_w, display_h, 0);
 
@@ -111,28 +111,12 @@ var text_sep = ((frame_h - border_w * 2) - text_h * 3)/4;
 
 
 var text_display = string_copy(raw_text, 1, char_count);
-var wrapped_text = "";
-if (not symbol_mode) {
-	wrapped_text = string_wrap(
-		text_display,
-		display_w - portrait_w - 5 * border_w,
-		text_scale,
-		"^"
-	);
-	if (not mind_mode and animation_fully_displayed()) {
-		default_text_col = c_black;
-	}
-} else {
-	wrapped_text = string_wrap(
-		text_display,
-		display_w - 2 * border_w,
-		text_scale,
-		"^"
-	);
-	default_text_col = c_white;
-}
-
-
+var wrapped_text = string_wrap(
+	text_display,
+	display_w - portrait_w - 5 * border_w,
+	text_scale,
+	"^"
+);
 
 var wrap_count = 0;
 var cur_line_width = 0;
@@ -159,14 +143,13 @@ for (var i = 1; i <= string_length(wrapped_text); i++) {
 	} 
 	var xoffset = random_range(-char_shake_range, char_shake_range) + 
 	float_info.range * sin(time * float_info.spd + float_info.init_phase) +
-	mind_xoffset + symbol_mode * symbol_x;
+	mind_xoffset;
 	var yoffset = random_range(-char_shake_range, char_shake_range) +
 	float_info.range * cos(time * float_info.spd + float_info.init_phase) +
-	mind_yoffset + symbol_mode * symbol_y;
+	mind_yoffset;
 	
 	display_text_x = border_w * 2 + portrait_w + border_w;
 	display_text_y = display_h - frame_h + border_w + text_sep;
-	
 	
 	draw_text_transformed(
 		display_text_x + cur_line_width + xoffset,
@@ -180,59 +163,3 @@ for (var i = 1; i <= string_length(wrapped_text); i++) {
 	j++;
 }
 
-if (symbol_mode) {
-	draw_init(fnt_task_title, c_white, "mc", symbol_background_apa);
-	draw_set_font(fnt_default);
-	draw_text_transformed(display_w/2, 175, "获得新思维符", text_scale * 1.5, text_scale * 1.5, 0);
-	
-	draw_set_font(fnt_default);
-	var desc_w = string_width(raw_text) * text_scale;
-
-	symbol_x = display_w/2 - desc_w/2 - display_text_x;
-	symbol_y = display_h - 250 - display_text_y;
-	
-	var spr_w = display_w/2 - 16/80 * display_w;
-	
-	var zoom_channel = animcurve_get_channel(ac_symbol_show, 0);
-	var spr_x = symbol_spr_x_goal - symbol_spr_path_l + animcurve_channel_evaluate(zoom_channel, symbol_show_process) * symbol_spr_path_l;
-	
-	
-	draw_set_alpha(symbol_show_process);
-	draw_sprite_stretched(
-		spr_ms_background,
-		0,
-		spr_x,
-		display_h/2 - spr_w/2,
-		spr_w,
-		spr_w
-	);
-	draw_sprite_stretched(
-		symbol_unlock.spr,
-		0,
-		spr_x,
-		display_h/2 - spr_w/2,
-		spr_w,
-		spr_w
-	);
-	draw_sprite_stretched(
-		spr_ms_frame,
-		0,
-		spr_x,
-		display_h/2 - spr_w/2,
-		spr_w,
-		spr_w
-	);
-	
-	draw_set_align("tl");
-	draw_set_font(fnt_task_title);
-	var descs = symbol_unlock.full_desc();
-	var wrapped_descs = string_wrap(
-		descs,
-		display_w/2 - border_w * 4,
-		text_scale,
-		"\n"
-	);
-	draw_text_transformed(display_w/2, display_h/2 - spr_w/2 + border_w, wrapped_descs, text_scale, text_scale, 0);
-	
-	
-}

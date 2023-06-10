@@ -74,12 +74,12 @@ if (answer_mode) {
 		for (var i = 0; i < max_concept_num; i++) {
 			if (placement[i] != undefined) {
 				var add_desc = placement[i].symbol.marked_desc(placement[i].mark);
-				now_answer += "、" + add_desc;
+				now_answer += "/" + add_desc;
 			}
 		}
 		var contains_all = true;
-		for (var i = 0; i < array_length(answers[k].keywords); i++) {
-			contains_all *= string_pos("、" + string(answers[k].keywords[i]), now_answer);
+		for (var i = 0; i < array_length(string_split(answers[k].keywords, "/")); i++) {
+			contains_all *= string_pos("/" + string_split(answers[k].keywords, "/")[i], now_answer);
 		}
 		
 		//get the number of used placements
@@ -90,7 +90,7 @@ if (answer_mode) {
 				used_placement_num++;
 			}
 		}
-		if (used_placement_num != array_length(answers[k].keywords)) {
+		if (used_placement_num != array_length(string_split(answers[k].keywords, "/"))) {
 			not_abused = false;
 		}
 		//determining what will show as the final option
