@@ -17,27 +17,6 @@ function get_selection(option_name) {
 	return variable_struct_get(history_choices, option_name);
 }
 
-function meets_requirement(requirement) {
-	assert("requirement is struct", typeof(requirement) == "struct");
-	if (requirement == {}) {
-		return true;	
-	}
-
-	if (variable_struct_exists(requirement, "options")) {
-		var opts = requirement.options;
-		var keys = variable_struct_get_names(opts);
-
-		for (var i = 0; i < array_length(keys); i++) {
-			var key = keys[i];
-			if (get_selection(key) != variable_struct_get(opts, key)) {
-				return false;	
-			}
-		}
-		return true;
-	}
-	return true;
-}
-
 global.mind_symbols = [
 	new MindSymbol(spr_ms_dot, "我", {}),
 	new MindSymbol(spr_ms_fork, "否定、空无", {un: "辩证"}),
@@ -53,14 +32,11 @@ global.mind_symbols = [
 	new MindSymbol(spr_ms_line, "简单、起始、一", {}),
 	new MindSymbol(spr_ms_arrow, "进行、推理", {re: "倒退"}),
 	new MindSymbol(spr_ms_hexagram, "神秘、宗教、魔法", {}),
-];
+]
 
 ms_marks = ["no", "un", "re", "val"];
-mind_symbols_unlocked = array_create(array_length(global.mind_symbols), true);
-mind_symbols_unlocked[0]=true;
-mind_symbols_unlocked[1]=true;
-mind_symbols_unlocked[2]=true;
 
+mind_symbols_unlocked = array_create(array_length(global.mind_symbols), true);
 
 function get_symbol(_spr) {
 	if (typeof(_spr) == "number") {
