@@ -6,13 +6,14 @@ var tag_recycle = new ScheduleTag("rec", spr_schedule_tags_rec, "回收：此卡
 
 
 blocks = [
-	new ScheduleBlock("0", 1, spr_schedule_card_test, [tag_optional,  tag_recycle,
-		new ScheduleTag("tml", spr_schedule_tags_timelimit, "时限：不得将此卡安排在32时后。", {right_limit: 32})
+	new ScheduleBlock("练吉他", 1, spr_schedule_card_test, [tag_optional,  tag_recycle,
+		new ScheduleTag("tml", spr_schedule_tags_timelimit, "时限：不得将此卡安排在22时后。", {right_limit: 32})
 	]),
-	new ScheduleBlock("1", 0.75, spr_schedule_card_chinese, [tag_must,
+	new ScheduleBlock("写语文作业", 0.75, spr_schedule_card_chinese, [tag_must,
 		new ScheduleTag("tml", spr_schedule_tags_timelimit, "时限：不得将此卡安排在10时前。", {left_limit: 10})
 	]),
-	new ScheduleBlock("2", 0.75, spr_schedule_card_chinese, [tag_must]),
+	new ScheduleBlock("写数学作业", 0.75, spr_schedule_card_maths, [tag_must]),
+	new ScheduleBlock("写英语作业", 0.75, spr_schedule_card_english, [tag_must]),
 	new ScheduleBlock("3", 1, spr_schedule_card_test, [tag_optional,  
 		new ScheduleTag("tml", spr_schedule_tags_timelimit, "时限：不得将此卡安排在22时后。", {right_limit: 22})
 	]),
@@ -67,6 +68,20 @@ function rot2process(rot) {
 	return undefined;
 }
 
+
+function process2x(out, process, ori, final) {
+	if (out) {
+		if(process < 1)process = 1;
+		if(process >= 1)process -= 1;
+	} else {
+		if(process < 0)process = 0;
+	}
+	var zoom_channel = animcurve_get_channel(ac_schedule_card, out);
+	var delta_x = final - ori;
+	var now_x = ori + animcurve_channel_evaluate(zoom_channel, process) * delta_x;
+	return now_x;
+}
+
 optional_blocks = clone(blocks);
 
 block_num = array_length(blocks);
@@ -106,3 +121,11 @@ bar_gamma = 0;
 bar_animation = [];
 
 bar_show_left = time_bar[0];
+
+frequency_limit = false;
+cooldown_time = 20;
+
+hover_detect_time = 7;
+hovering_time = hover_detect_time;
+
+last_hover_block = undefined;

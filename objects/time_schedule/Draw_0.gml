@@ -1,7 +1,7 @@
 var gui_w = display_get_gui_width();
 var gui_h = display_get_gui_height();
 var bar_sep = 100;
-var bar_h = 20;
+var bar_h = 40;
 var bar_y = gui_h/3;
 var bar_frameline_w = 5;
 
@@ -15,6 +15,7 @@ var pre_gamma = bar_gamma;
 
 previous_hovering_bar = hovering_bar;
 hovering_bar = undefined;
+
 for (var i = 0; i < array_length(schedule); i++) {
 	var fill_col = c_white;
 	switch schedule[i].type {
@@ -33,6 +34,17 @@ for (var i = 0; i < array_length(schedule); i++) {
 		bar_y,
 		bar_sep + now_bar_off + schedule[i].duration * time_scale,
 		bar_y + bar_h,
+		0
+	);
+	
+	draw_init(fnt_default, c_white, "mc", 1);
+	var name_scale = (bar_h - 5)/string_height("M");
+	draw_text_transformed(
+		bar_sep + now_bar_off + schedule[i].duration * time_scale / 2,
+		bar_y + bar_h/2,
+		schedule[i].name,
+		name_scale,
+		name_scale,
 		0
 	);
 	
@@ -75,7 +87,7 @@ for (var i = 0; i < array_length(schedule); i++) {
 }
 
 if(hovering_bar != previous_hovering_bar) {
-	if (previous_hovering_bar != undefined) {
+	if (previous_hovering_bar != undefined and array_length(schedule_num) != 0) {
 		array_push(card_animation, {num: schedule_num[previous_hovering_bar], process: rot2process(card_rot)});		
 		for (var j = 0; j < array_length(bar_animation); j ++) {
 			if(bar_animation[j].num = previous_hovering_bar) {
@@ -84,6 +96,7 @@ if(hovering_bar != previous_hovering_bar) {
 			}
 		}
 		array_push(bar_animation, {num: previous_hovering_bar, gamma: pre_gamma});
+		
 	}
 	
 	card_rot = card_rot_ori;
@@ -141,8 +154,10 @@ for (var i = 0; i < block_num; i ++){
 }
 
 //Detect the hovering one and Draw the Cards
+
 previous_hovering_block = hovering_block;
 hovering_block = undefined;
+
 var line_max_block = floor((gui_w - 2 * bar_sep) / (block_w + block_sep));
 for (var i = 0; i < array_length(optional_blocks); i ++) {
 	var h_pos = i % line_max_block;
@@ -177,34 +192,47 @@ for (var i = 0; i < array_length(optional_blocks); i ++) {
 		hovering_block = i;
 	}
 }
+if(hovering_block != last_hover_block) {
+	last_hover_block = hovering_block;
+	hovering_time = 0;
+}
+if (hovering_time < hover_detect_time) {
+	hovering_block = previous_hovering_block;
+}
+
 if(hovering_block != previous_hovering_block) {
 	if (previous_hovering_block != undefined and previous_hovering_block != array_length(optional_blocks)) {
-		array_push(card_animation, {num: block_now_num[previous_hovering_block], process: rot2process(card_rot)});
-		
+			array_push(card_animation, {num: block_now_num[previous_hovering_block], process: rot2process(card_rot)});
+			
+		}
+		card_rot = card_rot_ori;
+		card_apa = 0;
+	if (hovering_time >= hover_detect_time) {
+		previous_hovering_block = hovering_block;
 	}
-	card_rot = card_rot_ori;
-	card_apa = 0;
-	previous_hovering_block = hovering_block;
-}
+	
+} 
 
 //Draw the past Bars
 draw_set_color(c_white);
 for (var i = 0; i < array_length(bar_animation); i ++) {
 	var this_ani = bar_animation[i];
 	
-	var now_bar_off = 0;
-	for (var j = 0; j < this_ani.num; j++) {
-		now_bar_off += schedule[j].duration * time_scale;
+	if (schedule[i] != undefined) {
+		var now_bar_off = 0;
+		for (var j = 0; j < this_ani.num; j++) {
+			now_bar_off += schedule[j].duration * time_scale;
+		}
+		var gam = this_ani.gamma;
+		draw_set_alpha(gam/1.5);
+		draw_rectangle(
+			bar_sep + now_bar_off,
+			bar_y,
+			bar_sep + now_bar_off + schedule[this_ani.num].duration * time_scale - bar_frameline_w,
+			bar_y + bar_h,
+			0
+		);
 	}
-	var gam = this_ani.gamma;
-	draw_set_alpha(gam/1.5);
-	draw_rectangle(
-		bar_sep + now_bar_off,
-		bar_y,
-		bar_sep + now_bar_off + schedule[this_ani.num].duration * time_scale - bar_frameline_w,
-		bar_y + bar_h,
-		0
-	);
 	bar_animation[i].gamma -= 0.125;
 	if (bar_animation[i].gamma < 0) { 
 		bar_animation = array_remove(bar_animation, i);
@@ -214,7 +242,7 @@ for (var i = 0; i < array_length(bar_animation); i ++) {
 draw_set_alpha(1);
 
 //Draw the covering White bar
-if ((bar_show_left - time_bar[0]) != (time_bar[1] - time_bar[0])) {
+if (bar_show_left < time_bar[1]) {
 	draw_set_color(c_white);
 	draw_rectangle(
 		bar_sep + (bar_show_left - time_bar[0]) * time_scale,
@@ -228,6 +256,12 @@ if ((bar_show_left - time_bar[0]) != (time_bar[1] - time_bar[0])) {
 //Draw the past cards
 draw_set_align("tl");
 draw_set_color(c_white);
+
+/*
+while (array_length(card_animation) >= 2) {
+	card_animation = array_remove(card_animation, 1);
+}
+*/
 
 for (var i = 0; i < array_length(card_animation); i ++) {
 	var this_ani = card_animation[i];
@@ -251,7 +285,58 @@ for (var i = 0; i < array_length(card_animation); i ++) {
 		apa
 	);
 	
-	card_animation[i].process += 0.05;
+	//name
+	var name_y = gui_h/2 - 100;
+	var card_name_scale = 4;
+	draw_set_font(fnt_task_title);
+	draw_set_align("tl");
+	draw_set_alpha(apa);
+	var xx = this_ani.process >= 1 ?
+		process2x(1, this_ani.process, bar_sep, -string_width(blocks[this_ani.num].name) * card_name_scale) :
+		process2x(0, this_ani.process, gui_w/3, bar_sep);
+	
+	draw_text_transformed(
+		xx,
+		name_y,
+		blocks[this_ani.num].name,
+		card_name_scale,
+		card_name_scale,
+		0
+	);
+	
+	var desc_y = name_y + string_height("M") * 4 + bar_sep;
+	var tag_scale = 3;
+	var tag_w = sprite_get_width(spr_schedule_tags_opt) * tag_scale;
+	for (var j = 0; j < array_length(blocks[this_ani.num].tags); j ++) {
+		var this_tag = blocks[this_ani.num].tags[j];
+		var xx = this_ani.process >= 1 ? 
+			process2x(1, this_ani.process - 0.2 * j, bar_sep, -gui_w/2) :
+			process2x(0, this_ani.process + 0.1 * (array_length(blocks[this_ani.num].tags) - i), gui_w/2, bar_sep);
+		draw_sprite_ext(
+			this_tag.spr,
+			0,
+			xx,
+			desc_y + j * bar_sep,
+			tag_scale,
+			tag_scale,
+			0,
+			c_white,
+			apa
+		);
+		
+		draw_set_font(fnt_default);
+		draw_set_align("ml");
+		draw_text_transformed(
+			xx + tag_w + bar_sep/4,
+			desc_y + tag_w/2 + j * bar_sep,
+			this_tag.desc,
+			tag_scale,
+			tag_scale,
+			0
+		);
+	}
+	
+	card_animation[i].process += 0.05 /* array_length(card_animation)*/;
 	if (card_animation[i].process > 2) { 
 		card_animation = array_remove(card_animation, i);
 		i --;
@@ -294,9 +379,11 @@ if(hovering_block != undefined or hovering_bar != undefined) {
 	//draw_surface_ext(card_surf[hovering_block], gui_w - card_w, gui_h - card_h, 1, 1, 30, c_white, 1);
 	
 	var name_y = gui_h/2 - 100;
+	var process = rot2process(card_rot);
 	draw_set_font(fnt_task_title);
+	draw_set_alpha(card_apa);
 	draw_text_transformed(
-		bar_sep,
+		process2x(0, process, gui_w/3, bar_sep),
 		name_y,
 		this_block.name,
 		4,
@@ -312,19 +399,19 @@ if(hovering_block != undefined or hovering_bar != undefined) {
 		draw_sprite_ext(
 			this_tag.spr,
 			0,
-			bar_sep,
+			process2x(0, process + 0.1 * (array_length(this_block.tags) - i), gui_w/2, bar_sep),
 			desc_y + i * bar_sep,
 			tag_scale,
 			tag_scale,
 			0,
 			c_white,
-			1
+			card_apa
 		);
 		
 		draw_set_font(fnt_default);
 		draw_set_align("ml");
 		draw_text_transformed(
-			bar_sep + tag_w + bar_sep/4,
+			process2x(0, process + 0.1 * (array_length(this_block.tags) - i), gui_w/2, bar_sep) + tag_w + bar_sep/4,
 			desc_y + tag_w/2 + i * bar_sep,
 			this_tag.desc,
 			tag_scale,
@@ -341,6 +428,8 @@ if(hovering_block != undefined or hovering_bar != undefined) {
 		4,
 		0
 	);
+	
+	draw_set_alpha(1);
 }
 
 
