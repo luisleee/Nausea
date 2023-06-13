@@ -1,4 +1,4 @@
-visible = !visible
+visible = !visible;
 if (!global.DEBUG) {
-	visible = false;	
+	visible = false;
 }

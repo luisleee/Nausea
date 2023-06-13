@@ -114,8 +114,8 @@
             "type": "mind",
             "question": "我^^是^^什^^么^^东^^西^^？",
             "answers": [
-                {"keywords":"我/无穷", "answer":"我牛逼"},
-                {"keywords":"我/否定", "answer":"我是傻逼"}
+                {"keywords":"我、无穷", "answer":"我牛逼"},
+                {"keywords":"我、否定", "answer":"我是傻逼"}
             ],
             "default_answer": "我不知道"
         },{
@@ -127,9 +127,9 @@
             "type": "mind",
             "question": "我该……怎么做？",
             "answers": [
-                {"keywords":"我/无穷", "answer":"我牛逼"},
-                {"keywords":"我/否定", "answer":"我是傻逼"},
-                {"keywords":"我/生命/不可逆", "answer":"我的人生不能重来"}
+                {"keywords":"我、无穷", "answer":"我牛逼"},
+                {"keywords":"我、否定", "answer":"我是傻逼"},
+                {"keywords":"我、生命、不可逆", "answer":"我的人生不能重来"}
             ],
             "default_answer": "我不知道",
             "conclusion": true

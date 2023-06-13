@@ -56,7 +56,7 @@ global.mind_symbols = [
 ];
 
 ms_marks = ["no", "un", "re", "val"];
-mind_symbols_unlocked = array_create(array_length(global.mind_symbols), false);
+mind_symbols_unlocked = array_create(array_length(global.mind_symbols), true);
 mind_symbols_unlocked[0]=true;
 mind_symbols_unlocked[1]=true;
 mind_symbols_unlocked[2]=true;

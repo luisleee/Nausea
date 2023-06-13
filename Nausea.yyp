@@ -128,6 +128,7 @@
     {"id":{"name":"spr_ms_void","path":"sprites/spr_ms_void/spr_ms_void.yy",},},
     {"id":{"name":"snd_sfx_ms_un","path":"sounds/snd_sfx_ms_un/snd_sfx_ms_un.yy",},},
     {"id":{"name":"spr_rh_biketest","path":"sprites/spr_rh_biketest/spr_rh_biketest.yy",},},
+    {"id":{"name":"string_chars","path":"scripts/string_chars/string_chars.yy",},},
     {"id":{"name":"music_len","path":"scripts/music_len/music_len.yy",},},
     {"id":{"name":"character_comb","path":"objects/character_comb/character_comb.yy",},},
     {"id":{"name":"textbar","path":"objects/textbar/textbar.yy",},},

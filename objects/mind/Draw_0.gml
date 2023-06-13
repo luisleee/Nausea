@@ -39,9 +39,6 @@ for (var i = 0; i < symbol_number; i++) {
 	
 	}
 	
-	
-
-
 	//draw the symbols
 	draw_set_alpha(apa);
 	
@@ -79,9 +76,6 @@ draw_sprite_stretched(spr_showcase_mask, 0, 0, surface_height, surface_width, sh
 gpu_set_blendmode(bm_normal);
 surface_reset_target();
 
-
-
-
 if not show_self {
 	exit;
 }
@@ -93,20 +87,18 @@ var desc_scale = text_scale;
 if (is_hovering_on()) {
 	draw_init(fnt_mind_desc, c_white, "tl", 1);
 	var hover_symbol = global.mind_symbols[now_hover_num];
-
+	// todo: clean it
 	var raw_text = hover_symbol.wordsonly_desc();
 	var desc_words_hor = string_split(raw_text, " ");
 	raw_text = string_gap_insert(raw_text, "\n"); 
 	var raw_desc_words = string_split(raw_text, "\n \n");
 	var desc_words = string_split(raw_text, "\n \n");
-	//show_debug_message(raw_desc_words)
+	
 	
 	var show_text = text_fill_screen(raw_text, desc_scale/2, display_h, "v");
 	for (var i = 0; i < text_fill_screen_num(raw_text, desc_scale/2, display_h, "v"); i ++) {
 		desc_words = array_concat(desc_words, raw_desc_words);
 	}
-	//show_debug_message(": " + show_text)
-	//show_debug_message(desc_words)
 	
 	for (var i = 0; i < des_column; i ++) {
 		draw_set_color(c_lime)
@@ -153,15 +145,12 @@ if (is_hovering_on()) {
 		}
 	}
 	
-}
-
-if (is_hovering_on()) {
 	draw_init(fnt_default, c_white, "mc", 1);
 	var hover_symbol = data_recorder.get_symbol(now_hover_num);
 
 	// add the hovering one if pressed
 	if (mouse_check_button_pressed(mb_left)) {
-		var now_placement = placement[now_placing_num];
+		var now_placement = placements[now_placing_num];
 		if (!is_undefined(now_placement) && now_placement.spr == hover_symbol.spr) {
 
 			var available_marks = now_placement.symbol.available_marks();
@@ -172,7 +161,7 @@ if (is_hovering_on()) {
 				play_sound_of_mark(next_mark);
 			}
 		} else {
-			placement[now_placing_num] = new AnswerSymbol(hover_symbol, "no");
+			placements[now_placing_num] = new AnswerSymbol(hover_symbol, "no");
 			display_particle(get_ms_color(hover_symbol.spr));
 			audio_play_sound(snd_sfx_ms_place, 0, 0);
 		}
@@ -192,16 +181,16 @@ if (answer_mode) {
 			draw_answer_symbol(spr_ms_void, 0, i);
 		}
 		
-		if (placement[i] != undefined) {
+		if (placements[i] != undefined) {
 			draw_answer_symbol(spr_ms_background, 0, i);
-			draw_answer_symbol(placement[i].spr, 0, i);
+			draw_answer_symbol(placements[i].spr, 0, i);
 			
 			draw_ith_mask(i);
 			draw_answer_symbol(spr_ms_frame, 0, i);
 		}
 		
 		if (i == now_placing_num) {
-			var spr = placement[i] == undefined ? spr_ms_void_placing : spr_ms_placed;
+			var spr = placements[i] == undefined ? spr_ms_void_placing : spr_ms_placed;
 			draw_answer_symbol(spr, image_index, i);
 		}
 	}

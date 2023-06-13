@@ -47,65 +47,58 @@ if (answer_mode) {
 	}
 	
 	//placement position change
-	if (keyboard_check_pressed(vk_right)) {
+	if (keyboard_check_pressed(vk_right) or keyboard_check_pressed(vk_tab)) {
 		placing_next();
 		audio_play_sound(snd_sfx_ms_select, 0, 0);
 	}
-	if (keyboard_check_pressed(vk_left)) {
+	if (keyboard_check_pressed(vk_left) or keyboard_check_pressed(vk_shift)) {
 		placing_previous();
 		audio_play_sound(snd_sfx_ms_select, 0, 0);
 	}
 	
 	//delete this placement
-	if (keyboard_check_pressed(vk_backspace)) {
-		if (placement[now_placing_num] != undefined) {
-			placement[now_placing_num] = undefined;
+	if (keyboard_check_pressed(vk_backspace) or keyboard_check_pressed(vk_delete)) {
+		if (placements[now_placing_num] != undefined) {
+			placements[now_placing_num] = undefined;
 			display_particle(c_white);
 			audio_play_sound(snd_sfx_ms_remove, 0, 0);
 		}
 	}
 	// todo: move into Answer#match
-	// todo: beautify
+
 	// determine if the answer is available
 	judge_display = default_answer;
 	for (var k = 0; k < array_length(answers); k++) {
-		var now_answer = "";
+		var nonempty_placements = array_filter(placements, function(this_placement) {
+			return this_placement != undefined;
+		});
+		var now_answers = array_map(nonempty_placements, function(this_placement) {
+			return this_placement.symbol.marked_desc(this_placement.mark);
+		});
 		
-		for (var i = 0; i < max_concept_num; i++) {
-			if (placement[i] != undefined) {
-				var add_desc = placement[i].symbol.marked_desc(placement[i].mark);
-				now_answer += "、" + add_desc;
-			}
-		}
+		var now_answer = array_join(now_answers, "、");
+		
+		var keywords_arr = string_split(answers[k].keywords, "、");
 		var contains_all = true;
-		for (var i = 0; i < array_length(answers[k].keywords); i++) {
-			contains_all *= string_pos("、" + string(answers[k].keywords[i]), now_answer);
+		for (var i = 0; i < array_length(keywords_arr); i++) {
+			contains_all = contains_all && string_pos(keywords_arr[i], now_answer) != 0;
 		}
 		
-		//get the number of used placements
-		var used_placement_num = 0;
-		var not_abused = true;
-		for (var n = 0; n < max_concept_num; n++) {
-			if (placement[n] != undefined) {
-				used_placement_num++;
-			}
-		}
-		if (used_placement_num != array_length(answers[k].keywords)) {
-			not_abused = false;
-		}
-		//determining what will show as the final option
+		// get the number of used placements
+		var used_placement_num = array_length(nonempty_placements);
+		var not_abused = used_placement_num == array_length(keywords_arr);
+		
+		// determine what will be shown as the final option
 		if (contains_all and not_abused) {
-			judge_display = answers[k].sentence;
-		} 
+			judge_display = answers[k].answer;
+		}
 	}
 	
 	// final judge
 	if (keyboard_check_pressed(ord("D")) and not judge_rising) {
 		judge_rising = true;
 		textbar.set_text("");
-		
 	}
-		
 }
 
 // todo: extract function

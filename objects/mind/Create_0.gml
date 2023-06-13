@@ -72,17 +72,16 @@ question = "啊啊啊啊随便说点什么？";
 
 default_answer = "我不知道";
 answers = [];
-function placement_initialize() {
+function placements_initialize() {
 	max_concept_num = 0;
 	for (var i = 0; i < array_length(answers); i++) {
-		show_debug_message(answers);
-		max_concept_num = max(max_concept_num, array_length(string_split(answers[i].keywords, "/")));
+		max_concept_num = max(max_concept_num, array_length(string_split(answers[i].keywords, "、")));
 	}
-	placement = array_create(max_concept_num, undefined);
+	placements = array_create(max_concept_num, undefined);
 	now_placing_num = 0;
 }
 
-placement_initialize();
+placements_initialize();
 
 judge_display = "";
 
@@ -205,12 +204,12 @@ function set_answers(_default, _answers) {
 	default_answer = _default;
 	answers = _answers;
 	judge_process = 0;
-	placement_initialize();
+	placements_initialize();
 }
 
 function exit_answer_mode() {
 	answer_mode = false;
-	placement_initialize();
+	placements_initialize();
 }
 
 mind_flash_apa = 0;
@@ -237,7 +236,7 @@ function draw_ith_mask(i) {
 		re: 2,
 		val: 3,
 	}
-	var ms_mask_index = variable_struct_get(mark2index, placement[i].mark);
+	var ms_mask_index = variable_struct_get(mark2index, placements[i].mark);
 			
 	draw_answer_symbol(spr_ms_masks, ms_mask_index, i);
 }

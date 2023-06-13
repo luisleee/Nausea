@@ -101,6 +101,7 @@
     {"name":"spr_ms_void","order":15,"path":"sprites/spr_ms_void/spr_ms_void.yy",},
     {"name":"snd_sfx_ms_un","order":4,"path":"sounds/snd_sfx_ms_un/snd_sfx_ms_un.yy",},
     {"name":"spr_rh_biketest","order":3,"path":"sprites/spr_rh_biketest/spr_rh_biketest.yy",},
+    {"name":"string_chars","order":29,"path":"scripts/string_chars/string_chars.yy",},
     {"name":"music_len","order":3,"path":"scripts/music_len/music_len.yy",},
     {"name":"character_comb","order":12,"path":"objects/character_comb/character_comb.yy",},
     {"name":"spr_frame_shelf","order":10,"path":"sprites/spr_frame_shelf/spr_frame_shelf.yy",},
