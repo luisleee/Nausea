@@ -1,5 +1,3 @@
-// todo: read from files (under ./maps/)
-
 function get_map (_name) {
 	for (var i = 0; i < array_length(map_infos); i++) {
 		if (map_infos[i].name == _name) {

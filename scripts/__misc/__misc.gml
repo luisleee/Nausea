@@ -27,8 +27,25 @@ function FloatTextInfo(_range, _spd, _init_phase) constructor {
 	init_phase = _init_phase;
 }
 
-function ScheduleBlock(_name, _duration, _details) constructor {
+function ScheduleBlock(_name, _duration, _spr, _tags) constructor {
 	name = _name;
 	duration = _duration;
+	spr = _spr;
+	tags = _tags;
+	type = "";
+	for (var i = 0; i < array_length(tags); i ++) {
+		if(tags[i].name == "opt") {
+			type = "opt";
+		}
+		if(tags[i].name == "mst") {
+			type = "mst";
+		}
+	}
+}
+
+function ScheduleTag(_name, _spr, _desc, _details) constructor {
+	name = _name;
+	spr = _spr;
+	desc = _desc;
 	details = _details;
 }

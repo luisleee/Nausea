@@ -13,9 +13,7 @@ if (char_count < string_length(raw_text)) {
 	var new_char_count = floor(char_real_count);
 	if (char_count != new_char_count) {
 		if (total_halt > 1 or char_count % 2 == 0) {
-			if (not symbol_mode) {
-				audio_play_sound(snd_sfx_text, 0, 0);
-			}
+			audio_play_sound(snd_sfx_text, 0, 0);
 		}
 	}
 }
@@ -56,46 +54,6 @@ if (is_fully_displayed() and !animation_fully_displayed()) {
 }
 
 
-
-if (symbol_mode) {
-	if (symbol_background_apa < 1) {
-		symbol_background_apa += 0.07;
-		if (symbol_background_apa > 1) {
-			symbol_background_apa = 1;
-		}
-	}
-	if (symbol_show_process < 1) {
-		symbol_show_process += 0.05;
-		if (symbol_show_process > 1) {
-			symbol_show_process = 1;
-		}
-	}
-} else {
-	if (symbol_background_apa > 0) {
-		symbol_background_apa -= 0.07;
-		if (symbol_background_apa < 0) {
-			symbol_background_apa = 0;
-		}
-	}
-}
-
-if (trans_mode) {
-	if (trans_pattern == "color_fade") {
-		if (trans_phase == 1) {
-			if (trans_apa < 1) {
-				trans_apa += trans_spd;
-			}
-		}
-		if (trans_phase == 2) {
-			if (trans_apa > 0) {
-				trans_apa -= trans_spd;
-			} else {
-				transition_init();
-			}
-		}
-		
-	}
-}
 
 subimg += 0.2;
 time += 0.1;

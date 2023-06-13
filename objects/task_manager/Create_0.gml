@@ -66,7 +66,3 @@ function task_finish(_name, _state) {
 		}
 	}
 }
-
-function get_compressed_width(text, text_scale, max_width) {
-	return min(text_scale, max_width / string_width(text));
-}

@@ -75,7 +75,6 @@ if (!animation_finished()) {
 if (animation_finished()) {
 	// Brennschluss, powerout.
 	if (now_mobility == 0) {
-		// todo: please don't exit that quick...
 		freeze();
 		hide();
 		chain_player.unfreeze();

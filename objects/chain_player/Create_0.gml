@@ -19,6 +19,8 @@ enum DISPLAY_MODES {
 }
 display_mode = DISPLAY_MODES.DIALOG;
 
+
+
 function set_mode(_mode) {
 	display_mode = _mode;
 	switch _mode {
@@ -34,7 +36,7 @@ function set_mode(_mode) {
 			mind.hide();
 			break;
 		case DISPLAY_MODES.MIND:
-			//image_painter.clear();
+			image_painter.clear();
 			textbar.mind_mode = true;
 			
 			break;
@@ -51,7 +53,7 @@ function get_current_type() {
 }
 
 function is_fully_displayed() {
-	if (get_current_type() == "option" && !options.is_selected()) {
+	if (get_current_type() == ITEM_TYPE.OPTION && !options.is_selected()) {
 		return false;
 	}
 	return textbar.is_fully_displayed() && current_item_index >= array_length(chain.items) - 1;
@@ -59,10 +61,7 @@ function is_fully_displayed() {
 
 function display_current_item() {
 	var current_item = get_current_item();
-	
-	textbar.symbol_mode = false;
-	
-	if (current_item.type == "dialog") {
+	if (current_item.type == ITEM_TYPE.DIALOG) {
 		textbar.set_text(current_item.line);
 		textbar.set_name(get_person_name(current_item.speaker));
 		textbar.set_portrait(get_person_portrait(current_item.speaker, current_item.emotion));
@@ -73,13 +72,7 @@ function display_current_item() {
 			mind.answer_mode = false;
 		}
 	}
-	if (current_item.type == "symbol") {
-		textbar.set_text(current_item.desc);
-		textbar.symbol_mode = true;
-		textbar.set_symbol(current_item.symbol);
-		data_recorder.unlock_symbol(current_item.symbol);
-	}
-	if (current_item.type == "option") {
+	if (current_item.type == ITEM_TYPE.OPTION) {
 		textbar.set_text(current_item.question);
 		textbar.set_name("");
 		textbar.set_portrait(spr_option_black);
@@ -87,16 +80,16 @@ function display_current_item() {
 		options.set_name(current_item.name);
 		options.show();
 	}
-	if (current_item.type == "map") {
+	if (current_item.type == ITEM_TYPE.MAP) {
 		set_mode(DISPLAY_MODES.MAP);
 		
-		if (variable_struct_exists(current_item, "map_name")) {
+		if (!is_undefined(current_item.map_name)) {
 			map.set_map(current_item.map_name, current_item.pos);
 			map.full_mobility();
 		}
 	}
 	
-	if (current_item.type == "mind") {
+	if (current_item.type == ITEM_TYPE.MIND) {
 		textbar.set_text(current_item.question);
 		mind.set_answers(current_item.default_answer, current_item.answers);
 		mind.answer_mode = true;
@@ -108,28 +101,22 @@ function display_current_item() {
 		}
 		
 	}
-	
-	if (current_item.type == "transition") {
-		textbar.perform_transition(current_item.pattern, current_item.time, current_item.infos);
-	}
 	/// quick step forward
-	if (current_item.type == "music") {
+	if (current_item.type == ITEM_TYPE.MUSIC) {
 		music_player.set_music(current_item.piece);
 		next_item();
 	}
-	if (current_item.type == "image") {
-		
-		array_foreach(current_item.add, function(img) {
-			image_painter.add_image(img);
-		});
-		
-		array_foreach(current_item.remove, function(class) {
-			image_painter.remove_image(class);
-		});
-		
+	if (current_item.type == ITEM_TYPE.IMAGE) {
+		for (var i = 0; i < array_length(current_item.remove); i++) { 
+			image_painter.remove_image_group(current_item.remove[i]);
+		}
+		for (var i = 0; i < array_length(current_item.add); i++) { 
+			image_painter.add_image_group(current_item.add[i]);
+		}
 		next_item();
 	}
-	if (current_item.type == "task") {
+	if (current_item.type == ITEM_TYPE.TASK) {
+		// todo: fail/complete a task
 		if not (task_manager.task_exists(current_item.name)) {//create
 			task_manager.create_new_task(current_item.name, current_item.desc);
 		} else { //update
@@ -151,7 +138,7 @@ function set_chain(chain_name) {
 	display_current_item();
 }
 
-set_chain("chain1");
+set_chain("chain3");
 
 function next() {
 	if (!is_fully_displayed()) {
@@ -159,12 +146,7 @@ function next() {
 		return;
 	}
 	
-	var successors = variable_struct_get_names(chain.next);
-	var successor = array_filter(successors, function(name) {
-		return data_recorder.meets_requirement(variable_struct_get(chain.next, name));
-	})[0];
-	
-	set_chain(successor);
+	set_chain(chain.next());
 }
 
 function next_item() {
@@ -176,14 +158,14 @@ function next_item() {
 		return;
 	}
 	var current_item = get_current_item();
-	if (current_item.type == "option") {
+	if (current_item.type == ITEM_TYPE.OPTION) {
 		options.select();
 		next();
 		return;
 	}
 	var next_item = chain.items[current_item_index + 1];
 	
-	if (next_item.type == "image" and !image_painter.animation_finished()) {
+	if (next_item.type == ITEM_TYPE.IMAGE and !image_painter.animation_finished()) {
 		return;
 	}
 	current_item_index++;
