@@ -57,3 +57,7 @@ function unlock_symbol(_spr) {
 		}
 	}
 }
+
+function symbol_unlocked(_num) {
+	return mind_symbols_unlocked[_num];	
+}
